@@ -4,6 +4,7 @@
   var reduce=window.matchMedia("(prefers-reduced-motion:reduce)").matches;
   var canvas=document.getElementById("c"), ctx=canvas.getContext("2d");
   var introEl=document.getElementById("intro");
+  var quizEl=document.getElementById("quiz");
   var paraEl=document.getElementById("para"), hintEl=document.getElementById("hint"), eyebrow=document.getElementById("eyebrow");
   var track=document.querySelector(".hero-track");
   function shuffle(a){for(var i=a.length-1;i>0;i--){var j=(Math.random()*(i+1))|0,t=a[i];a[i]=a[j];a[j]=t;}return a;}
@@ -83,21 +84,24 @@
     var mobile=W<760;
     cx=mobile?W*0.5:W*0.70; cy=mobile?H*0.42:H*0.5;
     R=Math.min(W,H)*(mobile?0.30:0.33);
-    // colocación del vídeo 2 reconstruido (columna izquierda)
-    img2H=mobile?(W*0.92*(V2.fh/V2.fw)):H*0.86;
-    img2W=img2H*(V2.fw/V2.fh);
-    img2Cx=mobile?W*0.5:W*0.30; img2Cy=H*0.5;
+    // colocación del vídeo 2 reconstruido (móvil: a sangre completa; desktop: columna izquierda)
+    img2W=mobile?(W*1.25):(H*(V2.fw/V2.fh));      // móvil: sangra por los lados (sin espacio lateral)
+    img2H=mobile?(img2W*(V2.fh/V2.fw)):H;
+    img2Cx=mobile?W*0.5:W*0.30;
+    img2Cy=mobile?(img2H*0.5):H*0.5;              // móvil: pegado arriba (sin espacio superior)
     img2Pitch=img2W/GW;
-    imgH=mobile?(W*0.98*(FH/FW)):H;        // desktop: alto completo → pegado arriba y abajo
+    imgH=mobile?(W*(FH/FW)):H;              // móvil: ancho completo; desktop: alto completo
     imgW=imgH*(FW/FH);
-    imgCx=W - imgW*0.4375;                  // borde derecho de la persona pegado a la pantalla
+    imgCx=mobile?(W*0.5):(W - imgW*0.4375); // móvil: centrada a sangre; desktop: pegada a la derecha
     imgCy=imgH*0.5;
     imgPitch=imgW/GW;
   }
   window.addEventListener("resize",resize); resize();
 
   var p=0;
-  function onScroll(){var rect=track.getBoundingClientRect();var total=track.offsetHeight-window.innerHeight;p=clamp(-rect.top/total,0,1);}
+  // La animación termina al 80% del track; el último 20% queda en estado final (estático)
+  // mientras la sección del formulario sube por encima (efecto cover).
+  function onScroll(){var rect=track.getBoundingClientRect();var total=track.offsetHeight-window.innerHeight;p=clamp((-rect.top/total)/0.80,0,1);}
   window.addEventListener("scroll",onScroll,{passive:true}); onScroll();
 
   var TURNS=1.6;
@@ -118,6 +122,7 @@
     if(hintEl) hintEl.style.opacity = pp>0.04?0:1;
     paraEl.style.opacity = remap(pp,0.44,0.52) * (1 - remap(pp,0.58,0.64));
     if(introEl) introEl.style.opacity = 1 - remap(pp,0.18,0.26);
+    if(quizEl){ var qo=remap(pp,0.84,0.94); quizEl.style.opacity=qo; quizEl.style.pointerEvents=qo>0.5?"auto":"none"; }
 
     ctx.clearRect(0,0,W,H);
 

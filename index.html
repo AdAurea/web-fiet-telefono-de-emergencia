@@ -42,14 +42,67 @@
           <p>Si crees que tú o alguien que conoces puede estar en una situación de trata, contacta. Puedes permanecer en el anonimato.</p>
           <a href="tel:+34900759759" class="btn-hero">Línea de asistencia 24h</a>
         </div>
+        <div class="quiz" id="quiz">
+          <span class="tag"><span class="dot"></span>Autoevaluación confidencial</span>
+          <h2>¿Podrías estar en una situación de trata?</h2>
+          <p>Responde a estas preguntas para identificar posibles señales de alerta. El resultado es orientativo y no sustituye el asesoramiento profesional.</p>
+          <a href="#cuestionario" class="btn-hero" id="openQuiz">Ir al cuestionario</a>
+        </div>
       </div>
       <div class="hint" id="hint"><span class="bar"></span>Desplázate</div>
     </div>
   </section>
 
+  <!-- Sección "Informar una sospecha": entra deslizando desde abajo sobre la anterior -->
+  <section class="report" id="report">
+    <div class="report-inner">
+      <div class="report-left">
+        <span class="tag">Informar una sospecha</span>
+        <h2>Podemos ayudarte.</h2>
+        <p>Eres víctima o sospechas de una potencial situación de trata. Describe la situación con el mayor detalle posible, incluyendo fechas, horas, ubicación exacta (país, ciudad, dirección, código postal y referencias), descripción de las personas implicadas y, si procede, matrículas u otros datos identificativos.</p>
+        <p>Si la situación ocurre en el ámbito digital, facilita el enlace de la publicación, los nombres de las cuentas implicadas y una breve descripción de lo sucedido. Todas las comunicaciones son confidenciales y puedes permanecer en el anonimato.</p>
+      </div>
+      <div class="report-right">
+        <form id="reportForm" novalidate>
+          <span class="tag">Detalles de la descripción</span>
+          <textarea name="descripcion" rows="5" placeholder="Describe la situación con el mayor detalle posible..."></textarea>
+          <p class="report-note">Si consientes que un miembro de nuestro equipo pueda ponerse en contacto contigo, facilita alguno de los siguientes datos. Todos son opcionales.</p>
+          <div class="report-grid">
+            <label>Nombre<input type="text" name="nombre" autocomplete="name"></label>
+            <label>Número de teléfono<input type="tel" name="telefono" autocomplete="tel"></label>
+            <label>Correo<input type="email" name="correo" autocomplete="email"></label>
+            <label>Redes sociales<input type="text" name="redes"></label>
+          </div>
+          <label class="check"><input type="checkbox" name="privacidad"> Acepto la Política de Privacidad.</label>
+          <label class="check"><input type="checkbox" name="comunicaciones"> Acepto recibir comunicaciones informativas de FIET.</label>
+          <div class="report-submit">
+            <button type="submit" class="btn-hero btn-white">Enviar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <script src="main.js"></script>
+  <script src="report.js"></script>
   <a class="fab-call" href="tel:900759759" aria-label="Llamar al teléfono de ayuda">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.53 15.53 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.36 11.36 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.36 11.36 0 0 0 .57 3.57 1 1 0 0 1-.24 1.02l-2.21 2.2z"/></svg>
   </a>
+
+  <!-- Cuestionario de autoevaluación (panel lateral) -->
+  <div class="drawer-backdrop" id="quizBackdrop" hidden></div>
+  <aside class="drawer" id="quizDrawer" aria-hidden="true" aria-label="Cuestionario de autoevaluación">
+    <header class="drawer-top">
+      <span class="tag"><span class="dot"></span>Autoevaluación confidencial</span>
+      <button class="drawer-x" id="quizClose" type="button" aria-label="Cerrar cuestionario">&times;</button>
+    </header>
+    <h2 class="drawer-title">Evaluación del riesgo</h2>
+    <p class="drawer-sub">Marca lo que corresponda a tu situación. El resultado es orientativo y confidencial; no sustituye el asesoramiento profesional.</p>
+    <div class="quiz-list" id="quizList"></div>
+    <button class="btn-result" id="quizResultBtn" type="button">Ver resultado →</button>
+    <div class="quiz-result" id="quizResult" hidden></div>
+  </aside>
+
+  <script src="quiz.js"></script>
 </body>
 </html>
