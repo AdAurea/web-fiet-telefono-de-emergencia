@@ -2,7 +2,7 @@
     --font-display:"Figtree",system-ui,sans-serif; --font-body:"Figtree",system-ui,sans-serif; }
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--bg);color:var(--fg);font-family:var(--font-body);overflow-x:hidden}
-  .hero-track{ position:relative; height:850vh; }
+  .hero-track{ position:relative; height:1150vh; }
   .stage{ position:sticky; top:0; height:100vh; overflow:hidden; }
   canvas{ position:absolute; inset:0; width:100%; height:100%; z-index:0; }
   .overlay{ position:absolute; inset:0; z-index:2; display:flex; align-items:center; justify-content:flex-start; padding-inline:clamp(80px,9vw,240px); pointer-events:none; }
@@ -25,6 +25,14 @@
   .intro h2{ font-family:var(--font-display); font-weight:500; font-size:clamp(2.9rem,6.9vw,5.3rem); line-height:1.04; letter-spacing:-.02em; margin-bottom:20px; }
   .intro p{ font-family:var(--font-body); font-size:clamp(1.15rem,1.8vw,1.3rem); line-height:1.6; color:rgba(11,14,18,.70); margin-bottom:16px; }
   .intro p strong{ color:var(--fg); font-weight:600; }
+  /* Copy del paso intermedio (texto 2, junto al mapa de España) */
+  .copy2{ position:absolute; left:clamp(80px,9vw,240px); top:50%; transform:translateY(-50%); max-width:44ch; }
+  .copy2 h2.para{ font-weight:500; font-size:clamp(1.7rem,3.2vw,2.7rem); line-height:1.12; letter-spacing:-.015em; margin-bottom:20px; }
+  .copy2-body{ max-width:42ch; }
+  .copy2-body p{ font-family:var(--font-body); font-size:clamp(0.98rem,1.15vw,1.08rem); line-height:1.6; color:rgba(11,14,18,.72); margin-bottom:14px; }
+  .copy2-body ul{ list-style:none; margin-top:6px; display:flex; flex-direction:column; gap:9px; }
+  .copy2-body li{ font-family:var(--font-body); font-size:clamp(0.98rem,1.15vw,1.08rem); line-height:1.45; color:var(--fg); padding-left:18px; position:relative; }
+  .copy2-body li::before{ content:""; position:absolute; left:0; top:.55em; width:6px; height:6px; border-radius:50%; background:#1FAE5A; }
   /* Copy del cuestionario (escena 2, columna derecha junto al vídeo reconstruido) */
   .quiz{ position:absolute; top:50%; right:clamp(56px,11vw,280px); transform:translateY(-50%); width:min(40ch, 42%); opacity:0; pointer-events:none; }
   .quiz .tag{ display:inline-flex; align-items:center; gap:9px; font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; color:var(--fg); margin-bottom:22px; }
@@ -162,6 +170,12 @@
 
     /* Intro "No estás sola" */
     .intro{ left:22px; right:22px; width:auto; top:auto; bottom:10vh; transform:none; }
+
+    /* Texto 2 (mapa de España) al pie en móvil */
+    .copy2{ left:22px; right:22px; width:auto; max-width:none; top:auto; bottom:6vh; transform:none; }
+    .copy2 h2.para{ font-size:clamp(1.8rem,8vw,2.6rem); margin-bottom:14px; }
+    .copy2-body{ max-width:none; }
+    .copy2-body p, .copy2-body li{ font-size:.92rem; }
     .intro h2{ font-size:clamp(2.3rem,11vw,3.4rem); margin-bottom:16px; }
     .intro p{ font-size:1.02rem; margin-bottom:14px; }
     .intro .btn-hero{ margin-top:6px; }
