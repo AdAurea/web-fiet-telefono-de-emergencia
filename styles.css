@@ -64,9 +64,9 @@
   @media (max-width:480px){ .q{ flex-wrap:wrap; } .q-opts{ width:100%; justify-content:flex-end; } }
 
   /* ===== Sección "Informar una sospecha" (entra deslizando desde abajo) ===== */
-  .report{ position:fixed; inset:0; z-index:55; background:#FFD400; border-top-left-radius:clamp(28px,4vw,60px); border-top-right-radius:clamp(28px,4vw,60px); transform:translateY(100%); transition:transform .9s cubic-bezier(0.22,1,0.36,1); will-change:transform; overflow-y:auto; font-family:var(--font-body); }
+  .report{ position:fixed; inset:0; margin:auto; z-index:55; width:min(1180px,92vw); height:min(86vh,940px); border-radius:32px; background:rgba(255,255,255,.45); backdrop-filter:blur(26px) saturate(150%); -webkit-backdrop-filter:blur(26px) saturate(150%); border:1px solid rgba(255,255,255,.55); box-shadow:0 30px 90px rgba(11,14,18,.22); transform:translateY(122%); transition:transform .9s cubic-bezier(0.22,1,0.36,1); will-change:transform; overflow-y:auto; font-family:var(--font-body); }
   .report.show{ transform:translateY(0); }
-  .report-inner{ min-height:100%; box-sizing:border-box; display:grid; grid-template-columns:1fr 1fr; gap:clamp(40px,6vw,96px); align-content:center; padding:clamp(48px,7vh,96px) clamp(24px,5vw,80px); max-width:1320px; margin:0 auto; }
+  .report-inner{ min-height:100%; box-sizing:border-box; display:grid; grid-template-columns:1fr 1fr; gap:clamp(32px,4vw,64px); align-content:center; padding:clamp(32px,5vh,64px) clamp(28px,4vw,60px); }
   .report .tag{ display:inline-block; font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; font-weight:600; color:rgba(11,14,18,.62); margin-bottom:20px; }
   .report-left h2{ font-family:var(--font-display); font-weight:700; font-size:clamp(2.6rem,5vw,4.2rem); line-height:1.0; letter-spacing:-.025em; margin-bottom:26px; color:var(--fg); }
   .report-left p{ font-size:clamp(1rem,1.15vw,1.1rem); line-height:1.6; color:rgba(11,14,18,.78); max-width:50ch; margin-bottom:14px; }
@@ -88,6 +88,10 @@
   .btn-hero.btn-white{ background-color:#FFFFFF; color:#0B0E12; }
   .btn-hero.btn-white::before{ background:#0B0E12; }
   .btn-hero.btn-white:hover{ color:#FFFFFF; }
+  /* botón oscuro para la tarjeta glass, conserva la transición radial */
+  .btn-hero.btn-dark{ background-color:#0B0E12; color:#FFFFFF; }
+  .btn-hero.btn-dark::before{ background:#3a3a3a; }
+  .btn-hero.btn-dark:hover{ color:#FFFFFF; }
   @media (max-width:860px){ .report-inner{ grid-template-columns:1fr; } .report-grid{ grid-template-columns:1fr; } }
 
   .btn-hero {
@@ -173,7 +177,8 @@
     .nav-call{ margin-left:0; }
 
     /* Formulario */
-    .report-inner{ align-content:start; padding-top:96px; }
+    .report{ width:94vw; height:90vh; border-radius:22px; }
+    .report-inner{ align-content:start; }
     .report-left h2{ font-size:clamp(2.2rem,9vw,3rem); }
     .report-submit{ flex-direction:column; align-items:stretch; }
     .report-submit .btn-hero{ width:100%; min-width:0; }
