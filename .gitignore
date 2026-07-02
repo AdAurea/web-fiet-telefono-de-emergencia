@@ -1,0 +1,3 @@
+# Vídeos fuente (se embeben como sprite-sheet en main.js)
+*.mp4
+*.mov
