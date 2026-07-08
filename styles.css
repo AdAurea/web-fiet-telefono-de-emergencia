@@ -133,7 +133,9 @@
     border: 0;
     border-radius: 2.5rem;
     font-weight: 800;
-    font: 500 0.95rem/1.2 inherit;
+    font-size: inherit;
+    line-height: 1.2;
+    font-family: inherit;
     text-decoration: none;
     cursor: pointer;
     color: #232323;

@@ -99,6 +99,7 @@
     /* Ventana emergente: 3 vías de contacto */
     .report-vias{ display:flex; flex-direction:column; justify-content:center; }
     .report-vias .report-left{ text-align:center; max-width:680px; margin:0 auto clamp(28px,4vh,48px); }
+    .report-vias .report-left p{ margin-left:auto; margin-right:auto; }
     .via-cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
     .via-card{ display:flex; flex-direction:column; text-align:left; border:1px solid rgba(11,14,18,.14); border-radius:16px; padding:clamp(22px,2vw,30px); background:rgba(255,255,255,.35); }
     .via-num{ font-size:.8rem; letter-spacing:.12em; color:rgba(11,14,18,.45); margin-bottom:clamp(16px,3vh,28px); }
@@ -108,6 +109,7 @@
     .via-btn:hover{ background:var(--fg); color:#fff; }
     .via-btn-primary{ background:#FFD400; border-color:#FFD400; color:#0B0E12; }
     .via-btn-primary:hover{ background:#F5C400; color:#0B0E12; }
+    .via-card .btn-hero{ align-self:flex-start; } /* mismo botón que la portada */
     #formPanel{ z-index:56; } /* el formulario se muestra por encima de las cards */
     @media (max-width:860px){ .via-cards{ grid-template-columns:1fr; } }
   </style>
@@ -291,21 +293,21 @@
       <div class="via-cards">
         <article class="via-card">
           <span class="via-num">01 / 03</span>
-          <h3>Llamar</h3>
+          <h3>Teléfono</h3>
           <p>Marca el 900 759 759. Gratuito, 24/7. Profesionales que hablan español e inglés, con interpretación en más de 200 idiomas.</p>
-          <a class="via-btn" href="tel:900759759">900 759 759 &rarr;</a>
+          <a class="btn-hero" href="tel:900759759">Llamar</a>
         </article>
         <article class="via-card">
           <span class="via-num">02 / 03</span>
-          <h3>Informe web</h3>
+          <h3>Formulario</h3>
           <p>Describe una situación de sospecha a través del formulario de contacto. Puedes hacerlo de forma anónima o dejar un contacto para que te llamen.</p>
-          <button class="via-btn via-btn-primary js-open-form" type="button">Abrir formulario &rarr;</button>
+          <button class="btn-hero js-open-form" type="button">Abrir formulario</button>
         </article>
         <article class="via-card">
           <span class="via-num">03 / 03</span>
           <h3>Correo</h3>
           <p>Escríbenos con los detalles de tu situación o tu consulta. Te responderá el equipo especializado.</p>
-          <a class="via-btn" href="mailto:contacto@900759759.com">contacto@900759759.com &rarr;</a>
+          <a class="btn-hero" href="mailto:contacto@900759759.com">Enviar correo</a>
         </article>
       </div>
     </div>
