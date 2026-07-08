@@ -2,7 +2,7 @@
     --font-display:"Figtree",system-ui,sans-serif; --font-body:"Figtree",system-ui,sans-serif; }
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--bg);color:var(--fg);font-family:var(--font-body);overflow-x:hidden}
-  .hero-track{ position:relative; height:1150vh; }
+  .hero-track{ position:relative; height:1600vh; }
   .stage{ position:sticky; top:0; height:100vh; overflow:hidden; }
   canvas{ position:absolute; inset:0; width:100%; height:100%; z-index:0; }
   .overlay{ position:absolute; inset:0; z-index:2; display:flex; align-items:center; justify-content:flex-start; padding-inline:clamp(80px,9vw,240px); pointer-events:none; }
@@ -33,6 +33,27 @@
   .copy2-body ul{ list-style:none; margin-top:6px; display:flex; flex-direction:column; gap:9px; }
   .copy2-body li{ font-family:var(--font-body); font-size:clamp(0.98rem,1.15vw,1.08rem); line-height:1.45; color:var(--fg); padding-left:18px; position:relative; }
   .copy2-body li::before{ content:""; position:absolute; left:0; top:.55em; width:6px; height:6px; border-radius:50%; background:#1FAE5A; }
+  /* Sección "La trata tiene muchas caras": título arriba, 9 cards abajo (hover revela) */
+  .caras{ position:absolute; inset:0; z-index:4; opacity:0; pointer-events:none; }
+  .caras-title{ position:absolute; top:5vh; left:0; right:0; text-align:center; font-family:var(--font-display); font-weight:600; font-size:clamp(1.7rem,3.4vw,2.9rem); letter-spacing:-.02em; color:var(--fg); padding:0 24px; }
+  .cara-cards{ position:absolute; top:15vh; left:50%; transform:translateX(-50%); width:min(92vw,1300px); display:flex; gap:8px; }
+  .cara-card{ flex:1; min-width:0; background:rgba(255,255,255,.5); backdrop-filter:blur(10px) saturate(150%); -webkit-backdrop-filter:blur(10px) saturate(150%); border:1px solid rgba(11,14,18,.14); border-radius:14px; padding:14px 8px; text-align:center; cursor:pointer; box-shadow:0 8px 24px rgba(11,14,18,.10); transition:background .25s ease, border-color .25s ease, transform .25s ease; }
+  .cara-card:hover{ background:rgba(255,255,255,.9); border-color:var(--fg); transform:translateY(-5px); }
+  .cara-card h4{ font-family:var(--font-body); font-weight:600; font-size:clamp(.7rem,.85vw,.9rem); line-height:1.2; color:var(--fg); }
+  @media (max-width:760px){ .cara-cards{ flex-wrap:wrap; justify-content:center; top:13vh; gap:6px; } .cara-card{ flex:0 0 30%; padding:10px 6px; } .caras-title{ top:5vh; } }
+
+  /* Orbe amarillo que crece por encima del copy y lo tapa */
+  .orb-cover{ position:absolute; border-radius:50%; background:#FFD400; z-index:2; pointer-events:none; display:none; }
+  /* Bloque "Los tres elementos del delito" (sobre el orbe amarillo a pantalla completa) */
+  .elements{ position:absolute; inset:0; z-index:3; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:9vh clamp(24px,6vw,120px); opacity:0; pointer-events:none; }
+  .elements .eyebrow{ color:#0B0E12; margin-bottom:18px; }
+  .elements .eyebrow .dot{ background:#0B0E12; }
+  .el-title.para{ font-weight:600; font-size:clamp(1.8rem,3.4vw,2.8rem); line-height:1.14; letter-spacing:-.02em; color:#0B0E12; max-width:22ch; margin:0 auto 44px; }
+  .el-cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(16px,2vw,28px); width:100%; max-width:1080px; }
+  .el-card{ background:rgba(255,255,255,.92); border-radius:20px; padding:clamp(22px,2.2vw,34px); text-align:left; opacity:0; transform:translateY(28px); transition:opacity .55s ease, transform .55s ease; }
+  .el-card.show{ opacity:1; transform:none; }
+  .el-card h3{ font-family:var(--font-display); font-weight:600; font-size:clamp(1.2rem,1.7vw,1.55rem); margin-bottom:10px; color:#0B0E12; }
+  .el-card p{ font-family:var(--font-body); font-size:clamp(.95rem,1.05vw,1.05rem); line-height:1.5; color:rgba(11,14,18,.72); }
   /* Copy del cuestionario (escena 2, columna derecha junto al vídeo reconstruido) */
   .quiz{ position:absolute; top:50%; right:clamp(56px,11vw,280px); transform:translateY(-50%); width:min(40ch, 42%); opacity:0; pointer-events:none; }
   .quiz .tag{ display:inline-flex; align-items:center; gap:9px; font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; color:var(--fg); margin-bottom:22px; }
@@ -171,6 +192,10 @@
     /* Intro "No estás sola" */
     .intro{ left:22px; right:22px; width:auto; top:auto; bottom:10vh; transform:none; }
 
+    /* Bloque "tres elementos" en móvil */
+    .el-cards{ grid-template-columns:1fr; gap:12px; max-width:460px; }
+    .el-title.para{ font-size:clamp(1.5rem,6.4vw,2.1rem); margin-bottom:22px; }
+    .elements{ padding:11vh 22px; justify-content:flex-start; overflow-y:auto; }
     /* Texto 2 (mapa de España) al pie en móvil */
     .copy2{ left:22px; right:22px; width:auto; max-width:none; top:auto; bottom:6vh; transform:none; }
     .copy2 h2.para{ font-size:clamp(1.8rem,8vw,2.6rem); margin-bottom:14px; }

@@ -1,7 +1,7 @@
 (function(){
   "use strict";
 
-  var heroTrack = document.querySelector(".hero-track");
+  var heroTrack = document.querySelector(".hero-track, .tel-track");
   var report    = document.getElementById("report");
   if(!heroTrack || !report) return;
 
