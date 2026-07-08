@@ -1,42 +1,68 @@
 (function(){
   "use strict";
 
+  // ---- popup automático al final del recorrido (#report) ----
   var report = document.getElementById("report");
-  if(!report) return;
   var track  = document.querySelector(".hero-track, .tel-track");
-  var TRIGGER = 0.86; // umbral dentro del track (aparece sola al final)
+  var TRIGGER = 0.86; // umbral dentro del track (aparece solo al final)
 
-  var atEnd = false, manual = false;
-  function apply(){ report.classList.toggle("show", manual || atEnd); }
+  var atEnd = false, manualReport = false;
+  function applyReport(){ if(report) report.classList.toggle("show", manualReport || atEnd); }
 
-  // ---- entrada automática al final del recorrido ----
   function onScroll(){
-    if(!track) return;
+    if(!track || !report) return;
     var rect  = track.getBoundingClientRect();
     var total = track.offsetHeight - window.innerHeight;
     var f = -rect.top / total;            // progreso 0..1 dentro del track
     atEnd = f >= TRIGGER;
-    apply();
+    applyReport();
   }
-  if(track){
+  if(track && report){
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     onScroll();
   }
+  var reportClose = document.getElementById("reportClose");
+  if(reportClose) reportClose.addEventListener("click", function(){ manualReport = false; applyReport(); });
 
-  // ---- abrir/cerrar a demanda (botón flotante del bolígrafo) ----
-  var opener = document.getElementById("fabForm");
-  if(opener) opener.addEventListener("click", function(){ manual = true; apply(); });
-  var closer = document.getElementById("reportClose");
-  if(closer) closer.addEventListener("click", function(){ manual = false; apply(); });
-  document.addEventListener("keydown", function(e){ if(e.key === "Escape" && manual){ manual = false; apply(); } });
+  // ---- panel del formulario ----
+  // En la home el formulario ES el propio #report; en la página del teléfono
+  // vive en un panel aparte (#formPanel). Detectamos su contenedor real.
+  var formEl    = document.getElementById("reportForm");
+  var formPanel = formEl ? formEl.closest(".report") : null;
+  var formShared = (formPanel && formPanel === report); // comparte overlay con el popup automático
+
+  function openForm(){
+    if(!formPanel) return;
+    if(formShared){ manualReport = true; applyReport(); }
+    else formPanel.classList.add("show");
+  }
+  function closeForm(){
+    if(!formPanel) return;
+    if(formShared){ manualReport = false; applyReport(); }
+    else formPanel.classList.remove("show");
+  }
+
+  // abre el formulario: bolígrafo flotante (#fabForm) y botón "Abrir formulario" (.js-open-form)
+  var openers = document.querySelectorAll("#fabForm, .js-open-form");
+  for(var i = 0; i < openers.length; i++){
+    openers[i].addEventListener("click", function(e){ e.preventDefault(); openForm(); });
+  }
+  var formClose = document.getElementById("formClose");
+  if(formClose) formClose.addEventListener("click", closeForm);
+
+  // abrir desde otra página (enlace index.html#informar)
+  if(location.hash === "#informar" && formPanel) openForm();
+
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){ manualReport = false; applyReport(); closeForm(); }
+  });
 
   // ---- envío del formulario (confidencial) ----
-  var form = document.getElementById("reportForm");
-  if(form){
-    form.addEventListener("submit", function(e){
+  if(formEl){
+    formEl.addEventListener("submit", function(e){
       e.preventDefault();
-      form.innerHTML =
+      formEl.innerHTML =
         '<div class="report-thanks">' +
           '<span class="tag">Comunicación confidencial</span>' +
           '<h3>Gracias por tu mensaje.</h3>' +
