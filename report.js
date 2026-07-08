@@ -6,8 +6,8 @@
   var track  = document.querySelector(".hero-track, .tel-track");
   var TRIGGER = 0.86; // umbral dentro del track (aparece solo al final)
 
-  var atEnd = false, manualReport = false;
-  function applyReport(){ if(report) report.classList.toggle("show", manualReport || atEnd); }
+  var atEnd = false, manualReport = false, dismissedEnd = false;
+  function applyReport(){ if(report) report.classList.toggle("show", manualReport || (atEnd && !dismissedEnd)); }
 
   function onScroll(){
     if(!track || !report) return;
@@ -15,6 +15,7 @@
     var total = track.offsetHeight - window.innerHeight;
     var f = -rect.top / total;            // progreso 0..1 dentro del track
     atEnd = f >= TRIGGER;
+    if(!atEnd) dismissedEnd = false;      // al salir del final se rearma
     applyReport();
   }
   if(track && report){
@@ -23,7 +24,7 @@
     onScroll();
   }
   var reportClose = document.getElementById("reportClose");
-  if(reportClose) reportClose.addEventListener("click", function(){ manualReport = false; applyReport(); });
+  if(reportClose) reportClose.addEventListener("click", function(){ manualReport = false; dismissedEnd = true; applyReport(); });
 
   // ---- panel del formulario ----
   // En la home el formulario ES el propio #report; en la página del teléfono
@@ -34,7 +35,7 @@
 
   function openForm(){
     if(!formPanel) return;
-    if(formShared){ manualReport = true; applyReport(); }
+    if(formShared){ manualReport = true; dismissedEnd = false; applyReport(); }
     else formPanel.classList.add("show");
   }
   function closeForm(){
