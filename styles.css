@@ -162,9 +162,17 @@
   .btn-hero:hover::before {
     width: 250%;
   }
-  .fab-call{ position:fixed; right:24px; bottom:84px; z-index:58; width:84px; height:84px; border-radius:50%; background:#FFD400; color:#0B0E12; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(0,0,0,.22); transition:transform .2s ease, box-shadow .2s ease; }
+  .fab-stack{ position:fixed; right:24px; bottom:32px; z-index:58; display:flex; flex-direction:column; align-items:center; gap:14px; }
+  .fab-call{ width:76px; height:76px; border-radius:50%; background:#FFD400; color:#0B0E12; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(0,0,0,.22); transition:transform .2s ease, box-shadow .2s ease; }
   .fab-call:hover{ transform:translateY(-3px) scale(1.05); box-shadow:0 12px 30px rgba(0,0,0,.28); }
-  .fab-call svg{ width:40px; height:40px; }
+  .fab-call svg{ width:38px; height:38px; }
+  .fab-sec{ width:58px; height:58px; border-radius:50%; background:#FFFFFF; color:#0B0E12; display:flex; align-items:center; justify-content:center; border:1px solid rgba(11,14,18,.10); box-shadow:0 8px 22px rgba(11,14,18,.16); cursor:pointer; transition:transform .2s ease, box-shadow .2s ease; }
+  .fab-sec:hover{ transform:translateY(-3px) scale(1.06); box-shadow:0 12px 28px rgba(11,14,18,.22); }
+  .fab-sec svg{ width:25px; height:25px; }
+  .fab-quiz{ position:fixed; left:24px; bottom:32px; z-index:58; display:inline-flex; align-items:center; background:#FFD400; color:#0B0E12; font-family:var(--font-body); font-weight:600; font-size:1rem; padding:15px 26px; border-radius:999px; text-decoration:none; box-shadow:0 12px 30px rgba(11,14,18,.2); transition:transform .2s ease, box-shadow .2s ease; }
+  .fab-quiz:hover{ transform:translateY(-3px); box-shadow:0 16px 36px rgba(11,14,18,.26); }
+  .report-close{ position:absolute; top:18px; right:22px; z-index:2; width:40px; height:40px; border:0; background:transparent; font-size:2rem; line-height:1; color:var(--fg); cursor:pointer; border-radius:10px; transition:background .2s ease; }
+  .report-close:hover{ background:rgba(11,14,18,.06); }
   .navbar{ position:fixed; top:22px; left:50%; transform:translateX(-50%); z-index:60; display:flex; align-items:center; gap:6px; padding:8px; border-radius:999px; background:rgba(255,255,255,.55); backdrop-filter:blur(16px) saturate(160%); -webkit-backdrop-filter:blur(16px) saturate(160%); border:1px solid rgba(255,255,255,.6); box-shadow:0 8px 32px rgba(11,14,18,.12); }
   .navbar a{ font-family:var(--font-body); font-size:.95rem; font-weight:500; color:var(--fg); text-decoration:none; padding:10px 18px; border-radius:999px; white-space:nowrap; transition:background .2s ease, color .2s ease; }
   .navbar a:not(.nav-call):hover{ background:var(--fg); color:var(--bg); }
@@ -223,8 +231,12 @@
     .report-submit .btn-hero{ width:100%; min-width:0; }
 
     /* Botón flotante un poco más pequeño */
-    .fab-call{ width:64px; height:64px; right:18px; bottom:32px; }
-    .fab-call svg{ width:30px; height:30px; }
+    .fab-stack{ right:16px; bottom:18px; gap:10px; }
+    .fab-call{ width:60px; height:60px; }
+    .fab-call svg{ width:28px; height:28px; }
+    .fab-sec{ width:48px; height:48px; }
+    .fab-sec svg{ width:21px; height:21px; }
+    .fab-quiz{ left:16px; bottom:18px; padding:12px 18px; font-size:.85rem; }
   }
 
   /* Móvil pequeño */

@@ -84,7 +84,8 @@
     if(lastFocus) lastFocus.focus();
   }
 
-  if(openBtn) openBtn.addEventListener("click", function(e){ e.preventDefault(); open(); });
+  var openers = document.querySelectorAll("#openQuiz, .js-open-quiz");
+  for(var oi=0;oi<openers.length;oi++){ openers[oi].addEventListener("click", function(e){ e.preventDefault(); open(); }); }
   closeBtn.addEventListener("click", close);
   backdrop.addEventListener("click", close);
   document.addEventListener("keydown", function(e){

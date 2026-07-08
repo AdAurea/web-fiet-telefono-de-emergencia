@@ -1,22 +1,35 @@
 (function(){
   "use strict";
 
-  var heroTrack = document.querySelector(".hero-track, .tel-track");
-  var report    = document.getElementById("report");
-  if(!heroTrack || !report) return;
+  var report = document.getElementById("report");
+  if(!report) return;
+  var track  = document.querySelector(".hero-track, .tel-track");
+  var TRIGGER = 0.86; // umbral dentro del track (aparece sola al final)
 
-  // ---- entrada cover: al cruzar el umbral (vídeo/copy ya en su estado final y FIJO por el
-  //      sticky), la sección sube ENTERA con una sola transición, sin mover lo de detrás ----
-  var TRIGGER = 0.86; // umbral dentro del hero-track (tras el fin de la animación al 80%)
+  var atEnd = false, manual = false;
+  function apply(){ report.classList.toggle("show", manual || atEnd); }
+
+  // ---- entrada automática al final del recorrido ----
   function onScroll(){
-    var rect  = heroTrack.getBoundingClientRect();
-    var total = heroTrack.offsetHeight - window.innerHeight;
-    var f = -rect.top / total;            // progreso 0..1 dentro del hero-track
-    report.classList.toggle("show", f >= TRIGGER);
+    if(!track) return;
+    var rect  = track.getBoundingClientRect();
+    var total = track.offsetHeight - window.innerHeight;
+    var f = -rect.top / total;            // progreso 0..1 dentro del track
+    atEnd = f >= TRIGGER;
+    apply();
   }
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll);
-  onScroll();
+  if(track){
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    onScroll();
+  }
+
+  // ---- abrir/cerrar a demanda (botón flotante del bolígrafo) ----
+  var opener = document.getElementById("fabForm");
+  if(opener) opener.addEventListener("click", function(){ manual = true; apply(); });
+  var closer = document.getElementById("reportClose");
+  if(closer) closer.addEventListener("click", function(){ manual = false; apply(); });
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape" && manual){ manual = false; apply(); } });
 
   // ---- envío del formulario (confidencial) ----
   var form = document.getElementById("reportForm");
