@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  <title>Fiet · Hero vídeo→mapa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="site-logo" href="index.html" aria-label="FIET · Inicio"><img src="logo.png" alt="FIET"></a>
+  <nav class="navbar">
+    <a href="index.html">El teléfono</a>
+    <a href="#que-es">Qué es la trata</a>
+    <a href="prevencion.html">Prevención</a>
+    <a href="#recursos">Recursos</a>
+    <a class="nav-call" href="tel:900759759" aria-label="Llamar al 900 759 759"><span class="live"></span>Llama 900 759 759</a>
+  </nav>
+  <section class="hero-track">
+    <div class="stage">
+      <canvas id="c" aria-hidden="true"></canvas>
+      <div class="overlay">
+        <div class="copy">
+          <span class="eyebrow" id="eyebrow"><span class="dot"></span>¿Qué es la trata?</span>
+          <p class="para" id="para" style="opacity:0">La trata de personas Es un delito que consiste en la captación, traslado y explotación de personas mediante engaño, abuso de vulnerabilidad o violencia, con fines como la explotación sexual, laboral u otras formas de explotación.</p>
+        </div>
+        <div class="copy2" id="copy2">
+          <span class="eyebrow" id="eyebrow2"><span class="dot"></span>La trata en España</span>
+          <h2 class="para" id="para2" style="opacity:0">España es un país de origen, tránsito y destino de la trata de seres humanos.</h2>
+          <div class="copy2-body" id="copy2body" style="opacity:0">
+            <p>Se han detectado casos en todas las comunidades autónomas y, además, el país se sitúa entre los mayores consumidores de prostitución del mundo.</p>
+          </div>
+        </div>
+        <div class="intro" id="intro">
+          <span class="tag"><span class="dot"></span>Confidencial · Gratuito · Disponible 24/7</span>
+          <h2>No estás sola</h2>
+          <p>El <strong>900 759 759</strong> es el Teléfono de Ayuda Contra la Trata en España. Funciona 24/7 y está atendido por profesionales especializados que siguen protocolos internacionales para responder con rapidez y seguridad.</p>
+          <p>Si crees que tú o alguien que conoces puede estar en una situación de trata, contacta. Puedes permanecer en el anonimato.</p>
+          <a href="tel:+34900759759" class="btn-hero">Línea de asistencia 24h</a>
+        </div>
+        <div class="quiz" id="quiz">
+          <span class="tag"><span class="dot"></span>Autoevaluación confidencial</span>
+          <h2>¿Podrías estar en una situación de trata?</h2>
+          <p>Responde a estas preguntas para identificar posibles señales de alerta. El resultado es orientativo y no sustituye el asesoramiento profesional.</p>
+          <a href="#cuestionario" class="btn-hero" id="openQuiz">Ir al cuestionario</a>
+        </div>
+        <div class="orb-cover" id="orbCover"></div>
+        <div class="elements" id="elements">
+          <span class="eyebrow" id="eyebrow3"><span class="dot"></span>Los tres elementos del delito</span>
+          <h2 class="para el-title" id="eltitle">La existencia de estos tres elementos constituye el delito de trata.</h2>
+          <div class="el-cards">
+            <article class="el-card"><h3>La acción</h3><p>Captación, transporte, traslado, acogida o recepción de personas.</p></article>
+            <article class="el-card"><h3>Los medios</h3><p>Engaño, abuso de una situación de vulnerabilidad, coacción o violencia.</p></article>
+            <article class="el-card"><h3>El fin</h3><p>La explotación de la persona para obtener un beneficio económico.</p></article>
+          </div>
+        </div>
+        <div class="caras" id="caras">
+          <h2 class="caras-title">La trata tiene muchas caras</h2>
+          <div class="cara-cards">
+            <article class="cara-card"><h4>Explotación sexual</h4></article>
+            <article class="cara-card"><h4>Explotación laboral</h4></article>
+            <article class="cara-card"><h4>Mendicidad forzada</h4></article>
+            <article class="cara-card"><h4>Matrimonio forzado</h4></article>
+            <article class="cara-card"><h4>Criminalidad forzada</h4></article>
+            <article class="cara-card"><h4>Servidumbre doméstica</h4></article>
+            <article class="cara-card"><h4>Extracción de órganos</h4></article>
+            <article class="cara-card"><h4>Explotación agrícola</h4></article>
+            <article class="cara-card"><h4>Trata de menores</h4></article>
+          </div>
+        </div>
+      </div>
+      <div class="hint" id="hint"><span class="bar"></span>Desplázate</div>
+    </div>
+  </section>
+
+  <!-- Sección "Informar una sospecha": entra deslizando desde abajo sobre la anterior -->
+  <section class="report" id="report">
+    <button class="report-close" id="reportClose" type="button" aria-label="Cerrar">&times;</button>
+    <div class="report-inner">
+      <div class="report-left">
+        <span class="tag">Informar una sospecha</span>
+        <h2>Podemos ayudarte.</h2>
+        <p>Eres víctima o sospechas de una potencial situación de trata. Describe la situación con el mayor detalle posible, incluyendo fechas, horas, ubicación exacta (país, ciudad, dirección, código postal y referencias), descripción de las personas implicadas y, si procede, matrículas u otros datos identificativos.</p>
+        <p>Si la situación ocurre en el ámbito digital, facilita el enlace de la publicación, los nombres de las cuentas implicadas y una breve descripción de lo sucedido. Todas las comunicaciones son confidenciales y puedes permanecer en el anonimato.</p>
+      </div>
+      <div class="report-right">
+        <form id="reportForm" novalidate>
+          <span class="tag">Detalles de la descripción</span>
+          <textarea name="descripcion" rows="5" placeholder="Describe la situación con el mayor detalle posible..."></textarea>
+          <p class="report-note">Si consientes que un miembro de nuestro equipo pueda ponerse en contacto contigo, facilita alguno de los siguientes datos. Todos son opcionales.</p>
+          <div class="report-grid">
+            <label>Nombre<input type="text" name="nombre" autocomplete="name"></label>
+            <label>Número de teléfono<input type="tel" name="telefono" autocomplete="tel"></label>
+            <label>Correo<input type="email" name="correo" autocomplete="email"></label>
+            <label>Redes sociales<input type="text" name="redes"></label>
+          </div>
+          <label class="check"><input type="checkbox" name="privacidad"> Acepto la Política de Privacidad.</label>
+          <label class="check"><input type="checkbox" name="comunicaciones"> Acepto recibir comunicaciones informativas de FIET.</label>
+          <div class="report-submit">
+            <button type="submit" class="btn-hero btn-dark">Enviar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script src="main.js"></script>
+
+  <!-- Botones flotantes persistentes -->
+  <a class="fab-quiz js-open-quiz" href="#cuestionario">Ir al cuestionario</a>
+  <div class="fab-stack">
+    <a class="fab-sec" href="mailto:informacion@fiet.ong?subject=Contacto%20-%20Tel%C3%A9fono%20contra%20la%20Trata" aria-label="Enviar un correo">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+    </a>
+    <button class="fab-sec" id="fabForm" type="button" aria-label="Abrir formulario de contacto">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+    </button>
+    <a class="fab-call" href="tel:900759759" aria-label="Llamar al teléfono de ayuda">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.53 15.53 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.36 11.36 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.36 11.36 0 0 0 .57 3.57 1 1 0 0 1-.24 1.02l-2.21 2.2z"/></svg>
+    </a>
+  </div>
+
+  <!-- Cuestionario de autoevaluación (panel lateral) -->
+  <div class="drawer-backdrop" id="quizBackdrop" hidden></div>
+  <aside class="drawer" id="quizDrawer" aria-hidden="true" aria-label="Cuestionario de autoevaluación">
+    <header class="drawer-top">
+      <span class="tag"><span class="dot"></span>Autoevaluación confidencial</span>
+      <button class="drawer-x" id="quizClose" type="button" aria-label="Cerrar cuestionario">&times;</button>
+    </header>
+    <h2 class="drawer-title">Evaluación del riesgo</h2>
+    <p class="drawer-sub">Marca lo que corresponda a tu situación. El resultado es orientativo y confidencial; no sustituye el asesoramiento profesional.</p>
+    <div class="quiz-list" id="quizList"></div>
+    <button class="btn-result" id="quizResultBtn" type="button">Ver resultado →</button>
+    <div class="quiz-result" id="quizResult" hidden></div>
+  </aside>
+
+  <script src="quiz.js"></script>
+  <script src="report.js"></script>
+</body>
+</html>

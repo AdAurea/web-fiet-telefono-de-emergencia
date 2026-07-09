@@ -52,7 +52,7 @@
   var formClose = document.getElementById("formClose");
   if(formClose) formClose.addEventListener("click", closeForm);
 
-  // abrir desde otra página (enlace index.html#informar)
+  // abrir desde otra página (enlace que_es_la_trata.html#informar)
   if(location.hash === "#informar" && formPanel) openForm();
 
   document.addEventListener("keydown", function(e){
