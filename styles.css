@@ -170,6 +170,10 @@
   .fab-call svg{ width:38px; height:38px; }
   .fab-sec{ width:58px; height:58px; border-radius:50%; background:#FFFFFF; color:#0B0E12; display:flex; align-items:center; justify-content:center; border:1px solid rgba(11,14,18,.10); box-shadow:0 8px 22px rgba(11,14,18,.16); cursor:pointer; transition:transform .2s ease, box-shadow .2s ease; }
   .fab-sec:hover{ transform:translateY(-3px) scale(1.06); box-shadow:0 12px 28px rgba(11,14,18,.22); }
+  .fab-toggle{ display:none; align-items:center; justify-content:center; width:60px; height:60px; border-radius:50%; background:#FFD400; color:#0B0E12; border:0; box-shadow:0 8px 24px rgba(0,0,0,.22); cursor:pointer; transition:transform .25s ease, box-shadow .2s ease; }
+  .fab-toggle:hover{ transform:translateY(-3px) scale(1.05); box-shadow:0 12px 30px rgba(0,0,0,.28); }
+  .fab-toggle svg{ width:32px; height:32px; }
+  .fab-stack.open .fab-toggle{ background:#0B0E12; color:#FFD400; }
   .fab-sec svg{ width:25px; height:25px; }
   .fab-quiz{ position:fixed; left:24px; bottom:32px; z-index:58; display:inline-flex; align-items:center; background:#FFD400; color:#0B0E12; font-family:var(--font-body); font-weight:600; font-size:1rem; padding:15px 26px; border-radius:999px; text-decoration:none; box-shadow:0 12px 30px rgba(11,14,18,.2); transition:transform .2s ease, box-shadow .2s ease; }
   .fab-quiz:hover{ transform:translateY(-3px); box-shadow:0 16px 36px rgba(11,14,18,.26); }
@@ -184,6 +188,30 @@
   .nav-call .live{ width:9px; height:9px; border-radius:50%; background:#1FAE5A; box-shadow:0 0 0 0 rgba(31,174,90,.7); animation:livePulse 1.4s ease-out infinite; }
   @keyframes livePulse{ 0%{ box-shadow:0 0 0 0 rgba(31,174,90,.7); } 70%{ box-shadow:0 0 0 7px rgba(31,174,90,0); } 100%{ box-shadow:0 0 0 0 rgba(31,174,90,0); } }
   @media (max-width:560px){ .navbar{ gap:2px; padding:6px; } .navbar a{ font-size:.82rem; padding:8px 12px; } .site-logo{ top:12px; left:14px; } .site-logo img{ height:58px; } }
+
+  /* ===== Menú hamburguesa + panel lateral (móvil) ===== */
+  .nav-burger{ display:none; }
+  .nav-drawer, .nav-backdrop{ display:none; }
+  @media (max-width:760px){
+    .nav-burger{ display:inline-flex; align-items:center; justify-content:center; position:fixed; top:16px; right:16px; z-index:62; width:52px; height:52px; border-radius:50%; background:rgba(255,255,255,.55); backdrop-filter:blur(16px) saturate(160%); -webkit-backdrop-filter:blur(16px) saturate(160%); border:1px solid rgba(255,255,255,.6); box-shadow:0 8px 24px rgba(11,14,18,.14); cursor:pointer; }
+    .nav-burger span{ position:relative; display:block; width:22px; height:2px; background:var(--fg); border-radius:2px; transition:background .2s ease; }
+    .nav-burger span::before, .nav-burger span::after{ content:""; position:absolute; left:0; width:22px; height:2px; background:var(--fg); border-radius:2px; transition:transform .3s ease, top .3s ease; }
+    .nav-burger span::before{ top:-7px; } .nav-burger span::after{ top:7px; }
+    .nav-burger[aria-expanded="true"] span{ background:transparent; }
+    .nav-burger[aria-expanded="true"] span::before{ top:0; transform:rotate(45deg); }
+    .nav-burger[aria-expanded="true"] span::after{ top:0; transform:rotate(-45deg); }
+
+    .nav-backdrop{ display:block; position:fixed; inset:0; z-index:96; background:rgba(11,14,18,.32); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); opacity:0; pointer-events:none; transition:opacity .35s ease; }
+    .nav-backdrop.open{ opacity:1; pointer-events:auto; }
+    .nav-drawer{ display:flex; flex-direction:column; position:fixed; top:0; right:0; z-index:97; height:100vh; width:min(330px,80vw); padding:96px 30px 40px; gap:2px; background:rgba(255,255,255,.5); backdrop-filter:blur(26px) saturate(160%); -webkit-backdrop-filter:blur(26px) saturate(160%); border-left:1px solid rgba(255,255,255,.6); box-shadow:-18px 0 50px rgba(11,14,18,.2); transform:translateX(100%); transition:transform .42s cubic-bezier(0.22,1,0.36,1); }
+    .nav-drawer.open{ transform:translateX(0); }
+    .nav-drawer-links{ display:flex; flex-direction:column; }
+    .nav-drawer-links a{ font-family:var(--font-display); font-size:1.35rem; font-weight:500; color:var(--fg); text-decoration:none; padding:16px 4px; border-bottom:1px solid rgba(11,14,18,.08); }
+    .nav-drawer-links a:last-child{ border-bottom:0; }
+    .nav-drawer-quiz{ margin-top:24px; background:#FFD400; color:#0B0E12; text-align:center; font-weight:600; border-radius:999px; border-bottom:0 !important; padding:16px !important; box-shadow:0 10px 26px rgba(11,14,18,.14); }
+    .fab-quiz{ display:none; }
+    .nav-drawer-close{ position:absolute; top:22px; right:22px; width:42px; height:42px; border:0; background:transparent; font-size:2rem; line-height:1; color:var(--fg); cursor:pointer; border-radius:10px; }
+  }
 
   /* ================= RESPONSIVE ================= */
 
@@ -234,12 +262,17 @@
     .report-submit{ flex-direction:column; align-items:stretch; }
     .report-submit .btn-hero{ width:100%; min-width:0; }
 
-    /* Botón flotante un poco más pequeño */
-    .fab-stack{ right:16px; bottom:18px; gap:10px; }
-    .fab-call{ width:60px; height:60px; }
-    .fab-call svg{ width:28px; height:28px; }
-    .fab-sec{ width:48px; height:48px; }
-    .fab-sec svg{ width:21px; height:21px; }
+    /* Botones flotantes: speed-dial (icono de persona que despliega los tres hacia arriba) */
+    .fab-stack{ right:16px; bottom:18px; gap:0; }
+    .fab-toggle{ display:flex; }
+    .fab-call, .fab-sec{ position:absolute; left:50%; bottom:0; transform:translate(-50%,0) scale(.35); opacity:0; pointer-events:none; transition:transform .34s cubic-bezier(0.22,1,0.36,1), opacity .22s ease; }
+    .fab-call{ width:56px; height:56px; }
+    .fab-call svg{ width:26px; height:26px; }
+    .fab-sec{ width:52px; height:52px; }
+    .fab-sec svg{ width:22px; height:22px; }
+    .fab-stack.open .fab-call{ opacity:1; pointer-events:auto; transform:translate(-50%,-72px) scale(1); }
+    .fab-stack.open #fabForm{ opacity:1; pointer-events:auto; transform:translate(-50%,-138px) scale(1); }
+    .fab-stack.open .fab-mail{ opacity:1; pointer-events:auto; transform:translate(-50%,-204px) scale(1); }
     .fab-quiz{ left:16px; bottom:18px; padding:12px 18px; font-size:.85rem; }
   }
 
