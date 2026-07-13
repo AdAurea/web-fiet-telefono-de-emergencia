@@ -4,6 +4,7 @@
   var reduce=window.matchMedia("(prefers-reduced-motion:reduce)").matches;
   var canvas=document.getElementById("c"), ctx=canvas.getContext("2d");
   var introEl=document.getElementById("intro");
+  var prevRecoEl=document.getElementById("prevReco");   // bloque "Recomendaciones + cards" (portada Prevención)
   var quizEl=document.getElementById("quiz");
   var paraEl=document.getElementById("para"), hintEl=document.getElementById("hint"), eyebrow=document.getElementById("eyebrow");
   var para2El=document.getElementById("para2"), eyebrow2El=document.getElementById("eyebrow2"), copy2bodyEl=document.getElementById("copy2body");
@@ -13,6 +14,8 @@
   var orbCoverEl=document.getElementById("orbCover");
   var elCards=document.querySelectorAll(".el-card");
   var track=document.querySelector(".hero-track");
+  var COVER=!!(track && track.hasAttribute("data-cover"));   // modo "solo portada": persona -> mapamundi + texto
+  var STATIC=!!(track && track.hasAttribute("data-static")); // muestra el fotograma del vídeo 1 fijo (sin scroll ni fragmentación)
   function shuffle(a){for(var i=a.length-1;i>0;i--){var j=(Math.random()*(i+1))|0,t=a[i];a[i]=a[j];a[j]=t;}return a;}
   function clamp(v,a,b){return v<a?a:v>b?b:v;}
   function remap(v,a,b){return clamp((v-a)/(b-a),0,1);}
@@ -114,6 +117,7 @@
         bob:Math.random() };
     }
     cellsReady=true;
+    if(COVER) buildLighthouse();           // asigna a cada partícula su píxel del faro
   }
 
   var W=0,H=0,dpr=1,cx=0,cy=0,R=0,imgCx=0,imgCy=0,imgW=0,imgH=0,imgPitch=0,img2Cx=0,img2Cy=0,img2W=0,img2H=0,img2Pitch=0,spainCx=0,spainCy=0,spnW=0,spnH=0,spainPitch=0,compCx=0,compCy=0,compW=0,compH=0,compPitch=0;
@@ -137,6 +141,34 @@
     imgCx=mobile?(W*0.5):(W - imgW*0.4375); // móvil: centrada a sangre; desktop: pegada a la derecha
     imgCy=imgH*0.5;
     imgPitch=imgW/GW;
+    if(COVER) buildLighthouse();           // portada Prevención: destino = silueta de un faro (se forma como el mapamundi)
+  }
+
+  // ---- Portada (Prevención): las partículas forman la silueta de un faro ----
+  var lhPts=[];
+  function buildLighthouse(){
+    if(!COVER || !R) return;
+    var LW=Math.round(R*1.15), LH=Math.round(R*2.25), c0=LW/2;
+    var off=document.createElement("canvas"); off.width=LW; off.height=LH;
+    var o=off.getContext("2d"); o.fillStyle="#000";
+    o.fillRect(c0-0.30*LW, 0.90*LH, 0.60*LW, 0.10*LH);                       // base
+    o.beginPath();                                                          // torre (tronco-cónica)
+    o.moveTo(c0-0.24*LW, 0.90*LH); o.lineTo(c0-0.12*LW, 0.245*LH);
+    o.lineTo(c0+0.12*LW, 0.245*LH); o.lineTo(c0+0.24*LW, 0.90*LH);
+    o.closePath(); o.fill();
+    o.fillRect(c0-0.20*LW, 0.195*LH, 0.40*LW, 0.052*LH);                     // galería
+    o.fillRect(c0-0.115*LW, 0.085*LH, 0.23*LW, 0.112*LH);                    // linterna
+    o.beginPath();                                                          // cúpula
+    o.moveTo(c0-0.15*LW, 0.09*LH); o.lineTo(c0, 0); o.lineTo(c0+0.15*LW, 0.09*LH);
+    o.closePath(); o.fill();
+    var d; try{ d=o.getImageData(0,0,LW,LH).data; }catch(e){ return; }
+    lhPts=[]; var step=4;
+    for(var y=0;y<LH;y+=step){ for(var x=0;x<LW;x+=step){ if(d[(y*LW+x)*4+3]>128) lhPts.push({dx:x-LW/2, dy:y-LH/2}); } }
+    assignLighthouse();
+  }
+  function assignLighthouse(){
+    if(!COVER || !P || !P.length || !lhPts.length) return;
+    for(var i=0;i<P.length;i++){ P[i].lh=lhPts[i%lhPts.length]; }
   }
   window.addEventListener("resize",resize); resize();
 
@@ -155,12 +187,12 @@
   var p=0;
   // La animación termina al 80% del track; el último 20% queda en estado final (estático)
   // mientras la sección del formulario sube por encima (efecto cover).
-  function onScroll(){var rect=track.getBoundingClientRect();var total=track.offsetHeight-window.innerHeight;p=clamp((-rect.top/total)/0.80,0,1);}
+  function onScroll(){ if(STATIC){ p=0; return; } var rect=track.getBoundingClientRect();var total=track.offsetHeight-window.innerHeight;var raw=-rect.top/total;p=COVER?clamp(raw*0.40,0,1):clamp(raw/0.80,0,1);}
   window.addEventListener("scroll",onScroll,{passive:true}); onScroll();
 
   var TURNS=1.6;
   function frame(){
-    var pp=reduce?1:p;
+    var pp=STATIC?0:(reduce?1:p);
     // ---- línea de tiempo ----
     var m1=remap(pp,0.07,0.17);                 // persona -> mapamundi (tras terminar el giro)
     var angle1=TWO_PI*(TURNS*easeInOut(remap(pp,0.10,0.36)) + 0.8*pp);
@@ -227,7 +259,7 @@
     }
 
     // ---- ESCENA 1: persona -> mapamundi ----
-    if(cellsReady && pp>=0.07 && pp<0.37){
+    if(cellsReady && pp>=0.07 && (COVER || pp<0.37)){
       var sin=Math.sin(angle1),cos=Math.cos(angle1);
       var wdx=-0.95, wdy=-0.30, pxx=0.30, pyy=-0.95;
       var WIND=R*1.35, LAT=R*0.75, SWAY=R*0.30, BOB=R*0.13;
@@ -235,8 +267,9 @@
         var pt=P[i], c=pt.cell, g=pt.glb;
         var t=easeInOut(clamp((m1-pt.delay)/0.40,0,1));
         var ix=imgCx+c.u*imgW, iy=imgCy+c.v*imgH;
-        var xr=g.x*cos+g.z*sin, zr=-g.x*sin+g.z*cos, yr=g.y;
-        var gx=cx+xr*R, gy=cy-yr*R, depth=(zr+1)/2;
+        var gx,gy,depth;
+        if(COVER){ var lh=pt.lh; gx=cx+(lh?lh.dx:0); gy=cy+(lh?lh.dy:0); depth=1; }   // destino: faro (se forma como el mapamundi)
+        else { var xr=g.x*cos+g.z*sin, zr=-g.x*sin+g.z*cos, yr=g.y; gx=cx+xr*R; gy=cy-yr*R; depth=(zr+1)/2; }
         var it=1-t;
         var midx=(ix+gx)*0.5, midy=(iy+gy)*0.5;
         var cpx=midx + wdx*WIND*pt.wind + pxx*LAT*pt.lat;
@@ -258,7 +291,7 @@
     }
 
     // ---- Marcadores amarillos sobre el mapamundi ----
-    if(cellsReady && pp<0.39){
+    if(!COVER && cellsReady && pp<0.39){
       var mk = remap(pp,0.20,0.24) * (1 - remap(pp,0.34,0.38));
       if(mk>0){
         var ms=Math.sin(angle1), mc=Math.cos(angle1);
@@ -280,7 +313,7 @@
     }
 
     // ---- ESCENA 1.5: mapamundi -> mapa de Espana (mapa real con comunidades) ----
-    if(cellsReady && spainPhase){
+    if(!COVER && cellsReady && spainPhase){
       var aF1=TWO_PI*(TURNS + 0.8*0.37);          // orientacion del globo congelada al iniciar el morph
       var s1=Math.sin(aF1), c1=Math.cos(aF1);
       for(var i=0;i<N;i++){
@@ -302,7 +335,7 @@
     }
 
     // ---- ESCENA 1.75: mapa de Espana -> 9 CARAS (composicion) ----
-    if(cellsReady && compPhase){
+    if(!COVER && cellsReady && compPhase){
       if(spainReady){ var faSo0=1-remap(pp,0.78,0.82);   // retira el mapa de Espana
         if(faSo0>0){ ctx.globalAlpha=faSo0; ctx.drawImage(spainImg,0,0,SPAIN.fw,SPAIN.fh, spainCx-spnW/2,spainCy-spnH/2,spnW,spnH); ctx.globalAlpha=1; } }
       for(var i=0;i<N;i++){
@@ -322,7 +355,7 @@
     }
 
     // ---- ESCENA 2: 9 caras -> video 2 ----
-    if(cellsReady && v2Phase){
+    if(!COVER && cellsReady && v2Phase){
       if(CARAS){ drawComp(1-remap(pp,0.91,0.94)); }                       // las 9 caras se retiran
       else if(spainReady){ var faSo=1-remap(pp,0.86,0.90);                 // el mapa de Espana se retira
         if(faSo>0){ ctx.globalAlpha=faSo; ctx.drawImage(spainImg,0,0,SPAIN.fw,SPAIN.fh, spainCx-spnW/2,spainCy-spnH/2,spnW,spnH); ctx.globalAlpha=1; } }
@@ -364,7 +397,7 @@
       }
     }
     // ---- Orbes amarillos pulsantes sobre comunidades del mapa de Espana ----
-    if(cellsReady && pp>=0.48 && pp<(esFrag+0.04)){
+    if(!COVER && cellsReady && pp>=0.48 && pp<(esFrag+0.04)){
       var mv=remap(pp,0.48,0.52)*(1-remap(pp,esFrag,esFrag+0.04));
       if(mv>0){
         var tno=(typeof performance!=="undefined"?performance.now():Date.now())/1000;

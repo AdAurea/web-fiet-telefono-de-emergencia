@@ -93,7 +93,7 @@
   @media (max-width:480px){ .q{ flex-wrap:wrap; } .q-opts{ width:100%; justify-content:flex-end; } }
 
   /* ===== Sección "Informar una sospecha" (entra deslizando desde abajo) ===== */
-  .report{ position:fixed; inset:0; margin:auto; z-index:55; width:min(1020px,88vw); height:min(76vh,780px); border-radius:28px; background:rgba(255,255,255,.45); backdrop-filter:blur(26px) saturate(150%); -webkit-backdrop-filter:blur(26px) saturate(150%); border:1px solid rgba(255,255,255,.55); box-shadow:0 30px 90px rgba(11,14,18,.22); transform:translateY(122%); transition:transform .9s cubic-bezier(0.22,1,0.36,1); will-change:transform; overflow-y:auto; font-family:var(--font-body); }
+  .report{ position:fixed; inset:0; margin:auto; z-index:55; width:min(1020px,88vw); height:min(76vh,780px); border-radius:28px; background:rgba(255,255,255,.45); backdrop-filter:blur(26px) saturate(150%); -webkit-backdrop-filter:blur(26px) saturate(150%); border:1px solid rgba(255,255,255,.55); box-shadow:0 30px 90px rgba(11,14,18,.22); transform:translateY(135%); transition:transform .9s cubic-bezier(0.22,1,0.36,1); will-change:transform; overflow-y:auto; font-family:var(--font-body); }
   .report.show{ transform:translateY(0); }
   .report-inner{ min-height:100%; box-sizing:border-box; display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,3vw,44px); align-content:center; padding:clamp(24px,3.5vh,44px) clamp(24px,3vw,44px); }
   .report .tag{ display:inline-block; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; font-weight:600; color:rgba(11,14,18,.62); margin-bottom:14px; }
@@ -256,7 +256,7 @@
     .nav-call{ margin-left:0; }
 
     /* Formulario */
-    .report{ width:94vw; height:90vh; border-radius:22px; }
+    .report{ width:94vw; height:85vh; border-radius:22px; top:10vh; bottom:auto; margin:0 auto; }
     .report-inner{ align-content:start; }
     .report-left h2{ font-size:clamp(2.2rem,9vw,3rem); }
     .report-submit{ flex-direction:column; align-items:stretch; }

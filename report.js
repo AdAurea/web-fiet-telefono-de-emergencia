@@ -25,6 +25,11 @@
   }
   var reportClose = document.getElementById("reportClose");
   if(reportClose) reportClose.addEventListener("click", function(){ manualReport = false; dismissedEnd = true; applyReport(); });
+  // abrir el popup automático a demanda (p. ej. botón "Ver recomendaciones")
+  var reportOpeners = document.querySelectorAll(".js-open-report");
+  for(var ro = 0; ro < reportOpeners.length; ro++){
+    reportOpeners[ro].addEventListener("click", function(e){ e.preventDefault(); manualReport = true; dismissedEnd = false; applyReport(); });
+  }
 
   // ---- panel del formulario ----
   // En la home el formulario ES el propio #report; en la página del teléfono
