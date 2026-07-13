@@ -3,17 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-  <title>Fiet · Hero vídeo→mapa</title>
+  <title>Fiet · Recursos</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ===== Página Recursos ===== */
+    #recHero{ height:100vh; }                                   /* portada estática (vídeo 1 fijo) */
+  </style>
 </head>
 <body>
   <a class="site-logo" href="index.html" aria-label="FIET · Inicio"><img src="logo.png" alt="FIET"></a>
   <nav class="navbar">
     <a href="index.html">El teléfono</a>
-    <a href="#que-es">Qué es la trata</a>
+    <a href="que_es_la_trata.html">Qué es la trata</a>
     <a href="prevencion.html">Prevención</a>
     <a href="recursos.html">Recursos</a>
     <a class="nav-call" href="tel:900759759" aria-label="Llamar al 900 759 759"><span class="live"></span>Llama 900 759 759</a>
@@ -26,66 +30,27 @@
     <nav class="nav-drawer-links" id="navDrawerLinks"></nav>
   </aside>
 
-  <section class="hero-track">
+  <!-- Portada estática: imagen (vídeo 1) fija -->
+  <section class="hero-track" id="recHero" data-static>
     <div class="stage">
       <canvas id="c" aria-hidden="true"></canvas>
       <div class="overlay">
         <div class="copy">
-          <span class="eyebrow" id="eyebrow"><span class="dot"></span>¿Qué es la trata?</span>
-          <p class="para" id="para" style="opacity:0">La trata de personas Es un delito que consiste en la captación, traslado y explotación de personas mediante engaño, abuso de vulnerabilidad o violencia, con fines como la explotación sexual, laboral u otras formas de explotación.</p>
-        </div>
-        <div class="copy2" id="copy2">
-          <span class="eyebrow" id="eyebrow2"><span class="dot"></span>La trata en España</span>
-          <h2 class="para" id="para2" style="opacity:0">España es un país de origen, tránsito y destino de la trata de seres humanos.</h2>
-          <div class="copy2-body" id="copy2body" style="opacity:0">
-            <p>Se han detectado casos en todas las comunidades autónomas y, además, el país se sitúa entre los mayores consumidores de prostitución del mundo.</p>
-          </div>
+          <span class="eyebrow" id="eyebrow"></span>
+          <p class="para" id="para" style="opacity:0"></p>
         </div>
         <div class="intro" id="intro">
-          <span class="tag"><span class="dot"></span>Confidencial · Gratuito · Disponible 24/7</span>
-          <h2>No estás sola</h2>
-          <p>El <strong>900 759 759</strong> es el Teléfono de Ayuda Contra la Trata en España. Funciona 24/7 y está atendido por profesionales especializados que siguen protocolos internacionales para responder con rapidez y seguridad.</p>
-          <p>Si crees que tú o alguien que conoces puede estar en una situación de trata, contacta. Puedes permanecer en el anonimato.</p>
-          <a href="tel:+34900759759" class="btn-hero">Línea de asistencia 24h</a>
-        </div>
-        <div class="quiz" id="quiz">
-          <span class="tag"><span class="dot"></span>Autoevaluación confidencial</span>
-          <h2>¿Podrías estar en una situación de trata?</h2>
-          <p>Responde a estas preguntas para identificar posibles señales de alerta. El resultado es orientativo y no sustituye el asesoramiento profesional.</p>
-          <a href="#cuestionario" class="btn-hero" id="openQuiz">Ir al cuestionario</a>
-        </div>
-        <div class="orb-cover" id="orbCover"></div>
-        <div class="elements" id="elements">
-          <span class="eyebrow" id="eyebrow3"><span class="dot"></span>Los tres elementos del delito</span>
-          <h2 class="para el-title" id="eltitle">La existencia de estos tres elementos constituye el delito de trata.</h2>
-          <div class="el-cards">
-            <article class="el-card"><h3>La acción</h3><p>Captación, transporte, traslado, acogida o recepción de personas.</p></article>
-            <article class="el-card"><h3>Los medios</h3><p>Engaño, abuso de una situación de vulnerabilidad, coacción o violencia.</p></article>
-            <article class="el-card"><h3>El fin</h3><p>La explotación de la persona para obtener un beneficio económico.</p></article>
-          </div>
-        </div>
-        <div class="caras" id="caras">
-          <h2 class="caras-title">La trata tiene muchas caras</h2>
-          <div class="cara-cards">
-            <article class="cara-card"><h4>Explotación sexual</h4></article>
-            <article class="cara-card"><h4>Explotación laboral</h4></article>
-            <article class="cara-card"><h4>Mendicidad forzada</h4></article>
-            <article class="cara-card"><h4>Matrimonio forzado</h4></article>
-            <article class="cara-card"><h4>Criminalidad forzada</h4></article>
-            <article class="cara-card"><h4>Servidumbre doméstica</h4></article>
-            <article class="cara-card"><h4>Extracción de órganos</h4></article>
-            <article class="cara-card"><h4>Explotación agrícola</h4></article>
-            <article class="cara-card"><h4>Trata de menores</h4></article>
-          </div>
+          <span class="tag"><span class="dot"></span>Recursos</span>
+          <h2>Recursos y servicios.</h2>
+          <p>El Teléfono ACT ofrece formaciones gratuitas a profesionales y sectores con mayor riesgo de detectar situaciones de trata, además de una amplia red de derivación y materiales especializados.</p>
         </div>
       </div>
-      <div class="hint" id="hint"><span class="bar"></span>Desplázate</div>
     </div>
   </section>
 
-  <!-- Sección "Informar una sospecha": entra deslizando desde abajo sobre la anterior -->
-  <section class="report" id="report">
-    <button class="report-close" id="reportClose" type="button" aria-label="Cerrar">&times;</button>
+  <!-- Panel del formulario: se abre en esta misma página (bolígrafo) -->
+  <section class="report" id="formPanel">
+    <button class="report-close" id="formClose" type="button" aria-label="Cerrar">&times;</button>
     <div class="report-inner">
       <div class="report-left">
         <span class="tag">Informar una sospecha</span>
@@ -113,8 +78,6 @@
       </div>
     </div>
   </section>
-
-  <script src="main.js"></script>
 
   <!-- Botones flotantes persistentes -->
   <a class="fab-quiz js-open-quiz" href="#cuestionario">Ir al cuestionario</a>
@@ -147,6 +110,7 @@
     <div class="quiz-result" id="quizResult" hidden></div>
   </aside>
 
+  <script src="main.js"></script>
   <script src="quiz.js"></script>
   <script src="report.js"></script>
   <script src="nav.js"></script>
