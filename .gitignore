@@ -1,6 +1,18 @@
-# Vídeos fuente (se embeben como sprite-sheet en main.js)
+# Vídeos fuente (se convierten en sprite-sheet)
 *.mp4
 *.mov
 
 # macOS
 .DS_Store
+
+# WordPress: solo versionamos NUESTRO tema (wp-content/themes/fiet-act).
+# El núcleo de WP, la config y el contenido subido NO van al repo.
+/wordpress/
+wp-config.php
+/wp-content/uploads/
+/wp-content/upgrade/
+/wp-content/cache/
+/wp-content/plugins/
+/wp-content/mu-plugins/
+/wp-content/themes/*
+!/wp-content/themes/fiet-act/

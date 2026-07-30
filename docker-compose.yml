@@ -1,0 +1,35 @@
+# WordPress de desarrollo local (PHP + MySQL/MariaDB).
+# El núcleo de WordPress vive en un volumen (no en git); solo montamos NUESTRO tema.
+# Arranque:  docker compose up -d   ->   http://localhost:8080
+services:
+  db:
+    image: mariadb:11
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: wordpress
+      MARIADB_USER: wordpress
+      MARIADB_PASSWORD: wordpress
+    volumes:
+      - db_data:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:php8.3-apache
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wp_core:/var/www/html
+      # Nuestro tema (fuente de verdad en el repo) montado dentro de WordPress:
+      - ./wp-content/themes/fiet-act:/var/www/html/wp-content/themes/fiet-act
+
+volumes:
+  db_data:
+  wp_core:
