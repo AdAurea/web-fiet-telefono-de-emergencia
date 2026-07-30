@@ -3,7 +3,9 @@
   var ASSET_BASE=(typeof window!=="undefined" && window.FIET_ASSETS) ? window.FIET_ASSETS : "";   // "" en estático; URL del tema en WordPress
   var TWO_PI=Math.PI*2, DEG=Math.PI/180;
   var reduce=window.matchMedia("(prefers-reduced-motion:reduce)").matches;
-  var canvas=document.getElementById("c"), ctx=canvas.getContext("2d");
+  var canvas=document.getElementById("c");
+  if(!canvas) return;                 // en páginas sin lienzo (portada El teléfono) main.js no hace nada
+  var ctx=canvas.getContext("2d");
   var introEl=document.getElementById("intro");
   var prevRecoEl=document.getElementById("prevReco");   // bloque "Recomendaciones + cards" (portada Prevención)
   var quizEl=document.getElementById("quiz");

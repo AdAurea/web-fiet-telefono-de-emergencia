@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-  <title>Fiet · El teléfono</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+<?php if ( ! defined( 'ABSPATH' ) ) exit; get_header(); ?>
   <style>
     /* ===== Página El teléfono ===== */
     .tel-track{ position:relative; height:1600vh; background:var(--bg); }
@@ -18,7 +9,7 @@
     .tel-cover{ position:absolute; z-index:2; left:0; right:0; top:43%; transform:translateY(-50%); display:flex; flex-direction:column; align-items:center; text-align:center; padding:0 24px; }
     .tel-number{ font-family:var(--font-body); font-weight:900;
       font-size:clamp(3.5rem,14.5vw,15rem); line-height:.95; letter-spacing:-.04em; white-space:nowrap;
-      background:url(hero-poster.webp) 58% 33% / cover; -webkit-background-clip:text; background-clip:text; color:transparent;
+      background:url(<?php echo esc_url( get_template_directory_uri() ); ?>/hero-poster.webp) 58% 33% / cover; -webkit-background-clip:text; background-clip:text; color:transparent;
       will-change:transform,opacity; }
     .tel-eyebrow{ font-size:.8rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(11,14,18,.55); margin-bottom:clamp(16px,2.6vh,30px); will-change:opacity; }
     .tel-sub{ width:min(720px,90vw); font-size:clamp(1.15rem,1.8vw,1.3rem); line-height:1.6; color:rgba(11,14,18,.6); margin-top:clamp(18px,3vh,34px); will-change:opacity; }
@@ -74,7 +65,7 @@
     .statusbar .icons svg{ width:15px; height:15px; }
     .call-top{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0 24px; }
     .call-label{ font-size:.82rem; color:#9aa0aa; margin-bottom:24px; letter-spacing:.04em; }
-    .avatar{ width:104px; height:104px; border-radius:50%; background:#fff url(logo.png) center / 76% no-repeat; position:relative; margin-bottom:22px; }
+    .avatar{ width:104px; height:104px; border-radius:50%; background:#fff url(<?php echo esc_url( get_template_directory_uri() ); ?>/logo.png) center / 76% no-repeat; position:relative; margin-bottom:22px; }
     .avatar::after{ content:""; position:absolute; inset:-10px; border-radius:50%; border:2px solid rgba(31,174,90,.7); animation:ring 1.7s ease-out infinite; }
     @keyframes ring{ 0%{transform:scale(1);opacity:.75} 100%{transform:scale(1.28);opacity:0} }
     .call-name{ font-size:1.45rem; font-weight:600; line-height:1.2; }
@@ -115,31 +106,15 @@
     #formPanel{ z-index:56; } /* el formulario se muestra por encima de las cards */
     @media (max-width:860px){ .via-cards{ grid-template-columns:1fr; } }
   </style>
-</head>
-<body>
-  <a class="site-logo" href="index.html" aria-label="FIET · Inicio"><img src="logo.png" alt="FIET"></a>
-  <nav class="navbar">
-    <a href="index.html">El teléfono</a>
-    <a href="que_es_la_trata.html">Qué es la trata</a>
-    <a href="prevencion.html">Prevención</a>
-    <a href="recursos.html">Recursos</a>
-    <a class="nav-call" href="tel:900759759" aria-label="Llamar al 900 759 759"><span class="live"></span>Llama 900 759 759</a>
-  </nav>
-  <!-- Menú hamburguesa (móvil) -->
-  <button class="nav-burger" id="navBurger" type="button" aria-label="Abrir menú" aria-expanded="false"><span></span></button>
-  <div class="nav-backdrop" id="navBackdrop"></div>
-  <aside class="nav-drawer" id="navDrawer" aria-label="Menú de navegación">
-    <button class="nav-drawer-close" id="navDrawerClose" type="button" aria-label="Cerrar menú">&times;</button>
-    <nav class="nav-drawer-links" id="navDrawerLinks"></nav>
-  </aside>
 
+<?php get_template_part( 'parts/site-nav' ); ?>
 
   <section class="tel-track" id="telTrack">
     <div class="tel-stage">
       <canvas class="tel-frag" id="telFrag" aria-hidden="true"></canvas>
       <div class="tel-cover" id="telCover">
         <span class="tel-eyebrow" id="telEyebrow">Confidencial · Gratuito · Disponible 24/7 · Sin rastro en la factura</span>
-        <div class="tel-number" id="telNum">900&nbsp;759&nbsp;759</div>
+        <div class="tel-number" id="telNum"><?php echo esc_html( fiet_option('telefono_display','900 759 759') ); ?></div>
         <p class="tel-sub" id="telSub">El Teléfono de Ayuda Contra la Trata funciona 24/7 y está atendido por profesionales especializados que siguen protocolos internacionales para responder con rapidez y seguridad. Financiado y operado por la ONG FIET.</p>
       </div>
 
@@ -165,7 +140,7 @@
             <div class="call-label">Llamada saliente</div>
             <div class="avatar"></div>
             <div class="call-name">Teléfono contra la Trata</div>
-            <div class="call-number">900 759 759</div>
+            <div class="call-number"><?php echo esc_html( fiet_option('telefono_display','900 759 759') ); ?></div>
             <div class="call-status">Llamando<span class="dots"><span>.</span><span>.</span><span>.</span></span></div>
           </div>
 
@@ -298,7 +273,7 @@
       }
       sizeCanvas();
       heroImg.onload=function(){ sizeCanvas(); buildParticles(); onScroll(); };
-      heroImg.src="hero-poster.webp";
+      heroImg.src="<?php echo esc_url( get_template_directory_uri() . '/hero-poster.webp' ); ?>";
       if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(function(){ buildParticles(); onScroll(); }); }
 
       function onScroll(){
@@ -384,7 +359,7 @@
           <span class="via-num">01 / 03</span>
           <h3>Teléfono</h3>
           <p>Marca el 900 759 759. Gratuito, 24/7. Profesionales que hablan español e inglés, con interpretación en más de 200 idiomas.</p>
-          <a class="btn-hero" href="tel:900759759">Llamar</a>
+          <a class="btn-hero" href="tel:<?php echo esc_attr( fiet_option('telefono_tel','900759759') ); ?>">Llamar</a>
         </article>
         <article class="via-card">
           <span class="via-num">02 / 03</span>
@@ -433,38 +408,6 @@
     </div>
   </section>
 
-  <!-- Botones flotantes persistentes -->
-  <a class="fab-quiz js-open-quiz" href="#cuestionario">Ir al cuestionario</a>
-  <div class="fab-stack">
-    <a class="fab-sec fab-mail" href="mailto:informacion@fiet.ong?subject=Contacto%20-%20Tel%C3%A9fono%20contra%20la%20Trata" aria-label="Enviar un correo">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
-    </a>
-    <button class="fab-sec" id="fabForm" type="button" aria-label="Abrir formulario de contacto">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-    </button>
-    <a class="fab-call" href="tel:900759759" aria-label="Llamar al teléfono de ayuda">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.53 15.53 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.36 11.36 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.36 11.36 0 0 0 .57 3.57 1 1 0 0 1-.24 1.02l-2.21 2.2z"/></svg>
-    </a>
-    <button class="fab-toggle" id="fabToggle" type="button" aria-label="Mostrar acciones de contacto" aria-expanded="false">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 12.22C21 6.73 16.74 3 12 3c-4.69 0-9 3.65-9 9.28-.6.34-1 .98-1 1.72v2c0 1.1.9 2 2 2h1v-6.1c0-3.87 3.13-7 7-7s7 3.13 7 7V19h-8v2h8c1.1 0 2-.9 2-2v-1.22c.59-.31 1-.92 1-1.64v-2.3c0-.7-.41-1.31-1-1.62z"/><circle cx="9" cy="13" r="1"/><circle cx="15" cy="13" r="1"/><path d="M18 11.03A6.04 6.04 0 0 0 12.05 6c-3.03 0-6.29 2.51-6.03 6.45a8.075 8.075 0 0 0 4.86-5.89A8.115 8.115 0 0 0 18 11.68z"/></svg>
-    </button>
-  </div>
+<?php get_template_part( 'parts/floating' ); ?>
 
-  <!-- Cuestionario de autoevaluación (panel lateral) -->
-  <div class="drawer-backdrop" id="quizBackdrop" hidden></div>
-  <aside class="drawer" id="quizDrawer" aria-hidden="true" aria-label="Cuestionario de autoevaluación">
-    <header class="drawer-top">
-      <span class="tag"><span class="dot"></span>Autoevaluación confidencial</span>
-      <button class="drawer-x" id="quizClose" type="button" aria-label="Cerrar cuestionario">&times;</button>
-    </header>
-    <h2 class="drawer-title">Evaluación del riesgo</h2>
-    <p class="drawer-sub">Marca lo que corresponda a tu situación. El resultado es orientativo y confidencial; no sustituye el asesoramiento profesional.</p>
-    <div class="quiz-list" id="quizList"></div>
-    <button class="btn-result" id="quizResultBtn" type="button">Ver resultado →</button>
-    <div class="quiz-result" id="quizResult" hidden></div>
-  </aside>
-  <script src="quiz.js"></script>
-  <script src="report.js"></script>
-  <script src="nav.js"></script>
-</body>
-</html>
+<?php get_footer(); ?>

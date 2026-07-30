@@ -1,11 +1,23 @@
 <?php
 /**
  * Tema FIET · Teléfono ACT
- * Encola el CSS y JS del sitio y expone la base de assets al JS del canvas.
+ * Encola CSS/JS, expone la base de assets al canvas y define los campos editables.
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/* -------------------------------------------------------------------------
+ * Soporte de tema
+ * ---------------------------------------------------------------------- */
+add_action( 'after_setup_theme', function () {
+	add_theme_support( 'title-tag' );
+	add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'html5', array( 'style', 'script' ) );
+} );
+
+/* -------------------------------------------------------------------------
+ * Encolado de estilos y scripts
+ * ---------------------------------------------------------------------- */
 function fiet_act_assets() {
 	$uri = get_template_directory_uri();
 	$dir = get_template_directory();
@@ -18,15 +30,15 @@ function fiet_act_assets() {
 		null
 	);
 
-	// Estilos del sitio (styles.css es el CSS real; style.css solo lleva la cabecera del tema)
+	// CSS del sitio (styles.css es el real; style.css solo lleva la cabecera del tema)
 	wp_enqueue_style( 'fiet-styles', $uri . '/styles.css', array(), filemtime( $dir . '/styles.css' ) );
 
-	// Scripts del sitio (en el footer)
-	foreach ( array( 'main', 'quiz', 'report', 'nav' ) as $handle ) {
-		wp_enqueue_script( 'fiet-' . $handle, $uri . "/$handle.js", array(), filemtime( "$dir/$handle.js" ), true );
+	// Scripts compartidos (footer). main.js no hace nada donde no hay lienzo.
+	foreach ( array( 'main', 'quiz', 'report', 'nav' ) as $h ) {
+		wp_enqueue_script( 'fiet-' . $h, $uri . "/$h.js", array(), filemtime( "$dir/$h.js" ), true );
 	}
 
-	// Base de assets para las imágenes que carga el canvas (main.js): URL del tema
+	// Base de assets para las imágenes que carga el canvas (main.js)
 	wp_add_inline_script(
 		'fiet-main',
 		'window.FIET_ASSETS = ' . wp_json_encode( trailingslashit( $uri ) ) . ';',
@@ -34,3 +46,48 @@ function fiet_act_assets() {
 	);
 }
 add_action( 'wp_enqueue_scripts', 'fiet_act_assets' );
+
+/* -------------------------------------------------------------------------
+ * Helper de contenido editable: usa ACF si está disponible, si no el valor
+ * por defecto (para que el tema funcione también sin el plugin).
+ * ---------------------------------------------------------------------- */
+function fiet_field( $name, $default = '', $id = false ) {
+	if ( function_exists( 'get_field' ) ) {
+		$v = get_field( $name, $id );
+		if ( $v !== null && $v !== '' ) {
+			return $v;
+		}
+	}
+	return $default;
+}
+function fiet_option( $name, $default = '' ) {
+	return fiet_field( $name, $default, 'option' );
+}
+
+/* -------------------------------------------------------------------------
+ * ACF: página de ajustes + campos globales (solo si ACF está activo)
+ * ---------------------------------------------------------------------- */
+add_action( 'acf/init', function () {
+	if ( function_exists( 'acf_add_options_page' ) ) {
+		acf_add_options_page( array(
+			'page_title' => 'Ajustes del sitio (FIET)',
+			'menu_title' => 'Ajustes FIET',
+			'menu_slug'  => 'fiet-ajustes',
+			'capability' => 'edit_theme_options',
+			'icon_url'   => 'dashicons-phone',
+		) );
+	}
+
+	if ( function_exists( 'acf_add_local_field_group' ) ) {
+		acf_add_local_field_group( array(
+			'key'    => 'group_fiet_global',
+			'title'  => 'FIET · Datos globales',
+			'fields' => array(
+				array( 'key' => 'field_tel_display', 'label' => 'Teléfono (visible)', 'name' => 'telefono_display', 'type' => 'text', 'default_value' => '900 759 759' ),
+				array( 'key' => 'field_tel_tel', 'label' => 'Teléfono (enlace, sin espacios)', 'name' => 'telefono_tel', 'type' => 'text', 'default_value' => '900759759' ),
+				array( 'key' => 'field_email', 'label' => 'Correo de contacto', 'name' => 'email_contacto', 'type' => 'text', 'default_value' => 'informacion@fiet.ong' ),
+			),
+			'location' => array( array( array( 'param' => 'options_page', 'operator' => '==', 'value' => 'fiet-ajustes' ) ) ),
+		) );
+	}
+} );
