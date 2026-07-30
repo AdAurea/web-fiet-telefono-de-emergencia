@@ -16,6 +16,29 @@ add_action( 'after_setup_theme', function () {
 } );
 
 /* -------------------------------------------------------------------------
+ * Al activar el tema, crea las páginas que usan las plantillas (page-<slug>.php)
+ * si no existen todavía.
+ * ---------------------------------------------------------------------- */
+add_action( 'after_switch_theme', function () {
+	$pages = array(
+		'que-es-la-trata' => 'Qué es la trata',
+		'prevencion'      => 'Prevención',
+		'recursos'        => 'Recursos',
+	);
+	foreach ( $pages as $slug => $title ) {
+		if ( ! get_page_by_path( $slug ) ) {
+			wp_insert_post( array(
+				'post_type'   => 'page',
+				'post_status' => 'publish',
+				'post_name'   => $slug,
+				'post_title'  => $title,
+				'post_content'=> '',
+			) );
+		}
+	}
+} );
+
+/* -------------------------------------------------------------------------
  * Encolado de estilos y scripts
  * ---------------------------------------------------------------------- */
 function fiet_act_assets() {
