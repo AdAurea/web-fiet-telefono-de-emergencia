@@ -48,10 +48,10 @@
           <p class="para" id="para" style="opacity:0"></p>
         </div>
         <div class="intro" id="intro">
-          <span class="tag"><span class="dot"></span>Prevención</span>
-          <h2>¿Cómo mantenerse a salvo?</h2>
-          <p>La trata puede comenzar en situaciones cotidianas como la búsqueda de empleo, un viaje o el uso de internet. Conocer los riesgos y saber identificarlos es clave para protegerte.</p>
-          <button class="btn-hero js-open-report" type="button">Ver recomendaciones</button>
+          <span class="tag"><span class="dot"></span><?php ff('prev_eyebrow','Prevención'); ?></span>
+          <h2><?php ff('prev_titulo','¿Cómo mantenerse a salvo?'); ?></h2>
+          <p><?php ff('prev_parrafo','La trata puede comenzar en situaciones cotidianas como la búsqueda de empleo, un viaje o el uso de internet. Conocer los riesgos y saber identificarlos es clave para protegerte.'); ?></p>
+          <button class="btn-hero js-open-report" type="button"><?php ff('prev_boton','Ver recomendaciones'); ?></button>
         </div>
       </div>
       <div class="hint" id="hint"><span class="bar"></span>Desplázate</div>
@@ -63,28 +63,28 @@
     <button class="report-close" id="reportClose" type="button" aria-label="Cerrar">&times;</button>
     <div class="report-inner report-vias">
       <div class="report-left">
-        <span class="tag">Prevención</span>
-        <h2>Recomendaciones para mantenerte seguro</h2>
-        <p>La trata puede empezar en un empleo, un viaje o en internet. Estas son las claves para reducir riesgos e identificar señales de alerta en cada situación.</p>
+        <span class="tag"><?php ff('prev_pop_eyebrow','Prevención'); ?></span>
+        <h2><?php ff('prev_pop_titulo','Recomendaciones para mantenerte seguro'); ?></h2>
+        <p><?php ff('prev_pop_parrafo','La trata puede empezar en un empleo, un viaje o en internet. Estas son las claves para reducir riesgos e identificar señales de alerta en cada situación.'); ?></p>
       </div>
       <div class="via-cards">
         <article class="via-card">
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 7h-4V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM10 5h4v2h-4V5z"/></svg></span>
-          <h3>Empleo Seguro</h3>
-          <p>Verifica la oferta y a quien contrata, nunca entregues tus documentos y comparte con alguien de confianza dónde y con quién vas a trabajar.</p>
-          <button class="btn-hero js-rec" data-rec="empleo" type="button">Saber más</button>
+          <h3><?php ff('prev_card1_titulo','Empleo Seguro'); ?></h3>
+          <p><?php ff('prev_card1_desc','Verifica la oferta y a quien contrata, nunca entregues tus documentos y comparte con alguien de confianza dónde y con quién vas a trabajar.'); ?></p>
+          <button class="btn-hero js-rec" data-rec="empleo" type="button"><?php ff('prev_card_boton','Saber más'); ?></button>
         </article>
         <article class="via-card">
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5L21 16z"/></svg></span>
-          <h3>Viaje Seguro</h3>
-          <p>Lleva copias de tus documentos, comparte tu itinerario y ten a mano los contactos de tu embajada y de organizaciones de ayuda.</p>
-          <button class="btn-hero js-rec" data-rec="viaje" type="button">Saber más</button>
+          <h3><?php ff('prev_card2_titulo','Viaje Seguro'); ?></h3>
+          <p><?php ff('prev_card2_desc','Lleva copias de tus documentos, comparte tu itinerario y ten a mano los contactos de tu embajada y de organizaciones de ayuda.'); ?></p>
+          <button class="btn-hero js-rec" data-rec="viaje" type="button"><?php ff('prev_card_boton','Saber más'); ?></button>
         </article>
         <article class="via-card">
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg></span>
-          <h3>Internet Seguro</h3>
-          <p>Protege tus datos personales, desconfía de perfiles desconocidos y extrema la precaución si conciertas una cita con alguien conocido por internet.</p>
-          <button class="btn-hero js-rec" data-rec="internet" type="button">Saber más</button>
+          <h3><?php ff('prev_card3_titulo','Internet Seguro'); ?></h3>
+          <p><?php ff('prev_card3_desc','Protege tus datos personales, desconfía de perfiles desconocidos y extrema la precaución si conciertas una cita con alguien conocido por internet.'); ?></p>
+          <button class="btn-hero js-rec" data-rec="internet" type="button"><?php ff('prev_card_boton','Saber más'); ?></button>
         </article>
       </div>
     </div>

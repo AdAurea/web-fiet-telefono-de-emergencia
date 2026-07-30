@@ -86,6 +86,13 @@ function fiet_field( $name, $default = '', $id = false ) {
 function fiet_option( $name, $default = '' ) {
 	return fiet_field( $name, $default, 'option' );
 }
+/** Imprime un campo de la página actual (escapado), con valor por defecto */
+function ff( $name, $default = '' ) {
+	echo esc_html( fiet_field( $name, $default ) );
+}
+
+/** Campos editables por página */
+require get_template_directory() . '/inc/acf-fields.php';
 
 /* -------------------------------------------------------------------------
  * ACF: campos globales (grupo local, en el tema) + página de ajustes propia.
