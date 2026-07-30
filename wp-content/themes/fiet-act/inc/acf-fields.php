@@ -40,4 +40,42 @@ add_action( 'acf/init', function () {
 			'location' => array( array( array( 'param' => 'page', 'operator' => '==', 'value' => $prev->ID ) ) ),
 		) );
 	}
+
+	/* ===================== RECURSOS ===================== */
+	$rec = get_page_by_path( 'recursos' );
+	if ( $rec ) {
+		acf_add_local_field_group( array(
+			'key'    => 'group_fiet_recursos',
+			'title'  => 'Recursos · Textos',
+			'fields' => array(
+				fiet_f( 'f_rec_eye', 'Portada · Sobretítulo', 'rec_eyebrow', 'Recursos' ),
+				fiet_f( 'f_rec_tit', 'Portada · Título', 'rec_titulo', 'Recursos y servicios.' ),
+				fiet_f( 'f_rec_par', 'Portada · Párrafo', 'rec_parrafo', 'El Teléfono ACT ofrece formaciones gratuitas a profesionales y sectores con mayor riesgo de detectar situaciones de trata, además de una amplia red de derivación y materiales especializados.', 'textarea' ),
+				fiet_f( 'f_rec_btn', 'Portada · Botón', 'rec_boton', 'Ver formaciones' ),
+				fiet_f( 'f_rec_stit', 'Sección servicios · Título', 'rec_serv_titulo', 'Una amplia gama de servicios a tu disposición' ),
+				fiet_f( 'f_rec_s1t', 'Servicio 1 · Título', 'rec_serv1_titulo', 'Derivaciones' ),
+				fiet_f( 'f_rec_s1d', 'Servicio 1 · Descripción', 'rec_serv1_desc', 'Conectamos a quien llama con servicios especializados: gestión de casos, alojamiento seguro, transporte, asistencia legal y apoyo psicológico y de salud mental.', 'textarea' ),
+				fiet_f( 'f_rec_s2t', 'Servicio 2 · Título', 'rec_serv2_titulo', 'Formación a profesionales' ),
+				fiet_f( 'f_rec_s2d', 'Servicio 2 · Descripción', 'rec_serv2_desc', 'Formación y asistencia técnica a fuerzas de seguridad, profesionales sanitarios, personal aeroportuario y organismos públicos. Fortalecemos protocolos locales y nacionales.', 'textarea' ),
+				fiet_f( 'f_rec_s3t', 'Servicio 3 · Título', 'rec_serv3_titulo', 'Informar una sospecha' ),
+				fiet_f( 'f_rec_s3d', 'Servicio 3 · Descripción', 'rec_serv3_desc', 'Recibimos información sobre posibles situaciones de trata. Todas las comunicaciones son confidenciales y la persona puede permanecer en el anonimato.', 'textarea' ),
+				fiet_f( 'f_rec_s4t', 'Servicio 4 · Título', 'rec_serv4_titulo', 'Asistencia a víctimas' ),
+				fiet_f( 'f_rec_s4d', 'Servicio 4 · Descripción', 'rec_serv4_desc', 'Apoyo en crisis mediante planes de seguridad, acompañamiento emocional y conexión con servicios de emergencia y entidades especializadas.', 'textarea' ),
+				fiet_f( 'f_rec_s5t', 'Servicio 5 · Título', 'rec_serv5_titulo', 'Verificación de empleo' ),
+				fiet_f( 'f_rec_s5d', 'Servicio 5 · Descripción', 'rec_serv5_desc', 'Servicio gratuito de verificación de ofertas de empleo. Revisamos el registro de la empresa, antecedentes y opiniones, y elaboramos una evaluación de riesgo.', 'textarea' ),
+				fiet_f( 'f_rec_peye', 'Popup · Sobretítulo', 'rec_pop_eyebrow', 'Recursos' ),
+				fiet_f( 'f_rec_ptit', 'Popup · Título', 'rec_pop_titulo', 'Formación especializada.' ),
+				fiet_f( 'f_rec_pp1', 'Popup · Párrafo 1', 'rec_pop_p1', 'Proporcionamos conocimientos clave sobre la magnitud y las formas de la trata, los indicadores específicos según cada ámbito profesional y los protocolos de actuación necesarios en situaciones de sospecha o identificación.', 'textarea' ),
+				fiet_f( 'f_rec_pp2', 'Popup · Párrafo 2', 'rec_pop_p2', 'Contamos con una amplia base de datos de organizaciones que imparten formaciones, campañas y charlas en todo el territorio, además de un catálogo de materiales especializados.', 'textarea' ),
+				fiet_f( 'f_rec_sec1', 'Sector 1 · Título', 'rec_sec1_titulo', 'Sector sanitario' ),
+				fiet_f( 'f_rec_sec2', 'Sector 2 · Título', 'rec_sec2_titulo', 'Sector hostelero' ),
+				fiet_f( 'f_rec_sec3', 'Sector 3 · Título', 'rec_sec3_titulo', 'Sector transporte' ),
+				fiet_f( 'f_rec_sec4', 'Sector 4 · Título', 'rec_sec4_titulo', 'Sector consular' ),
+				fiet_f( 'f_rec_sec5', 'Sector 5 · Título', 'rec_sec5_titulo', 'Sector educativo' ),
+				fiet_f( 'f_rec_mat', 'Sectores · Texto del enlace', 'rec_mat_boton', 'Descarga el material' ),
+				fiet_f( 'f_rec_foot', 'Popup · Párrafo final', 'rec_pop_foot', 'Nuestro equipo de especialistas ofrece orientación para la elaboración e implementación de protocolos de actuación. Contáctanos para más información o asesoramiento específico.', 'textarea' ),
+			),
+			'location' => array( array( array( 'param' => 'page', 'operator' => '==', 'value' => $rec->ID ) ) ),
+		) );
+	}
 } );

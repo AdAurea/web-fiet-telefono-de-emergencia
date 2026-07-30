@@ -46,39 +46,39 @@
           <p class="para" id="para" style="opacity:0"></p>
         </div>
         <div class="intro" id="intro">
-          <span class="tag"><span class="dot"></span>Recursos</span>
-          <h2>Recursos y servicios.</h2>
-          <p>El Teléfono ACT ofrece formaciones gratuitas a profesionales y sectores con mayor riesgo de detectar situaciones de trata, además de una amplia red de derivación y materiales especializados.</p>
-          <button class="btn-hero js-open-report" type="button">Ver formaciones</button>
+          <span class="tag"><span class="dot"></span><?php ff('rec_eyebrow','Recursos'); ?></span>
+          <h2><?php ff('rec_titulo','Recursos y servicios.'); ?></h2>
+          <p><?php ff('rec_parrafo','El Teléfono ACT ofrece formaciones gratuitas a profesionales y sectores con mayor riesgo de detectar situaciones de trata, además de una amplia red de derivación y materiales especializados.'); ?></p>
+          <button class="btn-hero js-open-report" type="button"><?php ff('rec_boton','Ver formaciones'); ?></button>
         </div>
       </div>
       <div class="rec-services" id="recServices">
-        <h2>Una amplia gama de servicios a tu disposición</h2>
+        <h2><?php ff('rec_serv_titulo','Una amplia gama de servicios a tu disposición'); ?></h2>
         <div class="serv-cards">
           <article class="serv-card">
             <span class="serv-num">01 / 05</span>
-            <h3>Derivaciones</h3>
-            <p>Conectamos a quien llama con servicios especializados: gestión de casos, alojamiento seguro, transporte, asistencia legal y apoyo psicológico y de salud mental.</p>
+            <h3><?php ff('rec_serv1_titulo','Derivaciones'); ?></h3>
+            <p><?php ff('rec_serv1_desc','Conectamos a quien llama con servicios especializados: gestión de casos, alojamiento seguro, transporte, asistencia legal y apoyo psicológico y de salud mental.'); ?></p>
           </article>
           <article class="serv-card">
             <span class="serv-num">02 / 05</span>
-            <h3>Formación a profesionales</h3>
-            <p>Formación y asistencia técnica a fuerzas de seguridad, profesionales sanitarios, personal aeroportuario y organismos públicos. Fortalecemos protocolos locales y nacionales.</p>
+            <h3><?php ff('rec_serv2_titulo','Formación a profesionales'); ?></h3>
+            <p><?php ff('rec_serv2_desc','Formación y asistencia técnica a fuerzas de seguridad, profesionales sanitarios, personal aeroportuario y organismos públicos. Fortalecemos protocolos locales y nacionales.'); ?></p>
           </article>
           <article class="serv-card">
             <span class="serv-num">03 / 05</span>
-            <h3>Informar una sospecha</h3>
-            <p>Recibimos información sobre posibles situaciones de trata. Todas las comunicaciones son confidenciales y la persona puede permanecer en el anonimato.</p>
+            <h3><?php ff('rec_serv3_titulo','Informar una sospecha'); ?></h3>
+            <p><?php ff('rec_serv3_desc','Recibimos información sobre posibles situaciones de trata. Todas las comunicaciones son confidenciales y la persona puede permanecer en el anonimato.'); ?></p>
           </article>
           <article class="serv-card">
             <span class="serv-num">04 / 05</span>
-            <h3>Asistencia a víctimas</h3>
-            <p>Apoyo en crisis mediante planes de seguridad, acompañamiento emocional y conexión con servicios de emergencia y entidades especializadas.</p>
+            <h3><?php ff('rec_serv4_titulo','Asistencia a víctimas'); ?></h3>
+            <p><?php ff('rec_serv4_desc','Apoyo en crisis mediante planes de seguridad, acompañamiento emocional y conexión con servicios de emergencia y entidades especializadas.'); ?></p>
           </article>
           <article class="serv-card">
             <span class="serv-num">05 / 05</span>
-            <h3>Verificación de empleo</h3>
-            <p>Servicio gratuito de verificación de ofertas de empleo. Revisamos el registro de la empresa, antecedentes y opiniones, y elaboramos una evaluación de riesgo.</p>
+            <h3><?php ff('rec_serv5_titulo','Verificación de empleo'); ?></h3>
+            <p><?php ff('rec_serv5_desc','Servicio gratuito de verificación de ofertas de empleo. Revisamos el registro de la empresa, antecedentes y opiniones, y elaboramos una evaluación de riesgo.'); ?></p>
           </article>
         </div>
       </div>
@@ -91,39 +91,39 @@
     <button class="report-close" id="reportClose" type="button" aria-label="Cerrar">&times;</button>
     <div class="report-inner report-vias">
       <div class="report-left">
-        <span class="tag">Recursos</span>
-        <h2>Formación especializada.</h2>
-        <p>Proporcionamos conocimientos clave sobre la magnitud y las formas de la trata, los indicadores específicos según cada ámbito profesional y los protocolos de actuación necesarios en situaciones de sospecha o identificación.</p>
-        <p>Contamos con una amplia base de datos de organizaciones que imparten formaciones, campañas y charlas en todo el territorio, además de un catálogo de materiales especializados.</p>
+        <span class="tag"><?php ff('rec_pop_eyebrow','Recursos'); ?></span>
+        <h2><?php ff('rec_pop_titulo','Formación especializada.'); ?></h2>
+        <p><?php ff('rec_pop_p1','Proporcionamos conocimientos clave sobre la magnitud y las formas de la trata, los indicadores específicos según cada ámbito profesional y los protocolos de actuación necesarios en situaciones de sospecha o identificación.'); ?></p>
+        <p><?php ff('rec_pop_p2','Contamos con una amplia base de datos de organizaciones que imparten formaciones, campañas y charlas en todo el territorio, además de un catálogo de materiales especializados.'); ?></p>
       </div>
       <div class="via-cards">
         <article class="via-card">
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 8h-4V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v4H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4h4a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2z"/></svg></span>
-          <h3>Sector sanitario</h3>
-          <a class="via-mat" href="#">Descarga el material <span>&rarr;</span></a>
+          <h3><?php ff('rec_sec1_titulo','Sector sanitario'); ?></h3>
+          <a class="via-mat" href="#"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></a>
         </article>
         <article class="via-card">
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 8a1 1 0 0 1 2 0v3h7V9a2 2 0 0 1 2-2h5a3 3 0 0 1 3 3v8a1 1 0 0 1-2 0v-2H4v2a1 1 0 0 1-2 0V8z"/></svg></span>
-          <h3>Sector hostelero</h3>
-          <a class="via-mat" href="#">Descarga el material <span>&rarr;</span></a>
+          <h3><?php ff('rec_sec2_titulo','Sector hostelero'); ?></h3>
+          <a class="via-mat" href="#"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></a>
         </article>
         <article class="via-card">
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v3h3.2a1 1 0 0 1 .8.4l2.4 3.2a1 1 0 0 1 .2.6V16a1 1 0 0 1-1 1h-1.2a2.5 2.5 0 0 1-4.9 0H8.9a2.5 2.5 0 0 1-4.9 0H3a1 1 0 0 1-1-1V5zm14 5h4.2L18.4 8H16v2z"/><circle cx="6.5" cy="17" r="1.4"/><circle cx="16.5" cy="17" r="1.4"/></svg></span>
-          <h3>Sector transporte</h3>
-          <a class="via-mat" href="#">Descarga el material <span>&rarr;</span></a>
+          <h3><?php ff('rec_sec3_titulo','Sector transporte'); ?></h3>
+          <a class="via-mat" href="#"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></a>
         </article>
         <article class="via-card">
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3h9a1 1 0 0 1 1 1v16H4V4a1 1 0 0 1 1-1zm12 6h3a1 1 0 0 1 1 1v10h-4V9zM7 6h2v2H7V6zm4 0h2v2h-2V6zM7 10h2v2H7v-2zm4 0h2v2h-2v-2zM7 14h2v2H7v-2zm4 0h2v2h-2v-2z"/></svg></span>
-          <h3>Sector consular</h3>
-          <a class="via-mat" href="#">Descarga el material <span>&rarr;</span></a>
+          <h3><?php ff('rec_sec4_titulo','Sector consular'); ?></h3>
+          <a class="via-mat" href="#"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></a>
         </article>
         <article class="via-card">
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 1 8l11 5 9-4.09V15h2V8L12 3zM5 13.18V16.5c0 1.66 3.13 3 7 3s7-1.34 7-3v-3.32l-7 3.18-7-3.18z"/></svg></span>
-          <h3>Sector educativo</h3>
-          <a class="via-mat" href="#">Descarga el material <span>&rarr;</span></a>
+          <h3><?php ff('rec_sec5_titulo','Sector educativo'); ?></h3>
+          <a class="via-mat" href="#"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></a>
         </article>
       </div>
-      <p class="via-foot">Nuestro equipo de especialistas ofrece orientación para la elaboración e implementación de protocolos de actuación. Contáctanos para más información o asesoramiento específico.</p>
+      <p class="via-foot"><?php ff('rec_pop_foot','Nuestro equipo de especialistas ofrece orientación para la elaboración e implementación de protocolos de actuación. Contáctanos para más información o asesoramiento específico.'); ?></p>
     </div>
   </section>
 
