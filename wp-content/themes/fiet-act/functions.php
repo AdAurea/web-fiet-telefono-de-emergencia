@@ -65,29 +65,44 @@ function fiet_option( $name, $default = '' ) {
 }
 
 /* -------------------------------------------------------------------------
- * ACF: página de ajustes + campos globales (solo si ACF está activo)
+ * ACF: campos globales (grupo local, en el tema) + página de ajustes propia.
+ * Compatible con ACF free (las Options Pages programáticas son de ACF PRO):
+ * creamos nuestra página de admin y renderizamos el grupo con acf_form().
  * ---------------------------------------------------------------------- */
 add_action( 'acf/init', function () {
-	if ( function_exists( 'acf_add_options_page' ) ) {
-		acf_add_options_page( array(
-			'page_title' => 'Ajustes del sitio (FIET)',
-			'menu_title' => 'Ajustes FIET',
-			'menu_slug'  => 'fiet-ajustes',
-			'capability' => 'edit_theme_options',
-			'icon_url'   => 'dashicons-phone',
-		) );
-	}
-
-	if ( function_exists( 'acf_add_local_field_group' ) ) {
-		acf_add_local_field_group( array(
-			'key'    => 'group_fiet_global',
-			'title'  => 'FIET · Datos globales',
-			'fields' => array(
-				array( 'key' => 'field_tel_display', 'label' => 'Teléfono (visible)', 'name' => 'telefono_display', 'type' => 'text', 'default_value' => '900 759 759' ),
-				array( 'key' => 'field_tel_tel', 'label' => 'Teléfono (enlace, sin espacios)', 'name' => 'telefono_tel', 'type' => 'text', 'default_value' => '900759759' ),
-				array( 'key' => 'field_email', 'label' => 'Correo de contacto', 'name' => 'email_contacto', 'type' => 'text', 'default_value' => 'informacion@fiet.ong' ),
-			),
-			'location' => array( array( array( 'param' => 'options_page', 'operator' => '==', 'value' => 'fiet-ajustes' ) ) ),
-		) );
-	}
+	if ( ! function_exists( 'acf_add_local_field_group' ) ) return;
+	acf_add_local_field_group( array(
+		'key'    => 'group_fiet_global',
+		'title'  => 'FIET · Datos globales',
+		'fields' => array(
+			array( 'key' => 'field_tel_display', 'label' => 'Teléfono (visible)', 'name' => 'telefono_display', 'type' => 'text', 'default_value' => '900 759 759' ),
+			array( 'key' => 'field_tel_tel', 'label' => 'Teléfono (enlace, sin espacios)', 'name' => 'telefono_tel', 'type' => 'text', 'default_value' => '900759759' ),
+			array( 'key' => 'field_email', 'label' => 'Correo de contacto', 'name' => 'email_contacto', 'type' => 'text', 'default_value' => 'informacion@fiet.ong' ),
+		),
+		'location' => array( array( array( 'param' => 'options_page', 'operator' => '==', 'value' => 'fiet-ajustes' ) ) ),
+	) );
 } );
+
+// Página de ajustes en el admin (menú "Ajustes FIET")
+add_action( 'admin_menu', function () {
+	$hook = add_menu_page(
+		'Ajustes del sitio (FIET)', 'Ajustes FIET', 'edit_theme_options',
+		'fiet-ajustes', 'fiet_render_ajustes', 'dashicons-phone', 59
+	);
+	add_action( 'load-' . $hook, function () {
+		if ( function_exists( 'acf_form_head' ) ) acf_form_head();
+	} );
+} );
+function fiet_render_ajustes() {
+	echo '<div class="wrap"><h1>Ajustes del sitio (FIET)</h1>';
+	if ( function_exists( 'acf_form' ) ) {
+		acf_form( array(
+			'post_id'      => 'options',
+			'field_groups' => array( 'group_fiet_global' ),
+			'submit_value' => 'Guardar cambios',
+		) );
+	} else {
+		echo '<p>Instala y activa <strong>Advanced Custom Fields</strong> para editar estos ajustes.</p>';
+	}
+	echo '</div>';
+}
