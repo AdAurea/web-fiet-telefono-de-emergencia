@@ -113,9 +113,9 @@
     <div class="tel-stage">
       <canvas class="tel-frag" id="telFrag" aria-hidden="true"></canvas>
       <div class="tel-cover" id="telCover">
-        <span class="tel-eyebrow" id="telEyebrow">Confidencial · Gratuito · Disponible 24/7 · Sin rastro en la factura</span>
+        <span class="tel-eyebrow" id="telEyebrow"><?php ff('tel_eyebrow','Confidencial · Gratuito · Disponible 24/7 · Sin rastro en la factura'); ?></span>
         <div class="tel-number" id="telNum"><?php echo esc_html( fiet_option('telefono_display','900 759 759') ); ?></div>
-        <p class="tel-sub" id="telSub">El Teléfono de Ayuda Contra la Trata funciona 24/7 y está atendido por profesionales especializados que siguen protocolos internacionales para responder con rapidez y seguridad. Financiado y operado por la ONG FIET.</p>
+        <p class="tel-sub" id="telSub"><?php ff('tel_sub','El Teléfono de Ayuda Contra la Trata funciona 24/7 y está atendido por profesionales especializados que siguen protocolos internacionales para responder con rapidez y seguridad. Financiado y operado por la ONG FIET.'); ?></p>
       </div>
 
       <div class="tel-marquees" id="telMarquees">
@@ -137,9 +137,9 @@
           </div>
 
           <div class="call-top">
-            <div class="call-label">Llamada saliente</div>
+            <div class="call-label"><?php ff('tel_call_label','Llamada saliente'); ?></div>
             <div class="avatar"></div>
-            <div class="call-name">Teléfono contra la Trata</div>
+            <div class="call-name"><?php ff('tel_call_name','Teléfono contra la Trata'); ?></div>
             <div class="call-number"><?php echo esc_html( fiet_option('telefono_display','900 759 759') ); ?></div>
             <div class="call-status">Llamando<span class="dots"><span>.</span><span>.</span><span>.</span></span></div>
           </div>
@@ -155,26 +155,26 @@
         </div>
       </div>
 
-      <div class="tel-pill" id="telPill">Traducción automática</div>
+      <div class="tel-pill" id="telPill"><?php ff('tel_pill','Traducción automática'); ?></div>
       <div class="tel-topic" id="telTopic">
-        <span class="tel-topic-eye"><span class="dot" id="telDot"></span><span class="tel-topic-label" id="telTopicLabel">¿Qué pasa cuando llamas?</span></span>
+        <span class="tel-topic-eye"><span class="dot" id="telDot"></span><span class="tel-topic-label" id="telTopicLabel"><?php ff('tel_topic_label','¿Qué pasa cuando llamas?'); ?></span></span>
         <div class="tel-topic-paras">
-          <p class="para" id="telTopicText">Una víctima o testigo contacta con el 900 759 759 a cualquier hora y en cualquier momento. Puede contactar en su idioma nativo si quiere...</p>
-          <p class="para" id="telTopicText2">Fiet incorpora un sistema de traducción automática de la llamada que permite a un profesional especializado entender a la víctima y comunicarse con ella en su idioma en tiempo real.</p>
-          <p class="para" id="telTopicText3">Una vez atendida a la víctima, se revisa en la base de datos si hubiese casos conectados.</p>
-          <p class="para" id="telTopicText4">Con esta información se procede a dar la respuesta más adecuada y segura.</p>
+          <p class="para" id="telTopicText"><?php ff('tel_topic1','Una víctima o testigo contacta con el 900 759 759 a cualquier hora y en cualquier momento. Puede contactar en su idioma nativo si quiere...'); ?></p>
+          <p class="para" id="telTopicText2"><?php ff('tel_topic2','Fiet incorpora un sistema de traducción automática de la llamada que permite a un profesional especializado entender a la víctima y comunicarse con ella en su idioma en tiempo real.'); ?></p>
+          <p class="para" id="telTopicText3"><?php ff('tel_topic3','Una vez atendida a la víctima, se revisa en la base de datos si hubiese casos conectados.'); ?></p>
+          <p class="para" id="telTopicText4"><?php ff('tel_topic4','Con esta información se procede a dar la respuesta más adecuada y segura.'); ?></p>
         </div>
       </div>
       <div class="tel-steps" id="telSteps">
         <div class="steps-track"><div class="steps-fill" id="stepsFill"></div></div>
         <div class="steps-labels">
-          <span class="step"><span class="num">01</span> · Llamada de ayuda</span>
-          <span class="step"><span class="num">02</span> · Atención especializada</span>
-          <span class="step"><span class="num">03</span> · Revisión de datos</span>
-          <span class="step"><span class="num">04</span> · Plan de acción</span>
+          <span class="step"><span class="num">01</span> · <?php ff('tel_step1','Llamada de ayuda'); ?></span>
+          <span class="step"><span class="num">02</span> · <?php ff('tel_step2','Atención especializada'); ?></span>
+          <span class="step"><span class="num">03</span> · <?php ff('tel_step3','Revisión de datos'); ?></span>
+          <span class="step"><span class="num">04</span> · <?php ff('tel_step4','Plan de acción'); ?></span>
         </div>
       </div>
-      <div class="tel-hint" id="telHint"><span class="bar"></span>Desplázate para llamar</div>
+      <div class="tel-hint" id="telHint"><span class="bar"></span><?php ff('tel_hint','Desplázate para llamar'); ?></div>
     </div>
   </section>
 
@@ -350,28 +350,28 @@
     <button class="report-close" id="reportClose" type="button" aria-label="Cerrar">&times;</button>
     <div class="report-inner report-vias">
       <div class="report-left">
-        <span class="tag">Cómo contactar</span>
-        <h2>Tres vías. Todas confidenciales.</h2>
-        <p>Hay una persona al otro lado. No te juzga, no comparte nada sin tu consentimiento (salvo obligación legal) y puedes permanecer en el anonimato. Elige el canal que te resulte más seguro.</p>
+        <span class="tag"><?php ff('tel_pop_tag','Cómo contactar'); ?></span>
+        <h2><?php ff('tel_pop_titulo','Tres vías. Todas confidenciales.'); ?></h2>
+        <p><?php ff('tel_pop_parrafo','Hay una persona al otro lado. No te juzga, no comparte nada sin tu consentimiento (salvo obligación legal) y puedes permanecer en el anonimato. Elige el canal que te resulte más seguro.'); ?></p>
       </div>
       <div class="via-cards">
         <article class="via-card">
           <span class="via-num">01 / 03</span>
-          <h3>Teléfono</h3>
-          <p>Marca el 900 759 759. Gratuito, 24/7. Profesionales que hablan español e inglés, con interpretación en más de 200 idiomas.</p>
-          <a class="btn-hero" href="tel:<?php echo esc_attr( fiet_option('telefono_tel','900759759') ); ?>">Llamar</a>
+          <h3><?php ff('tel_c1_titulo','Teléfono'); ?></h3>
+          <p><?php ff('tel_c1_desc','Marca el 900 759 759. Gratuito, 24/7. Profesionales que hablan español e inglés, con interpretación en más de 200 idiomas.'); ?></p>
+          <a class="btn-hero" href="tel:<?php echo esc_attr( fiet_option('telefono_tel','900759759') ); ?>"><?php ff('tel_c1_boton','Llamar'); ?></a>
         </article>
         <article class="via-card">
           <span class="via-num">02 / 03</span>
-          <h3>Formulario</h3>
-          <p>Describe una situación de sospecha a través del formulario de contacto. Puedes hacerlo de forma anónima o dejar un contacto para que te llamen.</p>
-          <button class="btn-hero js-open-form" type="button">Abrir formulario</button>
+          <h3><?php ff('tel_c2_titulo','Formulario'); ?></h3>
+          <p><?php ff('tel_c2_desc','Describe una situación de sospecha a través del formulario de contacto. Puedes hacerlo de forma anónima o dejar un contacto para que te llamen.'); ?></p>
+          <button class="btn-hero js-open-form" type="button"><?php ff('tel_c2_boton','Abrir formulario'); ?></button>
         </article>
         <article class="via-card">
           <span class="via-num">03 / 03</span>
-          <h3>Correo</h3>
-          <p>Escríbenos con los detalles de tu situación o tu consulta. Te responderá el equipo especializado.</p>
-          <a class="btn-hero" href="mailto:contacto@900759759.com">Enviar correo</a>
+          <h3><?php ff('tel_c3_titulo','Correo'); ?></h3>
+          <p><?php ff('tel_c3_desc','Escríbenos con los detalles de tu situación o tu consulta. Te responderá el equipo especializado.'); ?></p>
+          <a class="btn-hero" href="mailto:contacto@900759759.com"><?php ff('tel_c3_boton','Enviar correo'); ?></a>
         </article>
       </div>
     </div>

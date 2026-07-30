@@ -78,4 +78,71 @@ add_action( 'acf/init', function () {
 			'location' => array( array( array( 'param' => 'page', 'operator' => '==', 'value' => $rec->ID ) ) ),
 		) );
 	}
+
+	/* ===================== QUÉ ES LA TRATA ===================== */
+	$que = get_page_by_path( 'que-es-la-trata' );
+	if ( $que ) {
+		acf_add_local_field_group( array(
+			'key'    => 'group_fiet_quees',
+			'title'  => 'Qué es la trata · Textos',
+			'fields' => array(
+				fiet_f( 'f_qet_eye', 'Escena 1 · Sobretítulo', 'qet_eyebrow', '¿Qué es la trata?' ),
+				fiet_f( 'f_qet_def', 'Escena 1 · Definición', 'qet_def', 'La trata de personas Es un delito que consiste en la captación, traslado y explotación de personas mediante engaño, abuso de vulnerabilidad o violencia, con fines como la explotación sexual, laboral u otras formas de explotación.', 'textarea' ),
+				fiet_f( 'f_qet_eeye', 'España · Sobretítulo', 'qet_esp_eyebrow', 'La trata en España' ),
+				fiet_f( 'f_qet_etit', 'España · Título', 'qet_esp_titulo', 'España es un país de origen, tránsito y destino de la trata de seres humanos.', 'textarea' ),
+				fiet_f( 'f_qet_epar', 'España · Párrafo', 'qet_esp_parrafo', 'Se han detectado casos en todas las comunidades autónomas y, además, el país se sitúa entre los mayores consumidores de prostitución del mundo.', 'textarea' ),
+				fiet_f( 'f_qet_itag', 'No estás sola · Sobretítulo', 'qet_intro_tag', 'Confidencial · Gratuito · Disponible 24/7' ),
+				fiet_f( 'f_qet_itit', 'No estás sola · Título', 'qet_intro_titulo', 'No estás sola' ),
+				fiet_f( 'f_qet_ibtn', 'No estás sola · Botón', 'qet_intro_boton', 'Línea de asistencia 24h' ),
+				fiet_f( 'f_qet_qtag', 'Cuestionario · Sobretítulo', 'qet_quiz_tag', 'Autoevaluación confidencial' ),
+				fiet_f( 'f_qet_qtit', 'Cuestionario · Título', 'qet_quiz_titulo', '¿Podrías estar en una situación de trata?' ),
+				fiet_f( 'f_qet_qpar', 'Cuestionario · Párrafo', 'qet_quiz_parrafo', 'Responde a estas preguntas para identificar posibles señales de alerta. El resultado es orientativo y no sustituye el asesoramiento profesional.', 'textarea' ),
+				fiet_f( 'f_qet_qbtn', 'Cuestionario · Botón', 'qet_quiz_boton', 'Ir al cuestionario' ),
+				fiet_f( 'f_qet_leye', 'Tres elementos · Sobretítulo', 'qet_el_eyebrow', 'Los tres elementos del delito' ),
+				fiet_f( 'f_qet_ltit', 'Tres elementos · Título', 'qet_el_titulo', 'La existencia de estos tres elementos constituye el delito de trata.', 'textarea' ),
+				fiet_f( 'f_qet_e1t', 'Elemento 1 · Título', 'qet_el1_titulo', 'La acción' ),
+				fiet_f( 'f_qet_e1d', 'Elemento 1 · Descripción', 'qet_el1_desc', 'Captación, transporte, traslado, acogida o recepción de personas.', 'textarea' ),
+				fiet_f( 'f_qet_e2t', 'Elemento 2 · Título', 'qet_el2_titulo', 'Los medios' ),
+				fiet_f( 'f_qet_e2d', 'Elemento 2 · Descripción', 'qet_el2_desc', 'Engaño, abuso de una situación de vulnerabilidad, coacción o violencia.', 'textarea' ),
+				fiet_f( 'f_qet_e3t', 'Elemento 3 · Título', 'qet_el3_titulo', 'El fin' ),
+				fiet_f( 'f_qet_e3d', 'Elemento 3 · Descripción', 'qet_el3_desc', 'La explotación de la persona para obtener un beneficio económico.', 'textarea' ),
+			),
+			'location' => array( array( array( 'param' => 'page', 'operator' => '==', 'value' => $que->ID ) ) ),
+		) );
+	}
+
+	/* ===================== PORTADA · EL TELÉFONO ===================== */
+	acf_add_local_field_group( array(
+		'key'    => 'group_fiet_front',
+		'title'  => 'El teléfono (portada) · Textos',
+		'fields' => array(
+			fiet_f( 'f_tel_eye', 'Sobretítulo', 'tel_eyebrow', 'Confidencial · Gratuito · Disponible 24/7 · Sin rastro en la factura' ),
+			fiet_f( 'f_tel_sub', 'Subtítulo', 'tel_sub', 'El Teléfono de Ayuda Contra la Trata funciona 24/7 y está atendido por profesionales especializados que siguen protocolos internacionales para responder con rapidez y seguridad. Financiado y operado por la ONG FIET.', 'textarea' ),
+			fiet_f( 'f_tel_hint', 'Indicador de scroll', 'tel_hint', 'Desplázate para llamar' ),
+			fiet_f( 'f_tel_clab', 'Pantalla · Etiqueta', 'tel_call_label', 'Llamada saliente' ),
+			fiet_f( 'f_tel_cnam', 'Pantalla · Nombre', 'tel_call_name', 'Teléfono contra la Trata' ),
+			fiet_f( 'f_tel_tlab', 'Proceso · Título', 'tel_topic_label', '¿Qué pasa cuando llamas?' ),
+			fiet_f( 'f_tel_t1', 'Proceso · Texto 1', 'tel_topic1', 'Una víctima o testigo contacta con el 900 759 759 a cualquier hora y en cualquier momento. Puede contactar en su idioma nativo si quiere...', 'textarea' ),
+			fiet_f( 'f_tel_t2', 'Proceso · Texto 2', 'tel_topic2', 'Fiet incorpora un sistema de traducción automática de la llamada que permite a un profesional especializado entender a la víctima y comunicarse con ella en su idioma en tiempo real.', 'textarea' ),
+			fiet_f( 'f_tel_t3', 'Proceso · Texto 3', 'tel_topic3', 'Una vez atendida a la víctima, se revisa en la base de datos si hubiese casos conectados.', 'textarea' ),
+			fiet_f( 'f_tel_t4', 'Proceso · Texto 4', 'tel_topic4', 'Con esta información se procede a dar la respuesta más adecuada y segura.', 'textarea' ),
+			fiet_f( 'f_tel_pill', 'Píldora', 'tel_pill', 'Traducción automática' ),
+			fiet_f( 'f_tel_st1', 'Paso 1', 'tel_step1', 'Llamada de ayuda' ),
+			fiet_f( 'f_tel_st2', 'Paso 2', 'tel_step2', 'Atención especializada' ),
+			fiet_f( 'f_tel_st3', 'Paso 3', 'tel_step3', 'Revisión de datos' ),
+			fiet_f( 'f_tel_st4', 'Paso 4', 'tel_step4', 'Plan de acción' ),
+			fiet_f( 'f_tel_ptag', 'Popup · Sobretítulo', 'tel_pop_tag', 'Cómo contactar' ),
+			fiet_f( 'f_tel_ptit', 'Popup · Título', 'tel_pop_titulo', 'Tres vías. Todas confidenciales.' ),
+			fiet_f( 'f_tel_ppar', 'Popup · Párrafo', 'tel_pop_parrafo', 'Hay una persona al otro lado. No te juzga, no comparte nada sin tu consentimiento (salvo obligación legal) y puedes permanecer en el anonimato. Elige el canal que te resulte más seguro.', 'textarea' ),
+			fiet_f( 'f_tel_c1t', 'Card 1 · Título', 'tel_c1_titulo', 'Teléfono' ),
+			fiet_f( 'f_tel_c1d', 'Card 1 · Descripción', 'tel_c1_desc', 'Marca el 900 759 759. Gratuito, 24/7. Profesionales que hablan español e inglés, con interpretación en más de 200 idiomas.', 'textarea' ),
+			fiet_f( 'f_tel_c1b', 'Card 1 · Botón', 'tel_c1_boton', 'Llamar' ),
+			fiet_f( 'f_tel_c2t', 'Card 2 · Título', 'tel_c2_titulo', 'Formulario' ),
+			fiet_f( 'f_tel_c2d', 'Card 2 · Descripción', 'tel_c2_desc', 'Describe una situación de sospecha a través del formulario de contacto. Puedes hacerlo de forma anónima o dejar un contacto para que te llamen.', 'textarea' ),
+			fiet_f( 'f_tel_c2b', 'Card 2 · Botón', 'tel_c2_boton', 'Abrir formulario' ),
+			fiet_f( 'f_tel_c3t', 'Card 3 · Título', 'tel_c3_titulo', 'Correo' ),
+			fiet_f( 'f_tel_c3d', 'Card 3 · Descripción', 'tel_c3_desc', 'Escríbenos con los detalles de tu situación o tu consulta. Te responderá el equipo especializado.', 'textarea' ),
+		),
+		'location' => array( array( array( 'param' => 'page_type', 'operator' => '==', 'value' => 'front_page' ) ) ),
+	) );
 } );

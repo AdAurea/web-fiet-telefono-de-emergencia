@@ -21,21 +21,36 @@ add_action( 'after_setup_theme', function () {
  * ---------------------------------------------------------------------- */
 add_action( 'after_switch_theme', function () {
 	$pages = array(
+		'inicio'          => 'Inicio (El teléfono)',
 		'que-es-la-trata' => 'Qué es la trata',
 		'prevencion'      => 'Prevención',
 		'recursos'        => 'Recursos',
 	);
 	foreach ( $pages as $slug => $title ) {
-		if ( ! get_page_by_path( $slug ) ) {
-			wp_insert_post( array(
+		$p = get_page_by_path( $slug );
+		if ( ! $p ) {
+			$id = wp_insert_post( array(
 				'post_type'   => 'page',
 				'post_status' => 'publish',
 				'post_name'   => $slug,
 				'post_title'  => $title,
 				'post_content'=> '',
 			) );
+			if ( $slug === 'inicio' ) { $inicio_id = $id; }
+		} elseif ( $slug === 'inicio' ) {
+			$inicio_id = $p->ID;
 		}
 	}
+	// Portada estática = "Inicio" (la renderiza front-page.php)
+	if ( ! empty( $inicio_id ) ) {
+		update_option( 'show_on_front', 'page' );
+		update_option( 'page_on_front', $inicio_id );
+	}
+	// Enlaces permanentes "bonitos" (para /prevencion/, etc.)
+	if ( get_option( 'permalink_structure' ) === '' ) {
+		update_option( 'permalink_structure', '/%postname%/' );
+	}
+	flush_rewrite_rules();
 } );
 
 /* -------------------------------------------------------------------------
