@@ -342,6 +342,20 @@ add_action( 'acf/init', function () {
 		),
 		'location' => array( array( array( 'param' => 'options_page', 'operator' => '==', 'value' => 'fiet-ajustes' ) ) ),
 	) );
+
+	// Recursos: URL de descarga del material de cada sector
+	acf_add_local_field_group( array(
+		'key'    => 'group_fiet_recursos_urls',
+		'title'  => 'FIET · Recursos (descargas)',
+		'fields' => array(
+			array( 'key' => 'f_recu_san', 'label' => 'Sector sanitario · URL de descarga',  'name' => 'rec_url_sanitario',  'type' => 'url', 'instructions' => 'Pega la URL del PDF/página. Puedes subir el archivo en Medios y copiar aquí su enlace. Si lo dejas vacío, el botón no se muestra.' ),
+			array( 'key' => 'f_recu_hos', 'label' => 'Sector hostelero · URL de descarga',  'name' => 'rec_url_hostelero',  'type' => 'url' ),
+			array( 'key' => 'f_recu_tra', 'label' => 'Sector transporte · URL de descarga', 'name' => 'rec_url_transporte', 'type' => 'url' ),
+			array( 'key' => 'f_recu_con', 'label' => 'Sector consular · URL de descarga',   'name' => 'rec_url_consular',   'type' => 'url' ),
+			array( 'key' => 'f_recu_edu', 'label' => 'Sector educativo · URL de descarga',  'name' => 'rec_url_educativo',  'type' => 'url' ),
+		),
+		'location' => array( array( array( 'param' => 'options_page', 'operator' => '==', 'value' => 'fiet-ajustes' ) ) ),
+	) );
 } );
 
 // Página de ajustes en el admin (menú "Ajustes FIET")
@@ -355,7 +369,7 @@ add_action( 'admin_menu', function () {
 	} );
 } );
 function fiet_render_ajustes() {
-	$tabs = array( 'globales' => 'Ajustes globales', 'cuestionario' => 'Cuestionario', 'recomendaciones' => 'Recomendaciones' );
+	$tabs = array( 'globales' => 'Ajustes globales', 'cuestionario' => 'Cuestionario', 'recomendaciones' => 'Recomendaciones', 'recursos' => 'Recursos' );
 	$tab  = ( isset( $_GET['tab'] ) && isset( $tabs[ $_GET['tab'] ] ) ) ? sanitize_key( $_GET['tab'] ) : 'globales';
 
 	echo '<div class="wrap"><h1>FIET</h1>';
@@ -374,6 +388,7 @@ function fiet_render_ajustes() {
 		$group = 'group_fiet_global';
 		if ( $tab === 'cuestionario' )      $group = 'group_fiet_quiz';
 		elseif ( $tab === 'recomendaciones' ) $group = 'group_fiet_reco';
+		elseif ( $tab === 'recursos' )        $group = 'group_fiet_recursos_urls';
 		echo '<div style="margin-top:20px;max-width:820px;">';
 		acf_form( array(
 			'post_id'      => 'options',

@@ -100,27 +100,27 @@
         <article class="via-card">
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 8h-4V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v4H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4h4a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2z"/></svg></span>
           <h3><?php ff('rec_sec1_titulo','Sector sanitario'); ?></h3>
-          <a class="via-mat" href="#"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></a>
+          <?php $u = fiet_option( 'rec_url_sanitario', '' ); if ( $u ) : ?><a class="via-mat" href="<?php echo esc_url( $u ); ?>" target="_blank" rel="noopener"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></a><?php endif; ?>
         </article>
         <article class="via-card">
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 8a1 1 0 0 1 2 0v3h7V9a2 2 0 0 1 2-2h5a3 3 0 0 1 3 3v8a1 1 0 0 1-2 0v-2H4v2a1 1 0 0 1-2 0V8z"/></svg></span>
           <h3><?php ff('rec_sec2_titulo','Sector hostelero'); ?></h3>
-          <a class="via-mat" href="#"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></a>
+          <?php $u = fiet_option( 'rec_url_hostelero', '' ); if ( $u ) : ?><a class="via-mat" href="<?php echo esc_url( $u ); ?>" target="_blank" rel="noopener"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></a><?php endif; ?>
         </article>
         <article class="via-card">
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v3h3.2a1 1 0 0 1 .8.4l2.4 3.2a1 1 0 0 1 .2.6V16a1 1 0 0 1-1 1h-1.2a2.5 2.5 0 0 1-4.9 0H8.9a2.5 2.5 0 0 1-4.9 0H3a1 1 0 0 1-1-1V5zm14 5h4.2L18.4 8H16v2z"/><circle cx="6.5" cy="17" r="1.4"/><circle cx="16.5" cy="17" r="1.4"/></svg></span>
           <h3><?php ff('rec_sec3_titulo','Sector transporte'); ?></h3>
-          <a class="via-mat" href="#"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></a>
+          <?php $u = fiet_option( 'rec_url_transporte', '' ); if ( $u ) : ?><a class="via-mat" href="<?php echo esc_url( $u ); ?>" target="_blank" rel="noopener"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></a><?php endif; ?>
         </article>
         <article class="via-card">
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3h9a1 1 0 0 1 1 1v16H4V4a1 1 0 0 1 1-1zm12 6h3a1 1 0 0 1 1 1v10h-4V9zM7 6h2v2H7V6zm4 0h2v2h-2V6zM7 10h2v2H7v-2zm4 0h2v2h-2v-2zM7 14h2v2H7v-2zm4 0h2v2h-2v-2z"/></svg></span>
           <h3><?php ff('rec_sec4_titulo','Sector consular'); ?></h3>
-          <a class="via-mat" href="#"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></a>
+          <?php $u = fiet_option( 'rec_url_consular', '' ); if ( $u ) : ?><a class="via-mat" href="<?php echo esc_url( $u ); ?>" target="_blank" rel="noopener"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></a><?php endif; ?>
         </article>
         <article class="via-card">
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 1 8l11 5 9-4.09V15h2V8L12 3zM5 13.18V16.5c0 1.66 3.13 3 7 3s7-1.34 7-3v-3.32l-7 3.18-7-3.18z"/></svg></span>
           <h3><?php ff('rec_sec5_titulo','Sector educativo'); ?></h3>
-          <a class="via-mat" href="#"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></a>
+          <?php $u = fiet_option( 'rec_url_educativo', '' ); if ( $u ) : ?><a class="via-mat" href="<?php echo esc_url( $u ); ?>" target="_blank" rel="noopener"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></a><?php endif; ?>
         </article>
       </div>
       <p class="via-foot"><?php ff('rec_pop_foot','Nuestro equipo de especialistas ofrece orientación para la elaboración e implementación de protocolos de actuación. Contáctanos para más información o asesoramiento específico.'); ?></p>

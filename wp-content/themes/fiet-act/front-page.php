@@ -371,7 +371,7 @@
           <span class="via-num">03 / 03</span>
           <h3><?php ff('tel_c3_titulo','Correo'); ?></h3>
           <p><?php ff('tel_c3_desc','Escríbenos con los detalles de tu situación o tu consulta. Te responderá el equipo especializado.'); ?></p>
-          <a class="btn-hero" href="mailto:contacto@900759759.com"><?php ff('tel_c3_boton','Enviar correo'); ?></a>
+          <a class="btn-hero" href="mailto:<?php echo esc_attr( fiet_option('email_contacto','informacion@fiet.ong') ); ?>"><?php ff('tel_c3_boton','Enviar correo'); ?></a>
         </article>
       </div>
     </div>
