@@ -34,8 +34,9 @@
   // ---- panel del formulario ----
   // En la home el formulario ES el propio #report; en la página del teléfono
   // vive en un panel aparte (#formPanel). Detectamos su contenedor real.
-  var formEl    = document.getElementById("reportForm");
-  var formPanel = formEl ? formEl.closest(".report") : null;
+  // El panel se marca con [data-form-panel]: en "Qué es la trata" es el propio
+  // #report (compartido con el popup automático); en el resto, #formPanel.
+  var formPanel = document.querySelector("[data-form-panel]");
   var formShared = (formPanel && formPanel === report); // comparte overlay con el popup automático
 
   function openForm(){
@@ -64,7 +65,23 @@
     if(e.key === "Escape"){ manualReport = false; applyReport(); closeForm(); }
   });
 
-  // ---- envío del formulario (confidencial) ----
+  // ---- Contact Form 7: al enviarse, sustituye el formulario por el mensaje de
+  // gracias (mismo comportamiento que el formulario original) ----
+  document.addEventListener("wpcf7mailsent", function(e){
+    var panel = e.target.closest(".report") || (formPanel || document);
+    var right = panel.querySelector(".report-right");
+    if(right){
+      right.innerHTML =
+        '<div class="report-thanks">' +
+          '<span class="tag">Comunicación confidencial</span>' +
+          '<h3>Gracias por tu mensaje.</h3>' +
+          '<p>Hemos recibido tu información. Si has facilitado datos de contacto, un miembro de nuestro equipo podrá ponerse en contacto contigo de forma confidencial.</p>' +
+        '</div>';
+    }
+  }, false);
+
+  // ---- envío del formulario estático de reserva (si NO se usa Contact Form 7) ----
+  var formEl = document.getElementById("reportForm");
   if(formEl){
     formEl.addEventListener("submit", function(e){
       e.preventDefault();

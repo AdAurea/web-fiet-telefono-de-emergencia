@@ -284,3 +284,16 @@
     .report-grid{ gap:14px; }
     .intro h2{ font-size:2.3rem; }
   }
+
+  /* ===== Contact Form 7 dentro del panel "Informar una sospecha" ===== */
+  .report .wpcf7{ height:100%; }
+  .report-right .wpcf7-form-control-wrap{ display:block; }
+  .report-right textarea.wpcf7-form-control, .report-right input.wpcf7-form-control{ width:100%; }
+  .report-right input.btn-hero{ width:auto; background-color:#0B0E12; color:#fff; border:0; border-radius:2.5rem; padding:1.2rem 1.5rem; cursor:pointer; transition:background-color .25s ease; }
+  .report-right input.btn-hero:hover{ background-color:#3a3a3a; }
+  .report .check .wpcf7-form-control-wrap{ display:inline; }
+  .report .check .wpcf7-acceptance, .report .check .wpcf7-list-item{ display:inline; margin:0; }
+  .report .check .wpcf7-list-item-label{ display:none; }
+  .report .wpcf7-not-valid-tip{ color:#D7263D; font-size:.8rem; margin-top:6px; }
+  .report .wpcf7-response-output{ margin:16px 0 0; padding:12px 16px; border-radius:10px; font-size:.9rem; border:1px solid rgba(11,14,18,.2); }
+  .report .wpcf7-spinner{ margin-left:12px; }
