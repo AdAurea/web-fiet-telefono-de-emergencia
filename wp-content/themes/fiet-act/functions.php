@@ -97,6 +97,15 @@ function fiet_act_assets() {
 		'tel'        => fiet_option( 'telefono_tel', '900759759' ),
 		'telDisplay' => fiet_option( 'telefono_display', '900 759 759' ),
 	) );
+
+	// Descargas con captación (solo en la página Recursos)
+	if ( is_page( 'recursos' ) ) {
+		wp_enqueue_script( 'fiet-descargas', $uri . '/descargas.js', array(), filemtime( $dir . '/descargas.js' ), true );
+		wp_localize_script( 'fiet-descargas', 'FIET_DL', array(
+			'ajax'  => admin_url( 'admin-ajax.php' ),
+			'nonce' => wp_create_nonce( 'fiet_descarga' ),
+		) );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'fiet_act_assets' );
 
@@ -213,6 +222,7 @@ HTML;
 
 /** Campos editables por página */
 require get_template_directory() . '/inc/acf-fields.php';
+require get_template_directory() . '/inc/descargas.php';
 
 /**
  * Formulario "Informar una sospecha": usa Contact Form 7 si está configurado

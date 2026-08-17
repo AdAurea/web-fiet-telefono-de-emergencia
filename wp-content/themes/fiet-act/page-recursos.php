@@ -24,9 +24,29 @@
     .via-icon{ display:grid; place-items:center; width:46px; height:46px; border-radius:12px; background:#FFD400; color:#0B0E12; margin-bottom:16px; }
     .via-icon svg{ width:25px; height:25px; }
     .via-card h3{ font-family:var(--font-display); font-weight:600; font-size:clamp(1.05rem,1.4vw,1.25rem); margin-bottom:16px; color:var(--fg); }
-    .via-mat{ margin-top:auto; display:inline-flex; align-items:center; gap:7px; font-family:var(--font-body); font-weight:600; font-size:.92rem; color:var(--fg); text-decoration:none; }
+    .via-mat{ margin-top:auto; display:inline-flex; align-items:center; gap:7px; font-family:var(--font-body); font-weight:600; font-size:.92rem; color:var(--fg); text-decoration:none; background:none; border:0; padding:0; cursor:pointer; }
     .via-mat span{ transition:transform .2s ease; }
     .via-mat:hover span{ transform:translateX(4px); }
+
+    /* Modal de descarga (captación nombre + correo) */
+    .dl-backdrop{ position:fixed; inset:0; z-index:98; background:rgba(11,14,18,.42); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); opacity:0; transition:opacity .3s ease; }
+    .dl-backdrop.open{ opacity:1; }
+    .dl-modal{ position:fixed; z-index:99; left:50%; top:50%; transform:translate(-50%,-46%) scale(.98); opacity:0; pointer-events:none; width:min(460px,92vw); background:rgba(255,255,255,.92); backdrop-filter:blur(26px) saturate(150%); -webkit-backdrop-filter:blur(26px) saturate(150%); border:1px solid rgba(255,255,255,.6); border-radius:24px; box-shadow:0 40px 100px rgba(11,14,18,.28); padding:clamp(28px,4vw,44px); transition:opacity .35s ease, transform .35s cubic-bezier(0.22,1,0.36,1); }
+    .dl-modal.open{ opacity:1; pointer-events:auto; transform:translate(-50%,-50%) scale(1); }
+    .dl-close{ position:absolute; top:14px; right:16px; width:38px; height:38px; border:0; background:transparent; font-size:1.9rem; line-height:1; color:var(--fg); cursor:pointer; border-radius:10px; }
+    .dl-modal h3{ font-family:var(--font-display); font-weight:700; font-size:clamp(1.4rem,2.4vw,1.85rem); letter-spacing:-.02em; color:var(--fg); margin-bottom:8px; }
+    .dl-sub{ font-family:var(--font-body); font-size:.95rem; line-height:1.5; color:rgba(11,14,18,.66); margin-bottom:24px; }
+    .dl-form label{ display:block; font-family:var(--font-body); font-weight:600; font-size:.82rem; color:var(--fg); margin-bottom:14px; }
+    .dl-form input[type=text], .dl-form input[type=email]{ display:block; width:100%; margin-top:7px; padding:13px 15px; font-family:var(--font-body); font-size:1rem; color:var(--fg); background:rgba(255,255,255,.7); border:1px solid rgba(11,14,18,.16); border-radius:12px; outline:none; transition:border-color .2s ease; }
+    .dl-form input:focus{ border-color:#0B0E12; }
+    .dl-form .btn-hero{ width:100%; margin-top:8px; justify-content:center; }
+    .dl-msg{ margin-top:14px; font-family:var(--font-body); font-size:.88rem; line-height:1.45; }
+    .dl-msg.err{ color:#b32d2e; }
+    .dl-done{ text-align:center; }
+    .dl-done .dl-icon{ width:56px; height:56px; margin:0 auto 16px; display:grid; place-items:center; border-radius:50%; background:#FFD400; color:#0B0E12; }
+    .dl-done .dl-icon svg{ width:30px; height:30px; }
+    .dl-done h3{ margin-bottom:8px; }
+    .dl-done .btn-hero{ margin-top:20px; }
     .via-foot{ text-align:center; max-width:680px; margin:clamp(2px,0.6vh,8px) auto 0; font-family:var(--font-body); font-size:.82rem; line-height:1.55; color:rgba(11,14,18,.62); }
     #report{ scrollbar-width:none; -ms-overflow-style:none; }
     #report::-webkit-scrollbar{ width:0; height:0; display:none; }
@@ -100,27 +120,27 @@
         <article class="via-card">
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 8h-4V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v4H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4h4a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2z"/></svg></span>
           <h3><?php ff('rec_sec1_titulo','Sector sanitario'); ?></h3>
-          <?php $u = fiet_option( 'rec_url_sanitario', '' ); if ( $u ) : ?><a class="via-mat" href="<?php echo esc_url( $u ); ?>" target="_blank" rel="noopener"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></a><?php endif; ?>
+          <?php if ( fiet_option( 'rec_url_sanitario', '' ) ) : ?><button class="via-mat js-descarga" type="button" data-sector="sanitario"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></button><?php endif; ?>
         </article>
         <article class="via-card">
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 8a1 1 0 0 1 2 0v3h7V9a2 2 0 0 1 2-2h5a3 3 0 0 1 3 3v8a1 1 0 0 1-2 0v-2H4v2a1 1 0 0 1-2 0V8z"/></svg></span>
           <h3><?php ff('rec_sec2_titulo','Sector hostelero'); ?></h3>
-          <?php $u = fiet_option( 'rec_url_hostelero', '' ); if ( $u ) : ?><a class="via-mat" href="<?php echo esc_url( $u ); ?>" target="_blank" rel="noopener"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></a><?php endif; ?>
+          <?php if ( fiet_option( 'rec_url_hostelero', '' ) ) : ?><button class="via-mat js-descarga" type="button" data-sector="hostelero"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></button><?php endif; ?>
         </article>
         <article class="via-card">
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v3h3.2a1 1 0 0 1 .8.4l2.4 3.2a1 1 0 0 1 .2.6V16a1 1 0 0 1-1 1h-1.2a2.5 2.5 0 0 1-4.9 0H8.9a2.5 2.5 0 0 1-4.9 0H3a1 1 0 0 1-1-1V5zm14 5h4.2L18.4 8H16v2z"/><circle cx="6.5" cy="17" r="1.4"/><circle cx="16.5" cy="17" r="1.4"/></svg></span>
           <h3><?php ff('rec_sec3_titulo','Sector transporte'); ?></h3>
-          <?php $u = fiet_option( 'rec_url_transporte', '' ); if ( $u ) : ?><a class="via-mat" href="<?php echo esc_url( $u ); ?>" target="_blank" rel="noopener"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></a><?php endif; ?>
+          <?php if ( fiet_option( 'rec_url_transporte', '' ) ) : ?><button class="via-mat js-descarga" type="button" data-sector="transporte"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></button><?php endif; ?>
         </article>
         <article class="via-card">
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3h9a1 1 0 0 1 1 1v16H4V4a1 1 0 0 1 1-1zm12 6h3a1 1 0 0 1 1 1v10h-4V9zM7 6h2v2H7V6zm4 0h2v2h-2V6zM7 10h2v2H7v-2zm4 0h2v2h-2v-2zM7 14h2v2H7v-2zm4 0h2v2h-2v-2z"/></svg></span>
           <h3><?php ff('rec_sec4_titulo','Sector consular'); ?></h3>
-          <?php $u = fiet_option( 'rec_url_consular', '' ); if ( $u ) : ?><a class="via-mat" href="<?php echo esc_url( $u ); ?>" target="_blank" rel="noopener"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></a><?php endif; ?>
+          <?php if ( fiet_option( 'rec_url_consular', '' ) ) : ?><button class="via-mat js-descarga" type="button" data-sector="consular"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></button><?php endif; ?>
         </article>
         <article class="via-card">
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 1 8l11 5 9-4.09V15h2V8L12 3zM5 13.18V16.5c0 1.66 3.13 3 7 3s7-1.34 7-3v-3.32l-7 3.18-7-3.18z"/></svg></span>
           <h3><?php ff('rec_sec5_titulo','Sector educativo'); ?></h3>
-          <?php $u = fiet_option( 'rec_url_educativo', '' ); if ( $u ) : ?><a class="via-mat" href="<?php echo esc_url( $u ); ?>" target="_blank" rel="noopener"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></a><?php endif; ?>
+          <?php if ( fiet_option( 'rec_url_educativo', '' ) ) : ?><button class="via-mat js-descarga" type="button" data-sector="educativo"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></button><?php endif; ?>
         </article>
       </div>
       <p class="via-foot"><?php ff('rec_pop_foot','Nuestro equipo de especialistas ofrece orientación para la elaboración e implementación de protocolos de actuación. Contáctanos para más información o asesoramiento específico.'); ?></p>
@@ -155,5 +175,32 @@
       onScroll();
     })();
   </script>
+
+  <!-- Modal de descarga de material (captación de nombre + correo) -->
+  <div class="dl-backdrop" id="dlBackdrop" hidden></div>
+  <aside class="dl-modal" id="dlModal" aria-hidden="true" aria-label="Descargar material">
+    <button class="dl-close" id="dlClose" type="button" aria-label="Cerrar">&times;</button>
+
+    <form class="dl-form" id="dlForm" novalidate>
+      <h3>Descarga el material</h3>
+      <p class="dl-sub">Déjanos tu nombre y correo para acceder a la descarga. Solo lo usaremos para darte acceso.</p>
+      <input type="hidden" name="sector" id="dlSector" value="">
+      <label>Nombre y apellidos
+        <input type="text" name="nombre" id="dlNombre" autocomplete="name" required>
+      </label>
+      <label>Correo electrónico
+        <input type="email" name="correo" id="dlCorreo" autocomplete="email" required>
+      </label>
+      <button class="btn-hero" type="submit" id="dlSubmit">Descargar</button>
+      <p class="dl-msg" id="dlMsg" hidden></p>
+    </form>
+
+    <div class="dl-done" id="dlDone" hidden>
+      <span class="dl-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.29 5.71 9 17l-5.29-5.29 1.42-1.42L9 14.17l9.88-9.88 1.41 1.42z"/></svg></span>
+      <h3>¡Todo listo!</h3>
+      <p class="dl-sub">Ya puedes descargar el material.</p>
+      <a class="btn-hero" id="dlLink" href="#" target="_blank" rel="noopener">Descargar material</a>
+    </div>
+  </aside>
 
 <?php get_footer(); ?>
