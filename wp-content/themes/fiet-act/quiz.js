@@ -1,7 +1,8 @@
 (function(){
   "use strict";
 
-  var QUESTIONS = [
+  var QCFG = window.FIET_QUIZ || {};
+  var QUESTIONS = ( QCFG.questions && QCFG.questions.length ) ? QCFG.questions : [
     "¿Tu jefe/a o empleador/a te amenaza?",
     "¿Tienes limitada tu libertad de movimiento (por ejemplo, no puedes salir cuando no trabajas)?",
     "¿Te han quitado el pasaporte u otros documentos personales?",
@@ -95,27 +96,30 @@
   // ---- resultado orientativo ----
   resultBtn.addEventListener("click", function(){
     var yes = answers.filter(function(a){ return a === "si"; }).length;
+    var um = QCFG.umbralMedio || 1, ua = QCFG.umbralAlto || 4;
+    var Rb = QCFG.bajo || {}, Rm = QCFG.medio || {}, Ra = QCFG.alto || {};
     var level, label, color, title, msg;
-    if(yes === 0){
-      level = "bajo"; label = "Riesgo bajo"; color = "#1FAE5A";
-      title = "Riesgo bajo";
-      msg = "No has marcado señales de alerta. Por lo que has indicado, no aparecen indicios claros de trata. Aun así, si algo te preocupa, puedes hablar con el Teléfono de Ayuda de forma confidencial y gratuita.";
-    } else if(yes <= 3){
-      level = "medio"; label = "Riesgo medio"; color = "#E0A100";
-      title = "Riesgo medio";
-      msg = "Has marcado entre 1 y 3 señales. Algunas de tus respuestas pueden indicar una situación de riesgo. Te recomendamos contactar con el Teléfono de Ayuda para valorarlo con profesionales. Es confidencial y gratuito.";
+    if(yes < um){
+      level = "bajo"; color = "#1FAE5A";
+      title = Rb.titulo || "Riesgo bajo";
+      msg = Rb.texto || "No has marcado señales de alerta. Por lo que has indicado, no aparecen indicios claros de trata. Aun así, si algo te preocupa, puedes hablar con el Teléfono de Ayuda de forma confidencial y gratuita.";
+    } else if(yes < ua){
+      level = "medio"; color = "#E0A100";
+      title = Rm.titulo || "Riesgo medio";
+      msg = Rm.texto || "Has marcado entre 1 y 3 señales. Algunas de tus respuestas pueden indicar una situación de riesgo. Te recomendamos contactar con el Teléfono de Ayuda para valorarlo con profesionales. Es confidencial y gratuito.";
     } else {
-      level = "alto"; label = "Riesgo alto"; color = "#D7263D";
-      title = "Riesgo alto";
-      msg = "Has marcado 4 o más señales, que coinciden con indicios de trata. No estás sola: contacta cuanto antes con el Teléfono de Ayuda. Puedes permanecer en el anonimato.";
+      level = "alto"; color = "#D7263D";
+      title = Ra.titulo || "Riesgo alto";
+      msg = Ra.texto || "Has marcado 4 o más señales, que coinciden con indicios de trata. No estás sola: contacta cuanto antes con el Teléfono de Ayuda. Puedes permanecer en el anonimato.";
     }
+    label = title;
 
     resultBox.setAttribute("data-level", level);
     resultBox.innerHTML =
       '<span class="risk-badge" style="background:' + color + '">' + label + '</span>' +
       '<h3>' + title + '</h3>' +
       '<p>' + msg + '</p>' +
-      '<a class="call" href="tel:900759759"><span class="dot" style="width:9px;height:9px;border-radius:50%;background:#1FAE5A;display:inline-block"></span>Llamar 900 759 759</a>' +
+      '<a class="call" href="tel:' + (QCFG.tel || "900759759") + '"><span class="dot" style="width:9px;height:9px;border-radius:50%;background:#1FAE5A;display:inline-block"></span>Llamar ' + (QCFG.telDisplay || "900 759 759") + '</a>' +
       '<div><button class="redo" type="button">Volver a responder</button></div>';
 
     list.hidden = true;

@@ -23,12 +23,12 @@ $email = fiet_option( 'email_contacto', 'informacion@fiet.ong' );
 <div class="drawer-backdrop" id="quizBackdrop" hidden></div>
 <aside class="drawer" id="quizDrawer" aria-hidden="true" aria-label="Cuestionario de autoevaluación">
 	<header class="drawer-top">
-		<span class="tag"><span class="dot"></span>Autoevaluación confidencial</span>
+		<span class="tag"><span class="dot"></span><?php echo esc_html( fiet_option( 'quiz_intro_tag', 'Autoevaluación confidencial' ) ); ?></span>
 		<button class="drawer-x" id="quizClose" type="button" aria-label="Cerrar cuestionario">&times;</button>
 	</header>
-	<h2 class="drawer-title">Evaluación del riesgo</h2>
-	<p class="drawer-sub">Marca lo que corresponda a tu situación. El resultado es orientativo y confidencial; no sustituye el asesoramiento profesional.</p>
+	<h2 class="drawer-title"><?php echo esc_html( fiet_option( 'quiz_intro_titulo', 'Evaluación del riesgo' ) ); ?></h2>
+	<p class="drawer-sub"><?php echo esc_html( fiet_option( 'quiz_intro_sub', 'Marca lo que corresponda a tu situación. El resultado es orientativo y confidencial; no sustituye el asesoramiento profesional.' ) ); ?></p>
 	<div class="quiz-list" id="quizList"></div>
-	<button class="btn-result" id="quizResultBtn" type="button">Ver resultado →</button>
+	<button class="btn-result" id="quizResultBtn" type="button"><?php echo esc_html( fiet_option( 'quiz_boton', 'Ver resultado →' ) ); ?></button>
 	<div class="quiz-result" id="quizResult" hidden></div>
 </aside>

@@ -82,6 +82,21 @@ function fiet_act_assets() {
 		'window.FIET_ASSETS = ' . wp_json_encode( trailingslashit( $uri ) ) . ';',
 		'before'
 	);
+
+	// Cuestionario editable -> quiz.js
+	$qd    = fiet_quiz_defaults();
+	$qraw  = fiet_option( 'quiz_preguntas', $qd['preguntas'] );
+	$preg  = array_values( array_filter( array_map( 'trim', preg_split( "/\r\n|\r|\n/", $qraw ) ), 'strlen' ) );
+	wp_localize_script( 'fiet-quiz', 'FIET_QUIZ', array(
+		'questions'   => $preg,
+		'umbralMedio' => (int) fiet_option( 'quiz_umbral_medio', 1 ),
+		'umbralAlto'  => (int) fiet_option( 'quiz_umbral_alto', 4 ),
+		'bajo'  => array( 'titulo' => fiet_option( 'quiz_bajo_titulo', 'Riesgo bajo' ),   'texto' => fiet_option( 'quiz_bajo_texto', $qd['bajo'] ) ),
+		'medio' => array( 'titulo' => fiet_option( 'quiz_medio_titulo', 'Riesgo medio' ), 'texto' => fiet_option( 'quiz_medio_texto', $qd['medio'] ) ),
+		'alto'  => array( 'titulo' => fiet_option( 'quiz_alto_titulo', 'Riesgo alto' ),   'texto' => fiet_option( 'quiz_alto_texto', $qd['alto'] ) ),
+		'tel'        => fiet_option( 'telefono_tel', '900759759' ),
+		'telDisplay' => fiet_option( 'telefono_display', '900 759 759' ),
+	) );
 }
 add_action( 'wp_enqueue_scripts', 'fiet_act_assets' );
 
@@ -104,6 +119,16 @@ function fiet_option( $name, $default = '' ) {
 /** Imprime un campo de la página actual (escapado), con valor por defecto */
 function ff( $name, $default = '' ) {
 	echo esc_html( fiet_field( $name, $default ) );
+}
+
+/** Valores por defecto del cuestionario (usados por ACF y por el localize a quiz.js) */
+function fiet_quiz_defaults() {
+	return array(
+		'preguntas' => "¿Tu jefe/a o empleador/a te amenaza?\n¿Tienes limitada tu libertad de movimiento (por ejemplo, no puedes salir cuando no trabajas)?\n¿Te han quitado el pasaporte u otros documentos personales?\n¿Te impiden acceder a atención médica cuando la necesitas?\n¿Trabajas más de 8 horas al día sin descanso?\n¿Trabajas en condiciones inseguras o insalubres?\n¿Te obliga a trabajar incluso cuando estás enfermo/a?\n¿Te obliga a hacer actividades con las que no te sientes cómodo/a?\n¿Te dicen que tienes una deuda que debes pagar?\n¿Recibes el salario tarde, incompleto o variable sin explicación?\n¿Cobras menos del salario mínimo legal?",
+		'bajo'  => 'No has marcado señales de alerta. Por lo que has indicado, no aparecen indicios claros de trata. Aun así, si algo te preocupa, puedes hablar con el Teléfono de Ayuda de forma confidencial y gratuita.',
+		'medio' => 'Has marcado entre 1 y 3 señales. Algunas de tus respuestas pueden indicar una situación de riesgo. Te recomendamos contactar con el Teléfono de Ayuda para valorarlo con profesionales. Es confidencial y gratuito.',
+		'alto'  => 'Has marcado 4 o más señales, que coinciden con indicios de trata. No estás sola: contacta cuanto antes con el Teléfono de Ayuda. Puedes permanecer en el anonimato.',
+	);
 }
 
 /** Campos editables por página */
@@ -201,12 +226,35 @@ add_action( 'acf/init', function () {
 		),
 		'location' => array( array( array( 'param' => 'options_page', 'operator' => '==', 'value' => 'fiet-ajustes' ) ) ),
 	) );
+
+	// --- Cuestionario ---
+	$qd = fiet_quiz_defaults();
+	acf_add_local_field_group( array(
+		'key'    => 'group_fiet_quiz',
+		'title'  => 'FIET · Cuestionario',
+		'fields' => array(
+			fiet_f( 'f_q_tag', 'Panel · Sobretítulo', 'quiz_intro_tag', 'Autoevaluación confidencial' ),
+			fiet_f( 'f_q_tit', 'Panel · Título', 'quiz_intro_titulo', 'Evaluación del riesgo' ),
+			fiet_f( 'f_q_sub', 'Panel · Subtítulo', 'quiz_intro_sub', 'Marca lo que corresponda a tu situación. El resultado es orientativo y confidencial; no sustituye el asesoramiento profesional.', 'textarea' ),
+			array( 'key' => 'f_q_pre', 'label' => 'Preguntas (una por línea)', 'name' => 'quiz_preguntas', 'type' => 'textarea', 'rows' => 12, 'new_lines' => '', 'default_value' => $qd['preguntas'] ),
+			fiet_f( 'f_q_btn', 'Botón "Ver resultado"', 'quiz_boton', 'Ver resultado →' ),
+			array( 'key' => 'f_q_um', 'label' => 'Umbral riesgo MEDIO (nº de "Sí")', 'name' => 'quiz_umbral_medio', 'type' => 'number', 'default_value' => 1, 'min' => 1 ),
+			array( 'key' => 'f_q_ua', 'label' => 'Umbral riesgo ALTO (nº de "Sí")', 'name' => 'quiz_umbral_alto', 'type' => 'number', 'default_value' => 4, 'min' => 1 ),
+			fiet_f( 'f_q_bt', 'Resultado BAJO · Título', 'quiz_bajo_titulo', 'Riesgo bajo' ),
+			fiet_f( 'f_q_bm', 'Resultado BAJO · Mensaje', 'quiz_bajo_texto', $qd['bajo'], 'textarea' ),
+			fiet_f( 'f_q_mt', 'Resultado MEDIO · Título', 'quiz_medio_titulo', 'Riesgo medio' ),
+			fiet_f( 'f_q_mm', 'Resultado MEDIO · Mensaje', 'quiz_medio_texto', $qd['medio'], 'textarea' ),
+			fiet_f( 'f_q_at', 'Resultado ALTO · Título', 'quiz_alto_titulo', 'Riesgo alto' ),
+			fiet_f( 'f_q_am', 'Resultado ALTO · Mensaje', 'quiz_alto_texto', $qd['alto'], 'textarea' ),
+		),
+		'location' => array( array( array( 'param' => 'options_page', 'operator' => '==', 'value' => 'fiet-ajustes' ) ) ),
+	) );
 } );
 
 // Página de ajustes en el admin (menú "Ajustes FIET")
 add_action( 'admin_menu', function () {
 	$hook = add_menu_page(
-		'Ajustes del sitio (FIET)', 'Ajustes FIET', 'edit_theme_options',
+		'FIET', 'FIET', 'edit_theme_options',
 		'fiet-ajustes', 'fiet_render_ajustes', 'dashicons-phone', 59
 	);
 	add_action( 'load-' . $hook, function () {
@@ -214,13 +262,30 @@ add_action( 'admin_menu', function () {
 	} );
 } );
 function fiet_render_ajustes() {
-	echo '<div class="wrap"><h1>Ajustes del sitio (FIET)</h1>';
+	$tabs = array( 'globales' => 'Ajustes globales', 'cuestionario' => 'Cuestionario' );
+	$tab  = ( isset( $_GET['tab'] ) && isset( $tabs[ $_GET['tab'] ] ) ) ? sanitize_key( $_GET['tab'] ) : 'globales';
+
+	echo '<div class="wrap"><h1>FIET</h1>';
+	echo '<h2 class="nav-tab-wrapper">';
+	foreach ( $tabs as $k => $label ) {
+		printf(
+			'<a href="%s" class="nav-tab%s">%s</a>',
+			esc_url( admin_url( 'admin.php?page=fiet-ajustes&tab=' . $k ) ),
+			$tab === $k ? ' nav-tab-active' : '',
+			esc_html( $label )
+		);
+	}
+	echo '</h2>';
+
 	if ( function_exists( 'acf_form' ) ) {
+		$group = ( $tab === 'cuestionario' ) ? 'group_fiet_quiz' : 'group_fiet_global';
+		echo '<div style="margin-top:20px;max-width:820px;">';
 		acf_form( array(
 			'post_id'      => 'options',
-			'field_groups' => array( 'group_fiet_global' ),
+			'field_groups' => array( $group ),
 			'submit_value' => 'Guardar cambios',
 		) );
+		echo '</div>';
 	} else {
 		echo '<p>Instala y activa <strong>Advanced Custom Fields</strong> para editar estos ajustes.</p>';
 	}
