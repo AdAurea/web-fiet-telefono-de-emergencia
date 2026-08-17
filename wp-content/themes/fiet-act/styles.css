@@ -287,6 +287,8 @@
 
   /* ===== Contact Form 7 dentro del panel "Informar una sospecha" ===== */
   .report .wpcf7{ height:100%; }
+  .report .wpcf7-form{ height:100%; }                 /* la cadena de altura permite centrar el .report-inner */
+  .report .wpcf7 .hidden-fields-container{ display:none; }  /* los inputs ocultos siguen enviándose */
   .report-right .wpcf7-form-control-wrap{ display:block; }
   .report-right textarea.wpcf7-form-control, .report-right input.wpcf7-form-control{ width:100%; }
   .report-right input.btn-hero{ width:auto; background-color:#0B0E12; color:#fff; border:0; border-radius:2.5rem; padding:1.2rem 1.5rem; cursor:pointer; transition:background-color .25s ease; }
