@@ -93,6 +93,7 @@ add_action( 'acf/init', function () {
 				fiet_f( 'f_qet_epar', 'España · Párrafo', 'qet_esp_parrafo', 'Se han detectado casos en todas las comunidades autónomas y, además, el país se sitúa entre los mayores consumidores de prostitución del mundo.', 'textarea' ),
 				fiet_f( 'f_qet_itag', 'No estás sola · Sobretítulo', 'qet_intro_tag', 'Confidencial · Gratuito · Disponible 24/7' ),
 				fiet_f( 'f_qet_itit', 'No estás sola · Título', 'qet_intro_titulo', 'No estás sola' ),
+				fiet_f( 'f_qet_ipar', 'No estás sola · Párrafo', 'qet_intro_parrafo', 'Si crees que tú o alguien que conoces puede estar en una situación de trata, contacta. Puedes permanecer en el anonimato.', 'textarea' ),
 				fiet_f( 'f_qet_ibtn', 'No estás sola · Botón', 'qet_intro_boton', 'Línea de asistencia 24h' ),
 				fiet_f( 'f_qet_qtag', 'Cuestionario · Sobretítulo', 'qet_quiz_tag', 'Autoevaluación confidencial' ),
 				fiet_f( 'f_qet_qtit', 'Cuestionario · Título', 'qet_quiz_titulo', '¿Podrías estar en una situación de trata?' ),

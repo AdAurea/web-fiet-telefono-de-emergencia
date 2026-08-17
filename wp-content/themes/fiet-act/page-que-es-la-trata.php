@@ -21,8 +21,7 @@
         <div class="intro" id="intro">
           <span class="tag"><span class="dot"></span><?php ff('qet_intro_tag','Confidencial · Gratuito · Disponible 24/7'); ?></span>
           <h2><?php ff('qet_intro_titulo','No estás sola'); ?></h2>
-          <p>El <strong>900 759 759</strong> es el Teléfono de Ayuda Contra la Trata en España. Funciona 24/7 y está atendido por profesionales especializados que siguen protocolos internacionales para responder con rapidez y seguridad.</p>
-          <p>Si crees que tú o alguien que conoces puede estar en una situación de trata, contacta. Puedes permanecer en el anonimato.</p>
+          <p><?php ff( 'qet_intro_parrafo', 'Si crees que tú o alguien que conoces puede estar en una situación de trata, contacta. Puedes permanecer en el anonimato.' ); ?></p>
           <a href="tel:+34900759759" class="btn-hero"><?php ff('qet_intro_boton','Línea de asistencia 24h'); ?></a>
         </div>
         <div class="quiz" id="quiz">
