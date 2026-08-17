@@ -23,12 +23,12 @@
     .rec-modal.open{ opacity:1; pointer-events:auto; transform:translate(-50%,-50%) scale(1); }
     .rec-close{ position:absolute; top:18px; right:20px; width:40px; height:40px; border:0; background:transparent; font-size:2rem; line-height:1; color:var(--fg); cursor:pointer; border-radius:10px; }
     .rec-body h2{ font-family:var(--font-display); font-weight:700; font-size:clamp(1.7rem,3vw,2.4rem); letter-spacing:-.02em; margin-bottom:16px; color:var(--fg); }
-    .rec-lead{ font-size:clamp(1rem,1.2vw,1.1rem); line-height:1.6; color:rgba(11,14,18,.72); margin-bottom:22px; }
+    .rec-body p{ font-size:clamp(1rem,1.2vw,1.1rem); line-height:1.6; color:rgba(11,14,18,.72); margin-bottom:22px; }
     .rec-body h3{ font-family:var(--font-display); font-weight:700; font-size:clamp(1.05rem,1.3vw,1.2rem); color:#0B0E12; margin:26px 0 12px; }
-    .rec-list{ list-style:none; display:flex; flex-direction:column; gap:11px; }
-    .rec-list li{ position:relative; padding-left:22px; font-size:clamp(.95rem,1.1vw,1.02rem); line-height:1.55; color:rgba(11,14,18,.72); }
-    .rec-list li::before{ content:""; position:absolute; left:2px; top:.6em; width:7px; height:7px; border-radius:50%; background:#FFD400; }
-    .rec-list li strong{ color:var(--fg); font-weight:600; }
+    .rec-body ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:11px; }
+    .rec-body li{ position:relative; padding-left:22px; font-size:clamp(.95rem,1.1vw,1.02rem); line-height:1.55; color:rgba(11,14,18,.72); }
+    .rec-body li::before{ content:""; position:absolute; left:2px; top:.6em; width:7px; height:7px; border-radius:50%; background:#FFD400; }
+    .rec-body li strong{ color:var(--fg); font-weight:600; }
     /* Ocultar la barra de scroll de los popups (se mantiene el desplazamiento) */
     #report, .rec-modal{ scrollbar-width:none; -ms-overflow-style:none; }
     #report::-webkit-scrollbar, .rec-modal::-webkit-scrollbar{ width:0; height:0; display:none; }
@@ -107,83 +107,12 @@
 
   <!-- Contenidos de las recomendaciones -->
   <div hidden>
-    <div id="rec-empleo">
-      <h2>Empleo seguro</h2>
-      <p class="rec-lead">Antes de aceptar una oferta, sigue estas recomendaciones para reducir riesgos y mantenerte a salvo.</p>
-      <h3>Recomendaciones generales</h3>
-      <ul class="rec-list">
-        <li><strong>Infórmate sobre la empresa o persona empleadora.</strong> Comprueba si tiene presencia real, referencias o trayectoria verificable.</li>
-        <li><strong>Revisa con atención las condiciones laborales.</strong> Desconfía de ofertas con información incompleta, ambigua o poco clara.</li>
-        <li><strong>No entregues tu documento de identidad a terceros.</strong> Llévalo siempre contigo y conserva copias en un lugar seguro.</li>
-        <li>Comparte tu situación con alguien de confianza: dónde vas a trabajar, con quién has contactado, y facilita una foto reciente.</li>
-        <li>Establece una señal de emergencia con familiares o amistades para pedir ayuda de forma discreta.</li>
-        <li>Lleva contigo una pequeña cantidad de dinero para imprevistos si el empleo implica desplazarte.</li>
-        <li><strong>Aprende frases básicas del lugar al que vas.</strong> Asegúrate de saber pedir ayuda y localizar el hospital o comisaría más cercanos.</li>
-        <li><strong>Prepara todos tus documentos y lleva copias.</strong> Guarda una copia digital en un lugar seguro.</li>
-        <li>Lleva contigo datos de contacto clave: organizaciones de apoyo, servicios sociales y, si viajas, embajada o consulado.</li>
-      </ul>
-      <h3>Si necesitas firmar un contrato</h3>
-      <ul class="rec-list">
-        <li>Exige que el contrato esté en un idioma que entiendas bien.</li>
-        <li><strong>No firmes nada que no comprendas.</strong> Busca asesoría si el lenguaje es ambiguo o poco claro.</li>
-      </ul>
-      <h3>Si el empleo es en el extranjero</h3>
-      <ul class="rec-list">
-        <li>Confirma que la empresa está registrada y tiene autorización para contratar.</li>
-        <li>Asegúrate de tener el permiso de trabajo correspondiente.</li>
-        <li>Ten en cuenta que un visado de turista normalmente no permite trabajar.</li>
-      </ul>
-    </div>
-
-    <div id="rec-viaje">
-      <h2>Viaje seguro</h2>
-      <p class="rec-lead">Viajar suele ser positivo, pero también implica riesgos. Algunas personas pueden convertirse en víctimas de delitos, e incluso de trata, cuando viajan.</p>
-      <h3>Antes y durante el viaje</h3>
-      <ul class="rec-list">
-        <li>Lleva siempre los datos de contacto de organizaciones que apoyan a personas extranjeras, y la dirección y teléfono de tu embajada o consulado.</li>
-        <li>Comparte con familiares o amistades tu itinerario, copias de tus documentos y pasaporte, y una foto reciente tuya y de quienes viajan contigo.</li>
-        <li>Acuerda una señal de emergencia con tu familia o amistades para pedir ayuda de forma discreta.</li>
-        <li>Prepara todos los documentos importantes y lleva copias, en papel y digitales.</li>
-        <li><strong>Nunca entregues tu documento de identidad a nadie.</strong> Llévalo siempre contigo.</li>
-        <li>Mantente alerta ante comportamientos o situaciones sospechosas e informa a alguien de confianza.</li>
-        <li>Lleva siempre una pequeña cantidad de dinero en efectivo para emergencias.</li>
-      </ul>
-      <h3>Comunicación y orientación</h3>
-      <ul class="rec-list">
-        <li>Aprende algunas frases básicas en el idioma del país que visitas.</li>
-        <li>Debes poder pedir ayuda, pedir direcciones y saber dónde está el hospital o comisaría más cercanos.</li>
-        <li>Memoriza el número de teléfono de al menos un familiar o amigo.</li>
-        <li>Infórmate del número de emergencias del país (por ejemplo, 112 en la UE).</li>
-      </ul>
-      <h3>Interacciones con desconocidos</h3>
-      <ul class="rec-list">
-        <li>Sé precavido/a al hablar con personas que no conoces.</li>
-        <li>Nunca compartas tu nombre completo ni dónde te estás alojando.</li>
-        <li>Si crees que alguien te sigue o acosa, ve a una zona concurrida y no dudes en llamar a la policía.</li>
-      </ul>
-    </div>
-
-    <div id="rec-internet">
-      <h2>Internet seguro</h2>
-      <p class="rec-lead">Cada vez más tratantes usan internet para captar víctimas: es de fácil acceso, bajo coste y bajo riesgo. Suelen crear perfiles falsos o suplantar identidades para ganarse la confianza. Los más vulnerables son niños, niñas y adolescentes.</p>
-      <h3>Citas con personas conocidas por internet</h3>
-      <ul class="rec-list">
-        <li><strong>Quedar con alguien que has conocido online es una situación de alto riesgo.</strong> Queda de día, en un lugar público y concurrido.</li>
-        <li>Si la otra persona propone un piso, un lugar oscuro, aislado o un parque poco transitado, es una señal de alerta.</li>
-        <li>Antes de la cita, informa a alguien de confianza.</li>
-        <li>Ten un plan de seguridad: que alguien te llame a una hora acordada, o una palabra clave para indicar que necesitas ayuda.</li>
-      </ul>
-      <h3>Protege tu información personal</h3>
-      <ul class="rec-list">
-        <li>Nunca compartas tu identidad completa, dirección, centro educativo, empresa o datos de tus familiares con personas conocidas por internet.</li>
-        <li><strong>No abras mensajes con contenido vulgar, inapropiado, peligroso o insultante.</strong> Bloquea a quienes los envíen.</li>
-        <li>Nunca envíes fotos a personas que acabas de conocer por internet.</li>
-        <li>Ajusta la visibilidad de tus fotos e información para que solo la vean personas de confianza.</li>
-      </ul>
-    </div>
+    <div id="rec-empleo"><?php echo fiet_option( 'rec_modal_empleo', fiet_reco_defaults()['empleo'] ); ?></div>
+    <div id="rec-viaje"><?php echo fiet_option( 'rec_modal_viaje', fiet_reco_defaults()['viaje'] ); ?></div>
+    <div id="rec-internet"><?php echo fiet_option( 'rec_modal_internet', fiet_reco_defaults()['internet'] ); ?></div>
   </div>
 
-  <script>
+    <script>
     (function(){
       "use strict";
       var modal=document.getElementById("recModal"), backdrop=document.getElementById("recBackdrop");
