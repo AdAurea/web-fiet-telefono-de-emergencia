@@ -98,7 +98,7 @@ add_action( 'acf/init', function () {
 				fiet_f( 'f_qet_qtag', 'Cuestionario · Sobretítulo', 'qet_quiz_tag', 'Autoevaluación confidencial' ),
 				fiet_f( 'f_qet_qtit', 'Cuestionario · Título', 'qet_quiz_titulo', '¿Podrías estar en una situación de trata?' ),
 				fiet_f( 'f_qet_qpar', 'Cuestionario · Párrafo', 'qet_quiz_parrafo', 'Responde a estas preguntas para identificar posibles señales de alerta. El resultado es orientativo y no sustituye el asesoramiento profesional.', 'textarea' ),
-				fiet_f( 'f_qet_qbtn', 'Cuestionario · Botón', 'qet_quiz_boton', 'Ir al cuestionario' ),
+				fiet_f( 'f_qet_qbtn', 'Cuestionario · Botón', 'qet_quiz_boton', 'Comprueba tu situación' ),
 				fiet_f( 'f_qet_leye', 'Tres elementos · Sobretítulo', 'qet_el_eyebrow', 'Los tres elementos del delito' ),
 				fiet_f( 'f_qet_ltit', 'Tres elementos · Título', 'qet_el_titulo', 'La existencia de estos tres elementos constituye el delito de trata.', 'textarea' ),
 				fiet_f( 'f_qet_e1t', 'Elemento 1 · Título', 'qet_el1_titulo', 'La acción' ),

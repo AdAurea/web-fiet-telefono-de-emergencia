@@ -23,7 +23,7 @@
   if(quizOpener){
     var q = document.createElement("a");
     q.href = "#cuestionario";
-    q.textContent = "Ir al cuestionario";
+    q.textContent = "Comprueba tu situación";
     q.className = "nav-drawer-quiz";
     q.addEventListener("click", function(e){
       e.preventDefault();

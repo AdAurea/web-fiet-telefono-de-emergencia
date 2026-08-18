@@ -28,7 +28,7 @@
           <span class="tag"><span class="dot"></span><?php ff('qet_quiz_tag','Autoevaluación confidencial'); ?></span>
           <h2><?php ff('qet_quiz_titulo','¿Podrías estar en una situación de trata?'); ?></h2>
           <p><?php ff('qet_quiz_parrafo','Responde a estas preguntas para identificar posibles señales de alerta. El resultado es orientativo y no sustituye el asesoramiento profesional.'); ?></p>
-          <a href="#cuestionario" class="btn-hero" id="openQuiz"><?php ff('qet_quiz_boton','Ir al cuestionario'); ?></a>
+          <a href="#cuestionario" class="btn-hero" id="openQuiz"><?php ff('qet_quiz_boton','Comprueba tu situación'); ?></a>
         </div>
         <div class="orb-cover" id="orbCover"></div>
         <div class="elements" id="elements">

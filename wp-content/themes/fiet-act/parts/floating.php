@@ -3,7 +3,7 @@ $tel   = fiet_option( 'telefono_tel', '900759759' );
 $email = fiet_option( 'email_contacto', 'informacion@fiet.ong' );
 ?>
 <!-- Botones flotantes persistentes -->
-<a class="fab-quiz js-open-quiz" href="#cuestionario">Ir al cuestionario</a>
+<a class="fab-quiz js-open-quiz" href="#cuestionario">Comprueba tu situación</a>
 <div class="fab-stack">
 	<a class="fab-sec fab-mail" href="mailto:<?php echo esc_attr( $email ); ?>?subject=Contacto%20-%20Tel%C3%A9fono%20contra%20la%20Trata" aria-label="Enviar un correo">
 		<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
