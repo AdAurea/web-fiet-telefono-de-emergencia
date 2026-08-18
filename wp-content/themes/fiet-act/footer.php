@@ -16,7 +16,7 @@ $legales = array(
 	<div class="footer-inner">
 		<div class="footer-brand">
 			<a class="footer-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="FIET · Inicio">
-				<img src="<?php echo esc_url( $uri . '/logo.png' ); ?>" alt="FIET">
+				<img src="<?php echo esc_url( $uri . '/logo_footer.png' ); ?>" alt="FIET">
 			</a>
 			<p class="footer-tag">Teléfono de Ayuda Contra la Trata</p>
 		</div>
