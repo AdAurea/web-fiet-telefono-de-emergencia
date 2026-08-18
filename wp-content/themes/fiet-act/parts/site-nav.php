@@ -3,7 +3,7 @@ $uri  = get_template_directory_uri();
 $tel  = fiet_option( 'telefono_tel', '900759759' );
 $telv = fiet_option( 'telefono_display', '900 759 759' );
 ?>
-<a class="site-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="FIET · Inicio"><img src="<?php echo esc_url( $uri . '/logo.png' ); ?>" alt="FIET"></a>
+<a class="site-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="FIET · Inicio"><img src="<?php echo esc_url( $uri . '/logo_fondo_blanco.png' ); ?>" alt="FIET · Teléfono de Ayuda Contra la Trata"></a>
 <nav class="navbar">
 	<a href="<?php echo esc_url( home_url( '/' ) ); ?>">El teléfono</a>
 	<a href="<?php echo esc_url( home_url( '/que-es-la-trata/' ) ); ?>">Qué es la trata</a>
