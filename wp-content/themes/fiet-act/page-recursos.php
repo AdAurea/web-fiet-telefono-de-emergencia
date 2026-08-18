@@ -27,6 +27,10 @@
     .via-mat{ margin-top:auto; display:inline-flex; align-items:center; gap:7px; font-family:var(--font-body); font-weight:600; font-size:.92rem; color:var(--fg); text-decoration:none; background:none; border:0; padding:0; cursor:pointer; }
     .via-mat span{ transition:transform .2s ease; }
     .via-mat:hover span{ transform:translateX(4px); }
+    /* En responsive, las cards de sectores en dos columnas */
+    @media (max-width:720px){
+      .via-card{ flex:0 1 calc(50% - 8px); min-width:0; }
+    }
 
     /* Modal de descarga (captación nombre + correo) */
     .dl-backdrop{ position:fixed; inset:0; z-index:98; background:rgba(11,14,18,.42); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); opacity:0; transition:opacity .3s ease; }
