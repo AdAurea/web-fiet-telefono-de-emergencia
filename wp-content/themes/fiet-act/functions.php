@@ -313,7 +313,9 @@ add_action( 'acf/init', function () {
 			array( 'key' => 'field_tel_tel', 'label' => 'Teléfono (enlace, sin espacios)', 'name' => 'telefono_tel', 'type' => 'text', 'default_value' => '900759759' ),
 			array( 'key' => 'field_email', 'label' => 'Correo de contacto', 'name' => 'email_contacto', 'type' => 'text', 'default_value' => 'informacion@fiet.ong' ),
 			array( 'key' => 'field_cf7', 'label' => 'Formulario Contact Form 7 · ID', 'name' => 'cf7_id', 'type' => 'text', 'instructions' => 'ID del formulario CF7 para "Informar una sospecha". Vacío = formulario estático.', 'default_value' => '' ),
-			array( 'key' => 'field_privacidad', 'label' => 'Política de privacidad · URL', 'name' => 'privacidad_url', 'type' => 'url', 'instructions' => 'Enlace a la política de privacidad. Se usa en el consentimiento del formulario de descargas. Vacío = el texto aparece sin enlace.', 'default_value' => '' ),
+			array( 'key' => 'field_privacidad', 'label' => 'Política de privacidad · URL', 'name' => 'privacidad_url', 'type' => 'url', 'instructions' => 'Enlace a la política de privacidad. Se usa en el consentimiento del formulario de descargas y en el pie de página. Vacío = el texto aparece sin enlace.', 'default_value' => '' ),
+			array( 'key' => 'field_cookies', 'label' => 'Política de cookies · URL', 'name' => 'cookies_url', 'type' => 'url', 'instructions' => 'Enlace a la política de cookies (pie de página). Vacío = el texto aparece sin enlace.', 'default_value' => '' ),
+			array( 'key' => 'field_donaciones', 'label' => 'Política y condiciones de donación · URL', 'name' => 'donaciones_url', 'type' => 'url', 'instructions' => 'Enlace a la política y condiciones de donación (pie de página). Vacío = el texto aparece sin enlace.', 'default_value' => '' ),
 		),
 		'location' => array( array( array( 'param' => 'options_page', 'operator' => '==', 'value' => 'fiet-ajustes' ) ) ),
 	) );
