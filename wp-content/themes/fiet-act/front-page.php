@@ -40,7 +40,7 @@
     @media (max-width:820px){ .tel-steps{ top:12vh; bottom:auto; width:88vw; } .steps-labels{ justify-content:center; gap:0; margin-top:12px; } .steps-labels .step{ font-size:.98rem; text-align:center; } .steps-labels .step:last-child{ text-align:center; } }
 
     /* Píldora amarilla encima del móvil */
-    .tel-pill{ position:absolute; z-index:3; left:50%; top:50%; background:#FFD400; color:#0B0E12; font-family:var(--font-body); font-weight:600; font-size:1rem; padding:11px 22px; border-radius:999px; white-space:nowrap; box-shadow:0 12px 30px rgba(11,14,18,.2); opacity:0; will-change:transform,opacity; }
+    .tel-pill{ display:none; position:absolute; z-index:3; left:50%; top:50%; background:#FFD400; color:#0B0E12; font-family:var(--font-body); font-weight:600; font-size:1rem; padding:11px 22px; border-radius:999px; white-space:nowrap; box-shadow:0 12px 30px rgba(11,14,18,.2); opacity:0; will-change:transform,opacity; }
 
     /* Título que aparece a la derecha cuando el móvil se va a la izquierda */
     .tel-topic{ position:absolute; z-index:2; top:28vh; left:45vw; right:auto; width:min(54ch,52vw); text-align:left; opacity:0; will-change:opacity; }
@@ -139,7 +139,7 @@
           <div class="call-top">
             <div class="call-label"><?php ff('tel_call_label','Llamada saliente'); ?></div>
             <div class="avatar"></div>
-            <div class="call-name"><?php ff('tel_call_name','Teléfono contra la Trata'); ?></div>
+            <div class="call-name"><?php ff('tel_call_name','Teléfono ACT'); ?></div>
             <div class="call-number"><?php echo esc_html( fiet_option('telefono_display','900 759 759') ); ?></div>
             <div class="call-status">Llamando<span class="dots"><span>.</span><span>.</span><span>.</span></span></div>
           </div>
