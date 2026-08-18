@@ -38,17 +38,18 @@ function fiet_descargas_install() {
 		sector_key VARCHAR(64) NOT NULL,
 		url TEXT NULL,
 		ip VARCHAR(64) NULL,
+		consentimiento TINYINT(1) NOT NULL DEFAULT 0,
 		creado DATETIME NOT NULL,
 		PRIMARY KEY  (id),
 		KEY correo (correo),
 		KEY sector_key (sector_key)
 	) $charset;";
 	dbDelta( $sql );
-	update_option( 'fiet_descargas_db', '1' );
+	update_option( 'fiet_descargas_db', '2' );
 }
 add_action( 'after_switch_theme', 'fiet_descargas_install' );
 add_action( 'admin_init', function () {
-	if ( get_option( 'fiet_descargas_db' ) !== '1' ) fiet_descargas_install();
+	if ( get_option( 'fiet_descargas_db' ) !== '2' ) fiet_descargas_install();
 } );
 
 /** IP del cliente (best-effort). */
@@ -66,12 +67,14 @@ function fiet_descargas_ajax() {
 
 	$sectores = fiet_descargas_sectores();
 	$key    = isset( $_POST['sector'] ) ? sanitize_key( $_POST['sector'] ) : '';
-	$nombre = isset( $_POST['nombre'] ) ? sanitize_text_field( wp_unslash( $_POST['nombre'] ) ) : '';
-	$correo = isset( $_POST['correo'] ) ? sanitize_email( wp_unslash( $_POST['correo'] ) ) : '';
+	$nombre  = isset( $_POST['nombre'] ) ? sanitize_text_field( wp_unslash( $_POST['nombre'] ) ) : '';
+	$correo  = isset( $_POST['correo'] ) ? sanitize_email( wp_unslash( $_POST['correo'] ) ) : '';
+	$consent = ! empty( $_POST['consent'] );
 
 	if ( ! isset( $sectores[ $key ] ) )      wp_send_json_error( array( 'msg' => 'Material no válido.' ) );
 	if ( $nombre === '' )                    wp_send_json_error( array( 'msg' => 'Introduce tu nombre.' ) );
 	if ( ! is_email( $correo ) )             wp_send_json_error( array( 'msg' => 'Introduce un correo electrónico válido.' ) );
+	if ( ! $consent )                        wp_send_json_error( array( 'msg' => 'Debes aceptar la política de privacidad para continuar.' ) );
 
 	$url = fiet_option( 'rec_url_' . $key, '' );
 	if ( ! $url ) wp_send_json_error( array( 'msg' => 'Este material aún no está disponible.' ) );
@@ -98,11 +101,12 @@ function fiet_descargas_ajax() {
 			'correo'     => $correo,
 			'sector'     => $sectores[ $key ],
 			'sector_key' => $key,
-			'url'        => esc_url_raw( $url ),
-			'ip'         => fiet_descargas_ip(),
-			'creado'     => current_time( 'mysql' ),
+			'url'            => esc_url_raw( $url ),
+			'ip'             => fiet_descargas_ip(),
+			'consentimiento' => 1,
+			'creado'         => current_time( 'mysql' ),
 		),
-		array( '%s', '%s', '%s', '%s', '%s', '%s', '%s' )
+		array( '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%s' )
 	);
 
 	wp_send_json_success( array( 'url' => esc_url_raw( $url ) ) );

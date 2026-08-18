@@ -39,6 +39,9 @@
     .dl-form label{ display:block; font-family:var(--font-body); font-weight:600; font-size:.82rem; color:var(--fg); margin-bottom:14px; }
     .dl-form input[type=text], .dl-form input[type=email]{ display:block; width:100%; margin-top:7px; padding:13px 15px; font-family:var(--font-body); font-size:1rem; color:var(--fg); background:rgba(255,255,255,.7); border:1px solid rgba(11,14,18,.16); border-radius:12px; outline:none; transition:border-color .2s ease; }
     .dl-form input:focus{ border-color:#0B0E12; }
+    .dl-consent{ display:flex; align-items:flex-start; gap:10px; font-weight:400 !important; font-size:.82rem; line-height:1.45; color:rgba(11,14,18,.7); cursor:pointer; }
+    .dl-consent input[type=checkbox]{ flex:0 0 auto; width:17px; height:17px; margin-top:1px; accent-color:#0B0E12; cursor:pointer; }
+    .dl-consent a{ color:var(--fg); font-weight:600; text-decoration:underline; }
     .dl-form .btn-hero{ width:100%; margin-top:8px; justify-content:center; }
     .dl-msg{ margin-top:14px; font-family:var(--font-body); font-size:.88rem; line-height:1.45; }
     .dl-msg.err{ color:#b32d2e; }
@@ -190,6 +193,16 @@
       </label>
       <label>Correo electrónico
         <input type="email" name="correo" id="dlCorreo" autocomplete="email" required>
+      </label>
+      <label class="dl-consent">
+        <input type="checkbox" name="consent" id="dlConsent" value="1" required>
+        <span><?php
+          $priv = fiet_option( 'privacidad_url', '' );
+          $enlace = $priv
+            ? '<a href="' . esc_url( $priv ) . '" target="_blank" rel="noopener">política de privacidad</a>'
+            : 'política de privacidad';
+          echo 'He leído y acepto la ' . $enlace . ' y el tratamiento de mis datos para gestionar el acceso al material.';
+        ?></span>
       </label>
       <button class="btn-hero" type="submit" id="dlSubmit">Descargar</button>
       <p class="dl-msg" id="dlMsg" hidden></p>

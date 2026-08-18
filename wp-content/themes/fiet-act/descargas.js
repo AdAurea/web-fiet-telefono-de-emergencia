@@ -9,6 +9,7 @@
   var sectorIn = document.getElementById("dlSector");
   var nameIn   = document.getElementById("dlNombre");
   var mailIn   = document.getElementById("dlCorreo");
+  var consent  = document.getElementById("dlConsent");
   var submit   = document.getElementById("dlSubmit");
   var msg      = document.getElementById("dlMsg");
   var link     = document.getElementById("dlLink");
@@ -50,6 +51,14 @@
   form.addEventListener("submit", function(e){
     e.preventDefault();
     msg.hidden = true;
+
+    if(consent && !consent.checked){
+      msg.hidden = false;
+      msg.className = "dl-msg err";
+      msg.textContent = "Debes aceptar la política de privacidad para continuar.";
+      return;
+    }
+
     submit.disabled = true; submit.textContent = "Enviando…";
 
     var data = new FormData();
@@ -58,6 +67,7 @@
     data.append("sector", sectorIn.value);
     data.append("nombre", nameIn.value);
     data.append("correo", mailIn.value);
+    data.append("consent", (consent && consent.checked) ? "1" : "");
 
     fetch(CFG.ajax, { method: "POST", credentials: "same-origin", body: data })
       .then(function(r){ return r.json(); })
