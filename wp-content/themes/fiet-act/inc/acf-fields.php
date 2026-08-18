@@ -63,6 +63,8 @@ add_action( 'acf/init', function () {
 				fiet_f( 'f_rec_s4d', 'Servicio 4 · Descripción', 'rec_serv4_desc', 'Apoyo en crisis mediante planes de seguridad, acompañamiento emocional y conexión con servicios de emergencia y entidades especializadas.', 'textarea' ),
 				fiet_f( 'f_rec_s5t', 'Servicio 5 · Título', 'rec_serv5_titulo', 'Verificación de empleo' ),
 				fiet_f( 'f_rec_s5d', 'Servicio 5 · Descripción', 'rec_serv5_desc', 'Servicio gratuito de verificación de ofertas de empleo. Revisamos el registro de la empresa, antecedentes y opiniones, y elaboramos una evaluación de riesgo.', 'textarea' ),
+				fiet_f( 'f_rec_s6t', 'Servicio 6 · Título', 'rec_serv6_titulo', 'Servicio de interpretación' ),
+				fiet_f( 'f_rec_s6d', 'Servicio 6 · Descripción', 'rec_serv6_desc', 'Atención en más de 200 idiomas para facilitar la comunicación y la intervención de profesionales especializados en trata de personas.', 'textarea' ),
 				fiet_f( 'f_rec_peye', 'Popup · Sobretítulo', 'rec_pop_eyebrow', 'Recursos' ),
 				fiet_f( 'f_rec_ptit', 'Popup · Título', 'rec_pop_titulo', 'Formación especializada.' ),
 				fiet_f( 'f_rec_pp1', 'Popup · Párrafo 1', 'rec_pop_p1', 'Proporcionamos conocimientos clave sobre la magnitud y las formas de la trata, los indicadores específicos según cada ámbito profesional y los protocolos de actuación necesarios en situaciones de sospecha o identificación.', 'textarea' ),

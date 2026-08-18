@@ -6,7 +6,7 @@
     /* Sección amarilla de servicios (se funde a pantalla completa al hacer scroll) */
     .rec-services{ position:absolute; inset:0; z-index:3; background:#FFD400; opacity:0; pointer-events:none; overflow-y:auto; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:clamp(64px,9vh,110px) clamp(20px,5vw,60px); text-align:center; will-change:opacity; }
     .rec-services h2{ font-family:var(--font-display); font-weight:600; font-size:clamp(1.7rem,3.6vw,3rem); line-height:1.1; letter-spacing:-.02em; color:#0B0E12; margin-bottom:clamp(26px,4.5vh,46px); max-width:22ch; }
-    .serv-cards{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; max-width:1320px; width:100%; }
+    .serv-cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; max-width:1040px; width:100%; }
     .serv-card{ background:rgba(255,255,255,.6); border:1px solid rgba(11,14,18,.12); border-radius:16px; padding:clamp(16px,1.4vw,24px); text-align:left; }
     .serv-num{ font-family:var(--font-body); font-size:.75rem; letter-spacing:.1em; color:rgba(11,14,18,.5); margin-bottom:14px; }
     .serv-card h3{ font-family:var(--font-display); font-weight:600; font-size:clamp(1rem,1.2vw,1.25rem); line-height:1.2; margin-bottom:10px; color:#0B0E12; }
@@ -83,29 +83,34 @@
         <h2><?php ff('rec_serv_titulo','Una amplia gama de servicios a tu disposición'); ?></h2>
         <div class="serv-cards">
           <article class="serv-card">
-            <span class="serv-num">01 / 05</span>
+            <span class="serv-num">01 / 06</span>
             <h3><?php ff('rec_serv1_titulo','Derivaciones'); ?></h3>
             <p><?php ff('rec_serv1_desc','Conectamos a quien llama con servicios especializados: gestión de casos, alojamiento seguro, transporte, asistencia legal y apoyo psicológico y de salud mental.'); ?></p>
           </article>
           <article class="serv-card">
-            <span class="serv-num">02 / 05</span>
+            <span class="serv-num">02 / 06</span>
             <h3><?php ff('rec_serv2_titulo','Formación a profesionales'); ?></h3>
             <p><?php ff('rec_serv2_desc','Formación y asistencia técnica a fuerzas de seguridad, profesionales sanitarios, personal aeroportuario y organismos públicos. Fortalecemos protocolos locales y nacionales.'); ?></p>
           </article>
           <article class="serv-card">
-            <span class="serv-num">03 / 05</span>
+            <span class="serv-num">03 / 06</span>
             <h3><?php ff('rec_serv3_titulo','Informar una sospecha'); ?></h3>
             <p><?php ff('rec_serv3_desc','Recibimos información sobre posibles situaciones de trata. Todas las comunicaciones son confidenciales y la persona puede permanecer en el anonimato.'); ?></p>
           </article>
           <article class="serv-card">
-            <span class="serv-num">04 / 05</span>
+            <span class="serv-num">04 / 06</span>
             <h3><?php ff('rec_serv4_titulo','Asistencia a víctimas'); ?></h3>
             <p><?php ff('rec_serv4_desc','Apoyo en crisis mediante planes de seguridad, acompañamiento emocional y conexión con servicios de emergencia y entidades especializadas.'); ?></p>
           </article>
           <article class="serv-card">
-            <span class="serv-num">05 / 05</span>
+            <span class="serv-num">05 / 06</span>
             <h3><?php ff('rec_serv5_titulo','Verificación de empleo'); ?></h3>
             <p><?php ff('rec_serv5_desc','Servicio gratuito de verificación de ofertas de empleo. Revisamos el registro de la empresa, antecedentes y opiniones, y elaboramos una evaluación de riesgo.'); ?></p>
+          </article>
+          <article class="serv-card">
+            <span class="serv-num">06 / 06</span>
+            <h3><?php ff('rec_serv6_titulo','Servicio de interpretación'); ?></h3>
+            <p><?php ff('rec_serv6_desc','Atención en más de 200 idiomas para facilitar la comunicación y la intervención de profesionales especializados en trata de personas.'); ?></p>
           </article>
         </div>
       </div>
