@@ -17,6 +17,9 @@
           <div class="copy2-body" id="copy2body" style="opacity:0">
             <p><?php ff('qet_esp_parrafo','Se han detectado casos en todas las comunidades autónomas y, además, el país se sitúa entre los mayores consumidores de prostitución del mundo.'); ?></p>
           </div>
+          <div class="copy2-body" id="copy2body2" style="opacity:0">
+            <p><?php ff('qet_esp_parrafo2','España es además uno de los países europeos con mayor demanda de prostitución, un factor que favorece la explotación sexual. Según el Ministerio del Interior, en 2024 el 56 % de las víctimas detectadas fueron mujeres y el 44 % hombres.'); ?></p>
+          </div>
         </div>
         <div class="intro" id="intro">
           <span class="tag"><span class="dot"></span><?php ff('qet_intro_tag','Confidencial · Gratuito · Disponible 24/7'); ?></span>

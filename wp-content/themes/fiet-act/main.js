@@ -11,6 +11,7 @@
   var quizEl=document.getElementById("quiz");
   var paraEl=document.getElementById("para"), hintEl=document.getElementById("hint"), eyebrow=document.getElementById("eyebrow");
   var para2El=document.getElementById("para2"), eyebrow2El=document.getElementById("eyebrow2"), copy2bodyEl=document.getElementById("copy2body");
+  var copy2body2El=document.getElementById("copy2body2");   // 2º texto emergente de "La trata en España"
   var eltitleEl=document.getElementById("eltitle"), elemsEl=document.getElementById("elements"), eyebrow3El=document.getElementById("eyebrow3");
   var copy2El=document.getElementById("copy2");
   var carasEl=document.getElementById("caras");
@@ -202,8 +203,8 @@
     var reveal=remap(pp,0.19,0.28);             // texto 1 (junto al mapamundi, tras formarse el globo)
     var mS=remap(pp,0.37,0.48);                 // mapamundi -> mapa de Espana
     var reveal2=remap(pp,0.48,0.55);            // texto 2 (titulo, junto a Espana)
-    var reveal3=remap(pp,0.62,0.66);            // titulo "tres elementos"
-    var grow=remap(pp,0.55,0.62), shrink=remap(pp,0.72,0.77), coverT=grow*(1-shrink); // orbe Madrid crece/encoge
+    var reveal3=remap(pp,0.66,0.70);            // titulo "tres elementos"
+    var grow=remap(pp,0.60,0.66), shrink=remap(pp,0.74,0.78), coverT=grow*(1-shrink); // orbe Madrid crece/encoge (retrasado para dar hueco al 2º texto de España)
     var CARAS=false;                            // TEMP: oculta la seccion "9 caras". Poner true para recuperarla.
     var mComp=remap(pp,0.78,0.84);              // Espana -> 9 caras
     var m2=CARAS?remap(pp,0.91,0.96):remap(pp,0.86,0.93);   // caras/Espana -> video 2
@@ -223,13 +224,14 @@
     paraEl.style.opacity = remap(pp,0.17,0.21) * (1 - remap(pp,0.34,0.37));
     if(para2El) para2El.style.opacity = remap(pp,0.46,0.50);
     if(copy2bodyEl) copy2bodyEl.style.opacity = remap(pp,0.51,0.56);
+    if(copy2body2El) copy2body2El.style.opacity = remap(pp,0.565,0.605) * (1 - remap(pp,0.63,0.66));  // 2º texto: emerge tras el 1º y se retira al expandirse el círculo
     if(copy2El) copy2El.style.opacity = (1 - remap(pp,esFrag,esFrag+0.04));
     if(introEl) introEl.style.opacity = 1 - remap(pp,0.05,0.13);
     var lit3=chars3.length?Math.floor(reveal3*chars3.length):0;                       // titulo "tres elementos"
     for(var e=0;e<chars3.length;e++){var on3=e<lit3; if(on3!==chars3[e]._on){chars3[e]._on=on3;chars3[e].classList.toggle("lit",on3);}}
-    if(elemsEl) elemsEl.style.opacity = remap(pp,0.61,0.65) * (1 - remap(pp,0.71,0.74));
-    if(eyebrow3El) eyebrow3El.classList.toggle("show", pp>0.61 && pp<0.74);
-    for(var cc=0;cc<elCards.length;cc++){ elCards[cc].classList.toggle("show", pp > (0.63+cc*0.025)); }
+    if(elemsEl) elemsEl.style.opacity = remap(pp,0.66,0.70) * (1 - remap(pp,0.73,0.76));
+    if(eyebrow3El) eyebrow3El.classList.toggle("show", pp>0.66 && pp<0.76);
+    for(var cc=0;cc<elCards.length;cc++){ elCards[cc].classList.toggle("show", pp > (0.67+cc*0.025)); }
     if(quizEl){ var qo=remap(pp,0.96,0.995); quizEl.style.opacity=qo; quizEl.style.pointerEvents=qo>0.5?"auto":"none"; }
     for(var rv=0;rv<9;rv++){ revealAmt[rv]+=((revealed[rv]?1:0)-revealAmt[rv])*0.14; }   // suaviza el enfoque por hover
     if(carasEl){ var cav=CARAS?remap(pp,0.81,0.84)*(1-remap(pp,0.90,0.93)):0; carasEl.style.opacity=cav; carasEl.style.pointerEvents=cav>0.5?"auto":"none"; }
