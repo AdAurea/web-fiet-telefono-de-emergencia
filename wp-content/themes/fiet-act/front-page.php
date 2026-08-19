@@ -231,29 +231,48 @@
         num.style.transform=prevT; num.style.opacity=prevO;
         var W=Math.ceil(r.width), H=Math.ceil(r.height);
         if(W<2||H<2) return;
-        pCenterX=r.left+r.width/2; pCenterY=r.top+r.height/2;
         var cs=getComputedStyle(num), fpx=parseFloat(cs.fontSize);
-        var padY=Math.ceil(fpx*0.4), CW=W, CH=H+padY*2;              // canvas más alto para no recortar los dígitos
+        // Línea base real del número en el DOM (para colocar las partículas EXACTAMENTE encima,
+        // sin depender de las métricas de fuente, que en números no cuadran con el DOM).
+        var baseIn;
+        (function(){
+          var probe=document.createElement("span");
+          probe.style.cssText="position:absolute;left:-9999px;top:0;visibility:hidden;white-space:nowrap";
+          probe.style.fontFamily=cs.fontFamily; probe.style.fontWeight=cs.fontWeight;
+          probe.style.fontSize=cs.fontSize; probe.style.lineHeight=cs.lineHeight; probe.style.letterSpacing=cs.letterSpacing;
+          probe.textContent=num.textContent;
+          var mk=document.createElement("span");
+          mk.style.cssText="display:inline-block;width:0;height:0;vertical-align:baseline";
+          probe.appendChild(mk);
+          document.body.appendChild(probe);
+          baseIn=mk.getBoundingClientRect().top-probe.getBoundingClientRect().top;
+          document.body.removeChild(probe);
+        })();
+        if(!(baseIn>0)) baseIn=H*0.5+0.35*fpx;                        // fallback razonable
+        var padY=Math.ceil(fpx*0.7), CW=W, CH=H+padY*2;              // lienzo con margen para no recortar los dígitos
         var off=document.createElement("canvas"); off.width=CW; off.height=CH;
         var o=off.getContext("2d");
         o.textAlign="center"; o.textBaseline="alphabetic";
         try{ o.letterSpacing=(-0.04*fpx)+"px"; }catch(e){}
         o.font=cs.fontWeight+" "+cs.fontSize+" "+cs.fontFamily;
-        var mm=o.measureText(num.textContent);
-        var asc=mm.fontBoundingBoxAscent, desc=mm.fontBoundingBoxDescent;
-        if(!(asc>0)){ asc=0.8*fpx; desc=0.2*fpx; }                   // fallback si el navegador no da métricas
-        var baseY=padY + (H + asc - desc)/2;                         // línea base como en el DOM (interlineado repartido simétrico)
         o.fillStyle="#000";
-        o.fillText(num.textContent, CW/2, baseY);
+        o.fillText(num.textContent, CW/2, padY+baseIn);              // misma línea base que el DOM
         o.globalCompositeOperation="source-in";                      // rellenar el texto con la imagen (cover)
         var iw=heroImg.naturalWidth, ih=heroImg.naturalHeight, sc=Math.max(CW/iw,CH/ih), dw=iw*sc, dh=ih*sc;
         o.drawImage(heroImg, (CW-dw)*0.58, (CH-dh)*0.33, dw, dh);
         var d; try{ d=o.getImageData(0,0,CW,CH).data; }catch(e){ return; }
+        // Centro real de los píxeles de los dígitos en el lienzo
+        var minX=CW,minY=CH,maxX=0,maxY=0,any=false;
+        for(var yy=0;yy<CH;yy++){ var row=yy*CW; for(var xx=0;xx<CW;xx++){ if(d[(row+xx)*4+3]>=128){ any=true; if(xx<minX)minX=xx; if(xx>maxX)maxX=xx; if(yy<minY)minY=yy; if(yy>maxY)maxY=yy; } } }
+        if(!any) return;
+        var gcx=(minX+maxX)/2, gcy=(minY+maxY)/2;
+        // El lienzo mapea al DOM así: col x -> r.left + x ; fila y -> r.top + (y - padY)
+        pCenterX=r.left+gcx; pCenterY=r.top+(gcy-padY);
         particles=[];
         for(var y=0;y<CH;y+=pStep){ for(var x=0;x<CW;x+=pStep){
           var i=(y*CW+x)*4; if(d[i+3]<128) continue;
           var ang=Math.random()*Math.PI*2, spd=0.4+Math.random();
-          particles.push({ hx:x-CW/2, hy:(y-padY)-H/2,              // origen relativo al centro real del número
+          particles.push({ hx:x-gcx, hy:y-gcy,                       // origen relativo al centro real de los dígitos
             col:"rgba("+d[i]+","+d[i+1]+","+d[i+2]+","+(d[i+3]/255).toFixed(2)+")",
             vx:Math.cos(ang)*spd, vy:Math.sin(ang)*spd-0.25, spread:60+Math.random()*220 });
         }}
