@@ -208,16 +208,16 @@
     var reveal2=remap(pp,0.48,0.55);            // texto 2 (titulo, junto a Espana)
     var reveal3=remap(pp,0.75,0.78);            // titulo "tres elementos"
     var reveal4=remap(pp,0.62,0.665);           // 2º texto de España: revelado SOLO después de aparecer el texto completo
-    // Orbe Madrid: crece (0.68-0.74), se mantiene lleno mientras se leen los "tres elementos",
-    // y SOLO se contrae (0.82-0.855) una vez que el texto ya se ha retirado (out 0.80-0.82).
-    var grow=remap(pp,0.68,0.74), shrink=remap(pp,0.82,0.855), coverT=grow*(1-shrink);
+    // Orbe Madrid: crece (0.68-0.74), se mantiene lleno mientras aparecen y se leen del todo los
+    // "tres elementos", y SOLO se contrae (0.85-0.885) una vez el texto se ha retirado (out 0.83-0.85).
+    var grow=remap(pp,0.68,0.74), shrink=remap(pp,0.85,0.885), coverT=grow*(1-shrink);
     var CARAS=false;                            // TEMP: oculta la seccion "9 caras". Poner true para recuperarla.
     var mComp=remap(pp,0.78,0.84);              // Espana -> 9 caras
-    var m2=CARAS?remap(pp,0.91,0.96):remap(pp,0.86,0.93);   // caras/Espana -> video 2
-    var esFrag=CARAS?0.78:0.86;                 // p en que Espana empieza a fragmentarse
+    var m2=CARAS?remap(pp,0.91,0.96):remap(pp,0.89,0.95);   // caras/Espana -> video 2
+    var esFrag=CARAS?0.78:0.89;                 // p en que Espana empieza a fragmentarse
     var spainPhase = pp>=0.37 && pp<esFrag;
     var compPhase = CARAS && pp>=0.78 && pp<0.91;
-    var v2Phase = pp>=(CARAS?0.91:0.86);
+    var v2Phase = pp>=(CARAS?0.91:0.89);
 
     // ---- textos ----
     var lit=Math.floor(reveal*chars.length);
@@ -237,14 +237,14 @@
     if(chars4.length){ var lit4=Math.floor(reveal4*chars4.length);
       for(var k=0;k<chars4.length;k++){var on4=k<lit4; if(on4!==chars4[k]._on){chars4[k]._on=on4;chars4[k].classList.toggle("lit",on4);}} }
     // El texto persiste: el círculo amarillo (z-index superior) lo tapa al expandirse y lo vuelve a
-    // descubrir al contraerse. Solo se retira cuando el mapa de España se transforma en vídeo (0.86-0.90).
-    if(copy2bEl) copy2bEl.style.opacity = remap(pp,0.585,0.61) * (1 - remap(pp,0.86,0.90));
+    // descubrir al contraerse. Solo se retira cuando el mapa de España se transforma en vídeo (0.89-0.93).
+    if(copy2bEl) copy2bEl.style.opacity = remap(pp,0.585,0.61) * (1 - remap(pp,0.89,0.93));
     if(introEl) introEl.style.opacity = 1 - remap(pp,0.05,0.13);
     var lit3=chars3.length?Math.floor(reveal3*chars3.length):0;                       // titulo "tres elementos"
     for(var e=0;e<chars3.length;e++){var on3=e<lit3; if(on3!==chars3[e]._on){chars3[e]._on=on3;chars3[e].classList.toggle("lit",on3);}}
-    if(elemsEl) elemsEl.style.opacity = remap(pp,0.75,0.78) * (1 - remap(pp,0.80,0.82));
-    if(eyebrow3El) eyebrow3El.classList.toggle("show", pp>0.75 && pp<0.82);
-    for(var cc=0;cc<elCards.length;cc++){ elCards[cc].classList.toggle("show", pp > (0.76+cc*0.015)); }
+    if(elemsEl) elemsEl.style.opacity = remap(pp,0.75,0.78) * (1 - remap(pp,0.83,0.85));
+    if(eyebrow3El) eyebrow3El.classList.toggle("show", pp>0.75 && pp<0.85);
+    for(var cc=0;cc<elCards.length;cc++){ elCards[cc].classList.toggle("show", pp > (0.75+cc*0.013)); }
     if(quizEl){ var qo=remap(pp,0.96,0.995); quizEl.style.opacity=qo; quizEl.style.pointerEvents=qo>0.5?"auto":"none"; }
     for(var rv=0;rv<9;rv++){ revealAmt[rv]+=((revealed[rv]?1:0)-revealAmt[rv])*0.14; }   // suaviza el enfoque por hover
     if(carasEl){ var cav=CARAS?remap(pp,0.81,0.84)*(1-remap(pp,0.90,0.93)):0; carasEl.style.opacity=cav; carasEl.style.pointerEvents=cav>0.5?"auto":"none"; }
@@ -375,7 +375,7 @@
     // ---- ESCENA 2: 9 caras -> video 2 ----
     if(!COVER && cellsReady && v2Phase){
       if(CARAS){ drawComp(1-remap(pp,0.91,0.94)); }                       // las 9 caras se retiran
-      else if(spainReady){ var faSo=1-remap(pp,0.86,0.90);                 // el mapa de Espana se retira
+      else if(spainReady){ var faSo=1-remap(pp,0.89,0.93);                 // el mapa de Espana se retira
         if(faSo>0){ ctx.globalAlpha=faSo; ctx.drawImage(spainImg,0,0,SPAIN.fw,SPAIN.fh, spainCx-spnW/2,spainCy-spnH/2,spnW,spnH); ctx.globalAlpha=1; } }
       for(var i=0;i<N;i++){
         var pt=P[i], so=CARAS?pt.comp:pt.spain, c2=pt.cell2;
@@ -391,9 +391,9 @@
         var hh=side*0.5; ctx.fillRect(X-hh,Y-hh,side,side);
       }
       if(sprite2Ready){
-        var fa2=CARAS?remap(pp,0.955,0.975):remap(pp,0.92,0.95);
+        var fa2=CARAS?remap(pp,0.955,0.975):remap(pp,0.94,0.965);
         if(fa2>0){
-          var pf=clamp(Math.round((CARAS?remap(pp,0.975,1.0):remap(pp,0.95,1.0))*(V2.frames-1)),0,V2.frames-1);
+          var pf=clamp(Math.round((CARAS?remap(pp,0.975,1.0):remap(pp,0.965,1.0))*(V2.frames-1)),0,V2.frames-1);
           var f2=pf, c2col=f2%V2.cols, c2row=(f2/V2.cols)|0;
           ctx.globalAlpha=fa2;
           ctx.drawImage(sprite2, c2col*V2.fw,c2row*V2.fh,V2.fw,V2.fh, img2Cx-img2W/2,img2Cy-img2H/2,img2W,img2H);
@@ -432,7 +432,7 @@
 
     // ---- Orbe de Madrid (DOM, por encima del copy) que crece hasta llenar la pantalla y encoge ----
     if(orbCoverEl){
-      if(cellsReady && coverT>0.001 && pp>=0.55 && pp<0.86){
+      if(cellsReady && coverT>0.001 && pp>=0.55 && pp<0.90){
         var mad=SPAIN_MARKERS[1];
         var madx=spainCx+mad.u*spnW, mady=spainCy+mad.v*spnH, madBase=mad.size*spnW;
         var coverRad=Math.max(Math.hypot(madx,mady),Math.hypot(W-madx,mady),Math.hypot(madx,H-mady),Math.hypot(W-madx,H-mady))+6;
