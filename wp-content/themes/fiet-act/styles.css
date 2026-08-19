@@ -106,6 +106,8 @@
   .report-note{ font-size:.85rem; line-height:1.5; color:rgba(11,14,18,.62); margin-bottom:16px; }
   .report-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px 18px; margin-bottom:16px; }
   .report-grid label{ display:flex; flex-direction:column; gap:6px; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; font-weight:600; color:rgba(11,14,18,.7); }
+  /* El campo Correo ocupa las dos columnas (queda solo en su fila) */
+  .report-grid label:has([data-name="correo"]){ grid-column:1 / -1; }
   .report .check{ display:flex; align-items:center; gap:10px; font-size:.86rem; color:var(--fg); margin-bottom:8px; }
   .report .check input{ width:16px; height:16px; accent-color:var(--fg); }
   .report-submit{ display:flex; align-items:center; gap:20px; margin-top:18px; }

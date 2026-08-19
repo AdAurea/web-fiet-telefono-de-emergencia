@@ -259,7 +259,6 @@ function fiet_cf7_form_markup() {
       <label>Nombre[text nombre autocomplete:name]</label>
       <label>Número de teléfono[tel telefono autocomplete:tel]</label>
       <label>Correo[email correo autocomplete:email]</label>
-      <label>Redes sociales[text redes]</label>
     </div>
     <label class="check">[acceptance privacidad] Acepto la Política de Privacidad.</label>
     <label class="check">[acceptance comunicaciones optional] Acepto recibir comunicaciones informativas de FIET.</label>
@@ -276,7 +275,7 @@ add_action( 'admin_init', function () {
 	if ( $id && get_post( $id ) ) return;
 
 	$email = fiet_option( 'email_contacto', 'informacion@fiet.ong' );
-	$body  = "Nueva comunicación recibida desde el sitio.\n\nDescripción:\n[descripcion]\n\nNombre: [nombre]\nTeléfono: [telefono]\nCorreo: [correo]\nRedes: [redes]\n\nAcepta comunicaciones: [comunicaciones]\n";
+	$body  = "Nueva comunicación recibida desde el sitio.\n\nDescripción:\n[descripcion]\n\nNombre: [nombre]\nTeléfono: [telefono]\nCorreo: [correo]\n\nAcepta comunicaciones: [comunicaciones]\n";
 
 	$cf7 = WPCF7_ContactForm::get_template();
 	$cf7->set_title( 'Informar una sospecha' );
