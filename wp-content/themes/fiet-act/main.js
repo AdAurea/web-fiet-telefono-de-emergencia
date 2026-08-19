@@ -206,9 +206,11 @@
     var reveal=remap(pp,0.19,0.28);             // texto 1 (junto al mapamundi, tras formarse el globo)
     var mS=remap(pp,0.37,0.48);                 // mapamundi -> mapa de Espana
     var reveal2=remap(pp,0.48,0.55);            // texto 2 (titulo, junto a Espana)
-    var reveal3=remap(pp,0.72,0.75);            // titulo "tres elementos"
+    var reveal3=remap(pp,0.75,0.78);            // titulo "tres elementos"
     var reveal4=remap(pp,0.62,0.665);           // 2º texto de España: revelado SOLO después de aparecer el texto completo
-    var grow=remap(pp,0.67,0.72), shrink=remap(pp,0.745,0.78), coverT=grow*(1-shrink); // orbe Madrid crece/encoge (tras el relevo de textos de España)
+    // Orbe Madrid: crece (0.68-0.74), se mantiene lleno mientras se leen los "tres elementos",
+    // y SOLO se contrae (0.82-0.855) una vez que el texto ya se ha retirado (out 0.80-0.82).
+    var grow=remap(pp,0.68,0.74), shrink=remap(pp,0.82,0.855), coverT=grow*(1-shrink);
     var CARAS=false;                            // TEMP: oculta la seccion "9 caras". Poner true para recuperarla.
     var mComp=remap(pp,0.78,0.84);              // Espana -> 9 caras
     var m2=CARAS?remap(pp,0.91,0.96):remap(pp,0.86,0.93);   // caras/Espana -> video 2
@@ -238,9 +240,9 @@
     if(introEl) introEl.style.opacity = 1 - remap(pp,0.05,0.13);
     var lit3=chars3.length?Math.floor(reveal3*chars3.length):0;                       // titulo "tres elementos"
     for(var e=0;e<chars3.length;e++){var on3=e<lit3; if(on3!==chars3[e]._on){chars3[e]._on=on3;chars3[e].classList.toggle("lit",on3);}}
-    if(elemsEl) elemsEl.style.opacity = remap(pp,0.72,0.75) * (1 - remap(pp,0.76,0.78));
-    if(eyebrow3El) eyebrow3El.classList.toggle("show", pp>0.72 && pp<0.78);
-    for(var cc=0;cc<elCards.length;cc++){ elCards[cc].classList.toggle("show", pp > (0.725+cc*0.015)); }
+    if(elemsEl) elemsEl.style.opacity = remap(pp,0.75,0.78) * (1 - remap(pp,0.80,0.82));
+    if(eyebrow3El) eyebrow3El.classList.toggle("show", pp>0.75 && pp<0.82);
+    for(var cc=0;cc<elCards.length;cc++){ elCards[cc].classList.toggle("show", pp > (0.76+cc*0.015)); }
     if(quizEl){ var qo=remap(pp,0.96,0.995); quizEl.style.opacity=qo; quizEl.style.pointerEvents=qo>0.5?"auto":"none"; }
     for(var rv=0;rv<9;rv++){ revealAmt[rv]+=((revealed[rv]?1:0)-revealAmt[rv])*0.14; }   // suaviza el enfoque por hover
     if(carasEl){ var cav=CARAS?remap(pp,0.81,0.84)*(1-remap(pp,0.90,0.93)):0; carasEl.style.opacity=cav; carasEl.style.pointerEvents=cav>0.5?"auto":"none"; }
@@ -428,7 +430,7 @@
 
     // ---- Orbe de Madrid (DOM, por encima del copy) que crece hasta llenar la pantalla y encoge ----
     if(orbCoverEl){
-      if(cellsReady && coverT>0.001 && pp>=0.55 && pp<0.78){
+      if(cellsReady && coverT>0.001 && pp>=0.55 && pp<0.86){
         var mad=SPAIN_MARKERS[1];
         var madx=spainCx+mad.u*spnW, mady=spainCy+mad.v*spnH, madBase=mad.size*spnW;
         var coverRad=Math.max(Math.hypot(madx,mady),Math.hypot(W-madx,mady),Math.hypot(madx,H-mady),Math.hypot(W-madx,H-mady))+6;
