@@ -236,7 +236,9 @@
     // (0.585-0.61) y SOLO DESPUÉS se revelan las palabras (reveal4, 0.62-0.665).
     if(chars4.length){ var lit4=Math.floor(reveal4*chars4.length);
       for(var k=0;k<chars4.length;k++){var on4=k<lit4; if(on4!==chars4[k]._on){chars4[k]._on=on4;chars4[k].classList.toggle("lit",on4);}} }
-    if(copy2bEl) copy2bEl.style.opacity = remap(pp,0.585,0.61) * (1 - remap(pp,0.665,0.695));
+    // El texto persiste: el círculo amarillo (z-index superior) lo tapa al expandirse y lo vuelve a
+    // descubrir al contraerse. Solo se retira cuando el mapa de España se transforma en vídeo (0.86-0.90).
+    if(copy2bEl) copy2bEl.style.opacity = remap(pp,0.585,0.61) * (1 - remap(pp,0.86,0.90));
     if(introEl) introEl.style.opacity = 1 - remap(pp,0.05,0.13);
     var lit3=chars3.length?Math.floor(reveal3*chars3.length):0;                       // titulo "tres elementos"
     for(var e=0;e<chars3.length;e++){var on3=e<lit3; if(on3!==chars3[e]._on){chars3[e]._on=on3;chars3[e].classList.toggle("lit",on3);}}
