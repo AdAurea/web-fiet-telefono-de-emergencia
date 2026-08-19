@@ -1,24 +1,35 @@
 (function(){
   "use strict";
 
-  // ---- popup automático al final del recorrido (#report) ----
+  // ---- popup automático al llegar al footer (#report) ----
+  // Emerge cuando el footer entra en el viewport (es decir, al hacer scroll hasta
+  // el final de la página). Si no hubiera footer, cae al 86% del recorrido.
   var report = document.getElementById("report");
+  var footer = document.querySelector(".site-footer");
   var track  = document.querySelector(".hero-track, .tel-track");
-  var TRIGGER = 0.86; // umbral dentro del track (aparece solo al final)
+  var TRIGGER = 0.86; // umbral de reserva dentro del track (si no hay footer)
 
   var atEnd = false, manualReport = false, dismissedEnd = false;
   function applyReport(){ if(report) report.classList.toggle("show", manualReport || (atEnd && !dismissedEnd)); }
 
+  function computeAtEnd(){
+    if(footer){
+      return footer.getBoundingClientRect().top <= window.innerHeight; // el footer ha entrado en el viewport
+    }
+    if(track){
+      var rect  = track.getBoundingClientRect();
+      var total = track.offsetHeight - window.innerHeight;
+      return (-rect.top / total) >= TRIGGER;
+    }
+    return false;
+  }
   function onScroll(){
-    if(!track || !report) return;
-    var rect  = track.getBoundingClientRect();
-    var total = track.offsetHeight - window.innerHeight;
-    var f = -rect.top / total;            // progreso 0..1 dentro del track
-    atEnd = f >= TRIGGER;
+    if(!report) return;
+    atEnd = computeAtEnd();
     if(!atEnd) dismissedEnd = false;      // al salir del final se rearma
     applyReport();
   }
-  if(track && report){
+  if(report && (footer || track)){
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     onScroll();
