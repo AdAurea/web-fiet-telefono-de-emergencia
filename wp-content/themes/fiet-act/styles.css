@@ -239,7 +239,7 @@
     .el-title.para{ font-size:clamp(1.5rem,6.4vw,2.1rem); margin-bottom:22px; }
     .elements{ padding:11vh 22px; justify-content:flex-start; overflow-y:auto; }
     /* Texto 2 (mapa de España) al pie en móvil */
-    .copy2{ left:22px; right:22px; width:auto; max-width:none; top:auto; bottom:6vh; transform:none; }
+    .copy2{ left:22px; right:22px; width:auto; max-width:none; top:auto; bottom:14vh; transform:none; }
     .copy2 h2.para{ font-size:clamp(1.8rem,8vw,2.6rem); margin-bottom:14px; }
     .copy2-body{ max-width:none; }
     .copy2-body p, .copy2-body li{ font-size:.92rem; }
