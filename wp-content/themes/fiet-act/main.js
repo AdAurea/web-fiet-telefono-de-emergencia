@@ -213,7 +213,7 @@
     var grow=remap(pp,0.68,0.74), shrink=remap(pp,0.85,0.885), coverT=grow*(1-shrink);
     var CARAS=false;                            // TEMP: oculta la seccion "9 caras". Poner true para recuperarla.
     var mComp=remap(pp,0.78,0.84);              // Espana -> 9 caras
-    var m2=CARAS?remap(pp,0.91,0.96):remap(pp,0.89,0.95);   // caras/Espana -> video 2
+    var m2=CARAS?remap(pp,0.91,0.96):remap(pp,0.90,0.99);   // caras/Espana -> video 2 (la mujer acaba de formarse casi al final)
     var esFrag=CARAS?0.78:0.89;                 // p en que Espana empieza a fragmentarse
     var spainPhase = pp>=0.37 && pp<esFrag;
     var compPhase = CARAS && pp>=0.78 && pp<0.91;
@@ -375,7 +375,7 @@
     // ---- ESCENA 2: 9 caras -> video 2 ----
     if(!COVER && cellsReady && v2Phase){
       if(CARAS){ drawComp(1-remap(pp,0.91,0.94)); }                       // las 9 caras se retiran
-      else if(spainReady){ var faSo=1-remap(pp,0.89,0.93);                 // el mapa de Espana se retira
+      else if(spainReady){ var faSo=1-remap(pp,0.90,0.95);                 // el mapa de Espana se retira
         if(faSo>0){ ctx.globalAlpha=faSo; ctx.drawImage(spainImg,0,0,SPAIN.fw,SPAIN.fh, spainCx-spnW/2,spainCy-spnH/2,spnW,spnH); ctx.globalAlpha=1; } }
       for(var i=0;i<N;i++){
         var pt=P[i], so=CARAS?pt.comp:pt.spain, c2=pt.cell2;
@@ -391,10 +391,13 @@
         var hh=side*0.5; ctx.fillRect(X-hh,Y-hh,side,side);
       }
       if(sprite2Ready){
-        var fa2=CARAS?remap(pp,0.955,0.975):remap(pp,0.94,0.965);
+        var fa2=CARAS?remap(pp,0.955,0.975):remap(pp,0.96,0.99);
         if(fa2>0){
-          var pf=clamp(Math.round((CARAS?remap(pp,0.975,1.0):remap(pp,0.965,1.0))*(V2.frames-1)),0,V2.frames-1);
-          var f2=pf, c2col=f2%V2.cols, c2row=(f2/V2.cols)|0;
+          // Mientras se forma/funde, se mantiene el fotograma en el que "mira a cámara"
+          // (V2.frame). Una vez formada, el clip se reproduce POR TIEMPO (no con el scroll),
+          // de modo que no hay que seguir bajando para verlo avanzar.
+          var f2 = (fa2 < 0.999) ? V2.frame : (Math.floor((typeof performance!=="undefined"?performance.now():Date.now())/45) % V2.frames);
+          var c2col=f2%V2.cols, c2row=(f2/V2.cols)|0;
           ctx.globalAlpha=fa2;
           ctx.drawImage(sprite2, c2col*V2.fw,c2row*V2.fh,V2.fw,V2.fh, img2Cx-img2W/2,img2Cy-img2H/2,img2W,img2H);
           ctx.globalAlpha=1;
