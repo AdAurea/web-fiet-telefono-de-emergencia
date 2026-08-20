@@ -1,7 +1,7 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit; get_header(); ?>
   <style>
     /* ===== Página El teléfono ===== */
-    .tel-track{ position:relative; height:1600vh; background:var(--bg); }
+    .tel-track{ position:relative; height:1100vh; background:var(--bg); }   /* recorrido más corto (animación más rápida) + margen tras el último texto antes del footer */
     .tel-stage{ position:sticky; top:0; height:100vh; overflow:hidden; display:grid; place-items:center; }
 
     /* Número gigante con la imagen a través de los dígitos */
@@ -298,7 +298,7 @@
       function onScroll(){
         var rect=track.getBoundingClientRect();
         var total=track.offsetHeight-window.innerHeight;
-        var p=clamp(-rect.top/total,0,1);
+        var p=clamp(-rect.top/total,0,1)*0.87;   // el contenido acaba al 84%: con factor 0.87 el último texto se revela al ~97% del track y queda un margen corto (~3%) antes de que aparezca el footer.
         // Número -> (fragmentación en partículas) -> teléfono
         var ns=ease(clamp(p/0.30,0,1));
         var nTy=lerp(0,-window.innerHeight*0.04,ns), nScale=lerp(1,0.135,ns);

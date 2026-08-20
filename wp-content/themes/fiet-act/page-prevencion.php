@@ -1,7 +1,7 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit; get_header(); ?>
   <style>
     /* ===== Página Prevención ===== */
-    #prevHero{ height:170vh; }                                  /* recorrido para que suba la ventana emergente */
+    #prevHero{ height:120vh; }                                  /* recorrido para llegar al footer/popup (recortado el tramo estático muerto) */
 
     /* Ventana emergente: título + 3 cards */
     .report-vias{ display:flex; flex-direction:column; justify-content:center; }

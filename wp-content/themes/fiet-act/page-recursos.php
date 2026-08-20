@@ -1,7 +1,7 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit; get_header(); ?>
   <style>
     /* ===== Página Recursos ===== */
-    #recHero{ height:200vh; }                                   /* portada estática + sección de servicios + popup */
+    #recHero{ height:150vh; }                                   /* portada estática + sección de servicios + popup (recortado el tramo muerto tras la sección amarilla) */
 
     /* Sección amarilla de servicios (se funde a pantalla completa al hacer scroll) */
     .rec-services{ position:absolute; inset:0; z-index:3; background:#FFD400; opacity:0; pointer-events:none; overflow-y:auto; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:clamp(64px,9vh,110px) clamp(20px,5vw,60px); text-align:center; will-change:opacity; }
