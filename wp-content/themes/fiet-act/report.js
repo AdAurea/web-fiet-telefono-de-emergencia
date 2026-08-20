@@ -14,7 +14,7 @@
 
   function computeAtEnd(){
     if(footer){
-      return footer.getBoundingClientRect().top <= window.innerHeight; // el footer ha entrado en el viewport
+      return footer.getBoundingClientRect().bottom <= window.innerHeight + 2; // se ha llegado al FINAL del footer (fondo de la página)
     }
     if(track){
       var rect  = track.getBoundingClientRect();
