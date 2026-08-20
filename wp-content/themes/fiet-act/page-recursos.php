@@ -12,7 +12,16 @@
     .serv-card h3{ font-family:var(--font-display); font-weight:600; font-size:clamp(1rem,1.2vw,1.25rem); line-height:1.2; margin-bottom:10px; color:#0B0E12; }
     .serv-card p{ font-family:var(--font-body); font-size:.85rem; line-height:1.5; color:rgba(11,14,18,.72); }
     @media (max-width:1000px){ .serv-cards{ grid-template-columns:repeat(2,1fr); max-width:640px; } .rec-services{ justify-content:flex-start; } }
-    @media (max-width:560px){ .serv-cards{ grid-template-columns:1fr; } }
+    @media (max-width:560px){
+      /* móvil: 6 tarjetas en 2 columnas (3 filas) y todo compacto para que quepan en pantalla */
+      .rec-services{ padding:104px 15px 16px; justify-content:flex-start; }   /* padding superior para que el título no quede bajo el menú/logo fijo */
+      .rec-services h2{ font-size:clamp(1.35rem,6vw,1.8rem); line-height:1.15; margin-bottom:clamp(12px,2.5vh,20px); max-width:20ch; }
+      .serv-cards{ grid-template-columns:repeat(2,1fr); gap:8px; max-width:none; }
+      .serv-card{ padding:12px 12px; border-radius:12px; }
+      .serv-num{ margin-bottom:6px; font-size:.66rem; }
+      .serv-card h3{ font-size:.95rem; line-height:1.15; margin-bottom:5px; }
+      .serv-card p{ font-size:.74rem; line-height:1.35; }
+    }
 
     /* Ventana emergente: formación especializada + cards por sector */
     .report-vias{ display:flex; flex-direction:column; justify-content:center; }
