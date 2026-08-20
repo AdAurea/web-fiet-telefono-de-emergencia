@@ -133,7 +133,7 @@
     W=canvas.clientWidth; H=canvas.clientHeight;
     canvas.width=W*dpr; canvas.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
     var mobile=W<760;
-    cx=mobile?W*0.5:W*0.70; cy=mobile?H*0.42:H*0.5;
+    cx=mobile?W*0.5:W*0.70; cy=mobile?H*0.28:H*0.5;   /* móvil: el globo/mapa más arriba para que no se solapen con el texto */
     R=Math.min(W,H)*(mobile?0.30:0.33);
     spainCx=cx; spainCy=cy; spnH=R*2.0; spnW=spnH*(SPAIN.fw/SPAIN.fh); spainPitch=spnW/GW; // mapa de España donde estaba el globo
     compW=Math.min(W*0.96,1900); compH=compW*(COMP.fh/COMP.fw); compCx=W*0.5; compCy=H-compH*0.5-H*0.03; compPitch=compW/GW; // 9 caras centradas
