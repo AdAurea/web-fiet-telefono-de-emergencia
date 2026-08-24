@@ -178,7 +178,7 @@
   .fab-call{ width:76px; height:76px; border-radius:50%; background:#FFD400; color:#0B0E12; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(0,0,0,.22); transition:transform .2s ease, box-shadow .2s ease; }
   .fab-call:hover{ transform:translateY(-3px) scale(1.05); box-shadow:0 12px 30px rgba(0,0,0,.28); }
   .fab-call svg{ width:38px; height:38px; }
-  .fab-sec{ width:58px; height:58px; border-radius:50%; background:#0B0E12; color:#FFFFFF; display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,.12); box-shadow:0 8px 22px rgba(11,14,18,.28); cursor:pointer; transition:transform .2s ease, box-shadow .2s ease; }
+  .fab-sec{ width:58px; height:58px; border-radius:50%; background:#212428; color:#FFFFFF; display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,.12); box-shadow:0 8px 22px rgba(11,14,18,.28); cursor:pointer; transition:transform .2s ease, box-shadow .2s ease; }
   .fab-sec:hover{ transform:translateY(-3px) scale(1.06); box-shadow:0 12px 28px rgba(11,14,18,.22); }
   .fab-toggle{ display:none; align-items:center; justify-content:center; width:60px; height:60px; border-radius:50%; background:#FFD400; color:#0B0E12; border:0; box-shadow:0 8px 24px rgba(0,0,0,.22); cursor:pointer; transition:transform .25s ease, box-shadow .2s ease; }
   .fab-toggle:hover{ transform:translateY(-3px) scale(1.05); box-shadow:0 12px 30px rgba(0,0,0,.28); }
@@ -191,7 +191,7 @@
   .report-close:hover{ background:rgba(11,14,18,.06); }
   .site-logo{ position:fixed; top:16px; left:60px; z-index:61; display:inline-flex; align-items:center; }
   .site-logo img{ height:90px; width:auto; display:block; }
-  .navbar{ position:fixed; top:22px; left:50%; transform:translateX(-50%); z-index:60; display:flex; align-items:center; gap:6px; padding:8px; border-radius:999px; background:#0B0E12; backdrop-filter:blur(16px) saturate(160%); -webkit-backdrop-filter:blur(16px) saturate(160%); border:1px solid rgba(255,255,255,.12); box-shadow:0 8px 32px rgba(11,14,18,.25); }
+  .navbar{ position:fixed; top:22px; left:50%; transform:translateX(-50%); z-index:60; display:flex; align-items:center; gap:6px; padding:8px; border-radius:999px; background:#212428; backdrop-filter:blur(16px) saturate(160%); -webkit-backdrop-filter:blur(16px) saturate(160%); border:1px solid rgba(255,255,255,.12); box-shadow:0 8px 32px rgba(11,14,18,.25); }
   .navbar a{ font-family:var(--font-body); font-size:.95rem; font-weight:500; color:#fff; text-decoration:none; padding:10px 18px; border-radius:999px; white-space:nowrap; transition:background .2s ease, color .2s ease; }
   .navbar a:not(.nav-call):hover{ background:#FFD400; color:#0B0E12; }
   .nav-call{ display:inline-flex; align-items:center; gap:9px; margin-left:6px; background:#FFD400; color:#0B0E12!important; font-weight:600; padding:10px 18px!important; border-radius:999px; }
@@ -319,7 +319,7 @@
 /* =========================================================
    Pie de página (todas las páginas)
    ========================================================= */
-.site-footer{ position:relative; z-index:5; background:#0B0E12; color:rgba(255,255,255,.72); font-family:var(--font-body); }
+.site-footer{ position:relative; z-index:5; background:#212428; color:rgba(255,255,255,.72); font-family:var(--font-body); }
 .footer-inner{ max-width:1200px; margin:0 auto; padding:clamp(48px,6vw,72px) clamp(20px,5vw,60px) clamp(32px,4vw,44px); display:grid; grid-template-columns:1.4fr 1fr 1.2fr; gap:clamp(32px,4vw,56px); }
 .footer-brand{ display:flex; flex-direction:column; gap:16px; }
 .footer-logo img{ height:104px; width:auto; display:block; }
