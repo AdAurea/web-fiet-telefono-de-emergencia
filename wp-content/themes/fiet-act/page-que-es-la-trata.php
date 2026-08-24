@@ -45,6 +45,35 @@
             <article class="el-card"><h3><?php ff('qet_el3_titulo','El fin'); ?></h3><p><?php ff('qet_el3_desc','La explotación de la persona para obtener un beneficio económico.'); ?></p></article>
           </div>
         </div>
+        <div class="tipos" id="tipos">
+          <h2 class="para el-title" id="tipostitle"><?php ff('qet_tipos_titulo','Existen diferentes tipos de trata'); ?></h2>
+          <div class="tipo-cards">
+            <article class="tipo-card">
+              <span class="tipo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg></span>
+              <h3><?php ff('qet_tipo1','Explotación sexual'); ?></h3>
+            </article>
+            <article class="tipo-card">
+              <span class="tipo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M3 12h18"/></svg></span>
+              <h3><?php ff('qet_tipo2','Explotación laboral'); ?></h3>
+            </article>
+            <article class="tipo-card">
+              <span class="tipo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21v-5a4 4 0 0 1 4-4h1l4-3 1.5 1.5L14 13"/><path d="M8 12V6a1.5 1.5 0 0 1 3 0v4"/><circle cx="17" cy="5" r="2"/></svg></span>
+              <h3><?php ff('qet_tipo3','Mendicidad forzada'); ?></h3>
+            </article>
+            <article class="tipo-card">
+              <span class="tipo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="14" r="5"/><circle cx="15.5" cy="14" r="5"/><path d="M6.5 8 8.5 5h2M17.5 8 15.5 5h-2"/></svg></span>
+              <h3><?php ff('qet_tipo4','Matrimonio forzado'); ?></h3>
+            </article>
+            <article class="tipo-card">
+              <span class="tipo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 8-7 10-4-2-7-5.6-7-10V6l7-3z"/><path d="M12 8v4M12 15.5v.5"/></svg></span>
+              <h3><?php ff('qet_tipo5','Criminalidad forzada'); ?></h3>
+            </article>
+            <article class="tipo-card">
+              <span class="tipo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 6.6a4.6 4.6 0 0 0-7.8-2.5L12 5l-1-.9A4.6 4.6 0 0 0 3.2 6.6c-.9 2.9 1.2 5.4 3.3 7.2"/><path d="M3 15h4l1.5-2.5L11 18l2-9 1.8 4H21"/></svg></span>
+              <h3><?php ff('qet_tipo6','Extracción de órganos'); ?></h3>
+            </article>
+          </div>
+        </div>
         <div class="caras" id="caras">
           <h2 class="caras-title">La trata tiene muchas caras</h2>
           <div class="cara-cards">

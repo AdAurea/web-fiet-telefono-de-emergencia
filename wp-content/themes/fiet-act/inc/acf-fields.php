@@ -111,6 +111,13 @@ add_action( 'acf/init', function () {
 				fiet_f( 'f_qet_e2d', 'Elemento 2 · Descripción', 'qet_el2_desc', 'Engaño, abuso de una situación de vulnerabilidad, coacción o violencia.', 'textarea' ),
 				fiet_f( 'f_qet_e3t', 'Elemento 3 · Título', 'qet_el3_titulo', 'El fin' ),
 				fiet_f( 'f_qet_e3d', 'Elemento 3 · Descripción', 'qet_el3_desc', 'La explotación de la persona para obtener un beneficio económico.', 'textarea' ),
+				fiet_f( 'f_qet_tptit', 'Tipos de trata · Título', 'qet_tipos_titulo', 'Existen diferentes tipos de trata', 'textarea' ),
+				fiet_f( 'f_qet_tp1', 'Tipo 1', 'qet_tipo1', 'Explotación sexual' ),
+				fiet_f( 'f_qet_tp2', 'Tipo 2', 'qet_tipo2', 'Explotación laboral' ),
+				fiet_f( 'f_qet_tp3', 'Tipo 3', 'qet_tipo3', 'Mendicidad forzada' ),
+				fiet_f( 'f_qet_tp4', 'Tipo 4', 'qet_tipo4', 'Matrimonio forzado' ),
+				fiet_f( 'f_qet_tp5', 'Tipo 5', 'qet_tipo5', 'Criminalidad forzada' ),
+				fiet_f( 'f_qet_tp6', 'Tipo 6', 'qet_tipo6', 'Extracción de órganos' ),
 			),
 			'location' => array( array( array( 'param' => 'page', 'operator' => '==', 'value' => $que->ID ) ) ),
 		) );
