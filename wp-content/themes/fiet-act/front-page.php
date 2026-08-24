@@ -19,12 +19,12 @@
     .tel-hint .bar{ width:1px; height:34px; background:linear-gradient(var(--fg),transparent); animation:slide 1.8s ease-in-out infinite; }
 
     /* Carruseles de idiomas (marquee infinito, direcciones alternas) */
-    .tel-marquees{ position:absolute; z-index:2; left:0; right:0; top:70vh; display:flex; flex-direction:column; gap:4px; background:#FFD400; padding:18px 0; will-change:opacity; }
+    .tel-marquees{ position:absolute; z-index:2; left:0; right:0; top:70vh; display:flex; flex-direction:column; gap:4px; background:#0B0E12; padding:18px 0; will-change:opacity; }
     .marquee{ overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); }
     .marquee-track{ display:inline-flex; align-items:center; width:max-content; animation:mLeft 78s linear infinite; }
     .marquee.rev .marquee-track{ animation-name:mRight; }
-    .marquee-track span{ font-family:var(--font-display); font-weight:600; font-size:clamp(.85rem,1.4vw,1.25rem); color:rgba(11,14,18,.55); white-space:nowrap; display:inline-flex; align-items:center; }
-    .marquee-track span::after{ content:"•"; margin:0 .9em; color:rgba(11,14,18,.3); }
+    .marquee-track span{ font-family:var(--font-display); font-weight:600; font-size:clamp(.85rem,1.4vw,1.25rem); color:#FFD400; white-space:nowrap; display:inline-flex; align-items:center; }
+    .marquee-track span::after{ content:"•"; margin:0 .9em; color:rgba(255,212,0,.45); }
     @keyframes mLeft{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
     @keyframes mRight{ from{transform:translateX(-50%)} to{transform:translateX(0)} }
     @media (prefers-reduced-motion:reduce){ .marquee-track{ animation:none } }
