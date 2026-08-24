@@ -8,9 +8,10 @@
     .tel-frag{ position:absolute; inset:0; width:100%; height:100%; z-index:2; pointer-events:none; }
     .tel-cover{ position:absolute; z-index:2; left:0; right:0; top:43%; transform:translateY(-50%); display:flex; flex-direction:column; align-items:center; text-align:center; padding:0 24px; }
     .tel-number{ font-family:var(--font-body); font-weight:900;
-      font-size:clamp(3.5rem,14.5vw,15rem); line-height:.95; letter-spacing:-.04em; white-space:nowrap;
-      background:url(<?php echo esc_url( get_template_directory_uri() ); ?>/hero-poster.webp) 58% 33% / cover; -webkit-background-clip:text; background-clip:text; color:transparent;
-      will-change:transform,opacity; }
+      font-size:clamp(3.5rem,14vw,14.5rem); line-height:.95; letter-spacing:-.04em; white-space:nowrap;
+      color:#212428; will-change:transform,opacity; }
+    .tel-number .tn-a{ color:#212428; }   /* 900 en el negro del footer */
+    .tel-number .tn-b{ color:#FFD400; }   /* 759 759 en amarillo corporativo */
     .tel-eyebrow{ font-size:.8rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(11,14,18,.55); margin-bottom:clamp(16px,2.6vh,30px); will-change:opacity; }
     .tel-sub{ width:min(720px,90vw); font-size:clamp(1.15rem,1.8vw,1.3rem); line-height:1.6; color:rgba(11,14,18,.6); margin-top:clamp(18px,3vh,34px); will-change:opacity; }
     .tel-hint{ position:absolute; z-index:2; bottom:6vh; left:0; right:0; text-align:center;
@@ -19,12 +20,12 @@
     .tel-hint .bar{ width:1px; height:34px; background:linear-gradient(var(--fg),transparent); animation:slide 1.8s ease-in-out infinite; }
 
     /* Carruseles de idiomas (marquee infinito, direcciones alternas) */
-    .tel-marquees{ position:absolute; z-index:2; left:0; right:0; top:70vh; display:flex; flex-direction:column; gap:4px; background:#0B0E12; padding:18px 0; will-change:opacity; }
+    .tel-marquees{ position:absolute; z-index:2; left:0; right:0; top:70vh; display:flex; flex-direction:column; gap:4px; background:#F4F2EC; padding:18px 0; will-change:opacity; }
     .marquee{ overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); }
     .marquee-track{ display:inline-flex; align-items:center; width:max-content; animation:mLeft 78s linear infinite; }
     .marquee.rev .marquee-track{ animation-name:mRight; }
-    .marquee-track span{ font-family:var(--font-display); font-weight:600; font-size:clamp(.85rem,1.4vw,1.25rem); color:#FFD400; white-space:nowrap; display:inline-flex; align-items:center; }
-    .marquee-track span::after{ content:"•"; margin:0 .9em; color:rgba(255,212,0,.45); }
+    .marquee-track span{ font-family:var(--font-display); font-weight:600; font-size:clamp(.85rem,1.4vw,1.25rem); color:rgba(51,54,60,.55); white-space:nowrap; display:inline-flex; align-items:center; }
+    .marquee-track span::after{ content:"•"; margin:0 .9em; color:rgba(51,54,60,.25); }
     @keyframes mLeft{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
     @keyframes mRight{ from{transform:translateX(-50%)} to{transform:translateX(0)} }
     @media (prefers-reduced-motion:reduce){ .marquee-track{ animation:none } }
@@ -114,7 +115,16 @@
       <canvas class="tel-frag" id="telFrag" aria-hidden="true"></canvas>
       <div class="tel-cover" id="telCover">
         <span class="tel-eyebrow" id="telEyebrow"><?php ff('tel_eyebrow','Confidencial · Gratuito · Disponible 24/7 · Sin rastro en la factura'); ?></span>
-        <div class="tel-number" id="telNum"><?php echo esc_html( fiet_option('telefono_display','900 759 759') ); ?></div>
+        <div class="tel-number" id="telNum"><?php
+          $tel_disp = fiet_option('telefono_display','900 759 759');
+          $tel_sp   = strpos( $tel_disp, ' ' );
+          if ( $tel_sp === false ) {
+            echo '<span class="tn-a">' . esc_html( $tel_disp ) . '</span>';
+          } else {
+            echo '<span class="tn-a">' . esc_html( substr( $tel_disp, 0, $tel_sp ) ) . '</span> '
+               . '<span class="tn-b">' . esc_html( ltrim( substr( $tel_disp, $tel_sp ) ) ) . '</span>';
+          }
+        ?></div>
         <p class="tel-sub" id="telSub"><?php ff('tel_sub','El Teléfono de Ayuda Contra la Trata funciona 24/7 y está atendido por profesionales especializados que siguen protocolos internacionales para responder con rapidez y seguridad. Financiado y operado por la ONG FIET.'); ?></p>
       </div>
 
@@ -216,7 +226,7 @@
 
       // ===== Fragmentación del número en partículas (estilo "qué es la trata") =====
       var cv=document.getElementById("telFrag"), fctx=cv.getContext("2d");
-      var heroImg=new Image(), particles=[], pReady=false, pStep=3, pCenterX=0, pCenterY=0;
+      var particles=[], pReady=false, pStep=3, pCenterX=0, pCenterY=0;
       function sizeCanvas(){
         var dpr=Math.min(window.devicePixelRatio||1, 2);
         cv.width=Math.round(window.innerWidth*dpr);
@@ -224,7 +234,6 @@
         fctx.setTransform(dpr,0,0,dpr,0,0);
       }
       function buildParticles(){
-        if(!heroImg.complete || !heroImg.naturalWidth) return;
         var prevT=num.style.transform, prevO=num.style.opacity;      // medir el número en tamaño natural
         num.style.transform="none"; num.style.opacity="1";
         var r=num.getBoundingClientRect();
@@ -252,14 +261,14 @@
         var padY=Math.ceil(fpx*0.7), CW=W, CH=H+padY*2;              // lienzo con margen para no recortar los dígitos
         var off=document.createElement("canvas"); off.width=CW; off.height=CH;
         var o=off.getContext("2d");
-        o.textAlign="center"; o.textBaseline="alphabetic";
+        o.textAlign="left"; o.textBaseline="alphabetic";
         try{ o.letterSpacing=(-0.04*fpx)+"px"; }catch(e){}
         o.font=cs.fontWeight+" "+cs.fontSize+" "+cs.fontFamily;
-        o.fillStyle="#000";
-        o.fillText(num.textContent, CW/2, padY+baseIn);              // misma línea base que el DOM
-        o.globalCompositeOperation="source-in";                      // rellenar el texto con la imagen (cover)
-        var iw=heroImg.naturalWidth, ih=heroImg.naturalHeight, sc=Math.max(CW/iw,CH/ih), dw=iw*sc, dh=ih*sc;
-        o.drawImage(heroImg, (CW-dw)*0.58, (CH-dh)*0.33, dw, dh);
+        // 900 en negro y el resto (759 759) en amarillo corporativo (igual que el DOM)
+        var _full=num.textContent, _toks=_full.split(" "), _A=_toks[0], _B=_toks.slice(1).join(" ");
+        var _tW=o.measureText(_full).width, _x0=(CW-_tW)/2;
+        o.fillStyle="#212428"; o.fillText(_A, _x0, padY+baseIn);
+        if(_B){ var _wA=o.measureText(_A+" ").width; o.fillStyle="#FFD400"; o.fillText(_B, _x0+_wA, padY+baseIn); }
         var d; try{ d=o.getImageData(0,0,CW,CH).data; }catch(e){ return; }
         // Centro real de los píxeles de los dígitos en el lienzo
         var minX=CW,minY=CH,maxX=0,maxY=0,any=false;
@@ -290,10 +299,9 @@
         }
         fctx.globalAlpha=1;
       }
-      sizeCanvas();
-      heroImg.onload=function(){ sizeCanvas(); buildParticles(); onScroll(); };
-      heroImg.src="<?php echo esc_url( get_template_directory_uri() . '/hero-poster.webp' ); ?>";
+      sizeCanvas(); buildParticles(); onScroll();
       if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(function(){ buildParticles(); onScroll(); }); }
+      window.addEventListener("load", function(){ buildParticles(); onScroll(); });
 
       function onScroll(){
         var rect=track.getBoundingClientRect();
