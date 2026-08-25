@@ -9,9 +9,9 @@
     .tel-cover{ position:absolute; z-index:2; left:0; right:0; top:43%; transform:translateY(-50%); display:flex; flex-direction:column; align-items:center; text-align:center; padding:0 24px; }
     .tel-number{ font-family:var(--font-body); font-weight:900;
       font-size:clamp(3.5rem,14vw,14.5rem); line-height:.95; letter-spacing:-.04em; white-space:nowrap;
-      color:#212428; will-change:transform,opacity; }
-    .tel-number .tn-a{ color:#212428; }   /* 900 en el negro del footer */
-    .tel-number .tn-b{ color:#FFD400; }   /* 759 759 en amarillo corporativo */
+      filter:drop-shadow(0 7px 13px rgba(11,14,18,.26)); will-change:transform,opacity,filter; }   /* pequeña sombra debajo del número */
+    .tel-number .tn-a{ padding-right:.06em; background:linear-gradient(180deg,#3a3e46 0%,#212428 55%,#15171b 100%); -webkit-background-clip:text; background-clip:text; color:transparent; }   /* 900: mismo negro con degradado (profundidad); padding-right evita que se recorte el último 0 */
+    .tel-number .tn-b{ padding-right:.06em; background:linear-gradient(180deg,#FFE45C 0%,#FFD400 52%,#E3B100 100%); -webkit-background-clip:text; background-clip:text; color:transparent; }   /* 759: amarillo corporativo con degradado */
     .tel-eyebrow{ font-size:.8rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(11,14,18,.55); margin-bottom:clamp(16px,2.6vh,30px); will-change:opacity; }
     .tel-sub{ width:min(720px,90vw); font-size:clamp(1.15rem,1.8vw,1.3rem); line-height:1.6; color:rgba(11,14,18,.6); margin-top:clamp(18px,3vh,34px); will-change:opacity; }
     .tel-hint{ position:absolute; z-index:2; bottom:6vh; left:0; right:0; text-align:center;
@@ -227,6 +227,7 @@
       // ===== Fragmentación del número en partículas (estilo "qué es la trata") =====
       var cv=document.getElementById("telFrag"), fctx=cv.getContext("2d");
       var particles=[], pReady=false, pStep=3, pCenterX=0, pCenterY=0;
+
       function sizeCanvas(){
         var dpr=Math.min(window.devicePixelRatio||1, 2);
         cv.width=Math.round(window.innerWidth*dpr);
@@ -241,8 +242,7 @@
         var W=Math.ceil(r.width), H=Math.ceil(r.height);
         if(W<2||H<2) return;
         var cs=getComputedStyle(num), fpx=parseFloat(cs.fontSize);
-        // Línea base real del número en el DOM (para colocar las partículas EXACTAMENTE encima,
-        // sin depender de las métricas de fuente, que en números no cuadran con el DOM).
+        // Línea base real del número en el DOM (para colocar las partículas exactamente encima)
         var baseIn;
         (function(){
           var probe=document.createElement("span");
@@ -257,18 +257,25 @@
           baseIn=mk.getBoundingClientRect().top-probe.getBoundingClientRect().top;
           document.body.removeChild(probe);
         })();
-        if(!(baseIn>0)) baseIn=H*0.5+0.35*fpx;                        // fallback razonable
+        if(!(baseIn>0)) baseIn=H*0.5+0.35*fpx;
         var padY=Math.ceil(fpx*0.7), CW=W, CH=H+padY*2;              // lienzo con margen para no recortar los dígitos
         var off=document.createElement("canvas"); off.width=CW; off.height=CH;
         var o=off.getContext("2d");
         o.textAlign="left"; o.textBaseline="alphabetic";
         try{ o.letterSpacing=(-0.04*fpx)+"px"; }catch(e){}
         o.font=cs.fontWeight+" "+cs.fontSize+" "+cs.fontFamily;
-        // 900 en negro y el resto (759 759) en amarillo corporativo (igual que el DOM)
-        var _full=num.textContent, _toks=_full.split(" "), _A=_toks[0], _B=_toks.slice(1).join(" ");
+        // Dos tramos con degradado (900 negro / 759 amarillo), igual que el DOM; las partículas lo heredan
+        var _full=num.textContent, _sp=_full.indexOf(" ");
+        var _A=(_sp<0)?_full:_full.slice(0,_sp), _B=(_sp<0)?"":_full.slice(_sp+1);
         var _tW=o.measureText(_full).width, _x0=(CW-_tW)/2;
-        o.fillStyle="#212428"; o.fillText(_A, _x0, padY+baseIn);
-        if(_B){ var _wA=o.measureText(_A+" ").width; o.fillStyle="#FFD400"; o.fillText(_B, _x0+_wA, padY+baseIn); }
+        var _gT=padY+baseIn-fpx*0.72, _gB=padY+baseIn+fpx*0.06;
+        var _gA=o.createLinearGradient(0,_gT,0,_gB); _gA.addColorStop(0,"#3a3e46"); _gA.addColorStop(0.55,"#212428"); _gA.addColorStop(1,"#15171b");
+        o.fillStyle=_gA; o.fillText(_A, _x0, padY+baseIn);
+        if(_B){
+          var _wA=o.measureText(_A+" ").width;
+          var _gY=o.createLinearGradient(0,_gT,0,_gB); _gY.addColorStop(0,"#FFE45C"); _gY.addColorStop(0.52,"#FFD400"); _gY.addColorStop(1,"#E3B100");
+          o.fillStyle=_gY; o.fillText(_B, _x0+_wA, padY+baseIn);
+        }
         var d; try{ d=o.getImageData(0,0,CW,CH).data; }catch(e){ return; }
         // Centro real de los píxeles de los dígitos en el lienzo
         var minX=CW,minY=CH,maxX=0,maxY=0,any=false;
