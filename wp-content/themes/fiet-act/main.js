@@ -68,7 +68,7 @@
   var sprite=new Image(), spriteReady=false, cellsReady=false, cells=[], P=[], N=0;
   // Vídeo 2 (lo que reconstruyen los fragmentos). PLACEHOLDER: el mismo sprite actual.
   // Para el clip definitivo: pon V2.src con su sprite-sheet y ajusta cols/rows/frames/fw/fh/frame.
-  var V2={ src:ASSET_BASE+"video2.webp", cols:6, rows:5, frames:26, fw:720, fh:720, frame:0 };
+  var V2={ src:ASSET_BASE+"video_teleoperadora.webp", cols:6, rows:5, frames:30, fw:720, fh:720, frame:0 };
   var sprite2=new Image(), sprite2Ready=false, cells2=[];
   var GW=140, GH=118;
   sprite.onload=function(){ spriteReady=true; if(!sprite2.src){ sprite2.src=V2.src||sprite.src; } tryBuild(); };
