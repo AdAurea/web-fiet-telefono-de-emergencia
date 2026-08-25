@@ -9,9 +9,10 @@
     .tel-cover{ position:absolute; z-index:2; left:0; right:0; top:43%; transform:translateY(-50%); display:flex; flex-direction:column; align-items:center; text-align:center; padding:0 24px; }
     .tel-number{ font-family:var(--font-body); font-weight:900;
       font-size:clamp(3.5rem,14vw,14.5rem); line-height:.95; letter-spacing:-.04em; white-space:nowrap;
-      filter:drop-shadow(0 7px 13px rgba(11,14,18,.26)); will-change:transform,opacity,filter; }   /* pequeña sombra debajo del número */
-    .tel-number .tn-a{ padding-right:.06em; background:linear-gradient(180deg,#3a3e46 0%,#212428 55%,#15171b 100%); -webkit-background-clip:text; background-clip:text; color:transparent; }   /* 900: mismo negro con degradado (profundidad); padding-right evita que se recorte el último 0 */
-    .tel-number .tn-b{ padding-right:.06em; background:linear-gradient(180deg,#FFE45C 0%,#FFD400 52%,#E3B100 100%); -webkit-background-clip:text; background-clip:text; color:transparent; }   /* 759: amarillo corporativo con degradado */
+      will-change:transform,opacity; }
+    /* sombra sutil hacia abajo en cada tramo (dimensionalidad); aplicada por tramo para que afecte a TODOS los dígitos */
+    .tel-number .tn-a{ padding-right:.06em; background:linear-gradient(180deg,#3a3e46 0%,#212428 55%,#15171b 100%); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 4px 6px rgba(11,14,18,.20)); }   /* 900: negro con degradado (profundidad); padding-right evita recortar el último 0 */
+    .tel-number .tn-b{ padding-right:.06em; background:linear-gradient(180deg,#FFE45C 0%,#FFD400 52%,#E3B100 100%); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 4px 6px rgba(11,14,18,.20)); }   /* 759: amarillo corporativo con degradado */
     .tel-eyebrow{ font-size:.8rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(11,14,18,.55); margin-bottom:clamp(16px,2.6vh,30px); will-change:opacity; }
     .tel-sub{ width:min(720px,90vw); font-size:clamp(1.15rem,1.8vw,1.3rem); line-height:1.6; color:rgba(11,14,18,.6); margin-top:clamp(18px,3vh,34px); will-change:opacity; }
     .tel-hint{ position:absolute; z-index:2; bottom:6vh; left:0; right:0; text-align:center;
@@ -86,7 +87,8 @@
 
     @media (max-width:560px){
       .tel-phone{ width:270px; height:560px; }
-      .tel-number{ font-size:clamp(2.6rem,17vw,5rem); }
+      .tel-number{ font-size:clamp(2.3rem,15vw,4.4rem); }
+      .tel-number .tn-a, .tel-number .tn-b{ filter:drop-shadow(0 2px 3px rgba(11,14,18,.14)); }   /* sombra más sutil en móvil */
       .navbar a:not(.nav-call){ display:none; }
     }
 
