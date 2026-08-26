@@ -10,7 +10,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 get_header();
 ?>
 
-<?php get_template_part( 'parts/site-nav' ); ?>
 
   <main class="policy">
     <div class="policy-inner">

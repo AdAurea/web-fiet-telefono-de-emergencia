@@ -69,7 +69,6 @@
   </style>
 
   
-<?php get_template_part( 'parts/site-nav' ); ?>
 
 
   <!-- Portada estática: imagen (vídeo 1) fija -->

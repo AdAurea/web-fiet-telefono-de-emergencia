@@ -369,3 +369,8 @@
   .policy-body th, .policy-body td{ text-align:left; padding:11px 14px; border:1px solid rgba(11,14,18,.14); }
   .policy-body th{ background:rgba(11,14,18,.04); font-weight:600; color:var(--fg); }
   @media (max-width:560px){ .policy{ padding-top:96px; } }
+
+/* Plantilla "Ancho completo (Elementor)": contenido a ancho total,
+   con espacio superior para no quedar bajo el navbar fijo. */
+.page-fw{ padding-top:84px; }
+@media (max-width:560px){ .page-fw{ padding-top:72px; } }

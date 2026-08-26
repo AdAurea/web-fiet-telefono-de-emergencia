@@ -1,6 +1,5 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit; get_header(); ?>
   
-<?php get_template_part( 'parts/site-nav' ); ?>
 
 
   <section class="hero-track">

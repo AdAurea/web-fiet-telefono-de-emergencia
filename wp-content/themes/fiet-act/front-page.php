@@ -110,7 +110,6 @@
     @media (max-width:860px){ .via-cards{ grid-template-columns:1fr; } }
   </style>
 
-<?php get_template_part( 'parts/site-nav' ); ?>
 
   <section class="tel-track" id="telTrack">
     <div class="tel-stage">
