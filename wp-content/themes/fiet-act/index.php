@@ -1,9 +1,23 @@
-<?php if ( ! defined( 'ABSPATH' ) ) exit; get_header(); ?>
+<?php
+/**
+ * Plantilla de reserva (fallback). Rara vez se usa: las páginas emplean
+ * page.php / plantillas específicas y la portada front-page.php.
+ */
+if ( ! defined( 'ABSPATH' ) ) exit;
+get_header();
+?>
 
-<main style="max-width:820px;margin:0 auto;padding:140px 24px;font-family:'Figtree',system-ui,sans-serif;color:#0B0E12;">
-	<span style="font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(11,14,18,.55);">FIET · Teléfono ACT</span>
-	<h1 style="font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-.02em;margin:14px 0 18px;">Tema base activo</h1>
-	<p style="font-size:1.1rem;line-height:1.6;color:rgba(11,14,18,.72);">Estilos y scripts encolados, y assets del canvas extraídos. Las plantillas de página (portada, Qué es la trata, Prevención, Recursos) y los campos editables se montarán en la siguiente fase.</p>
-</main>
+<?php get_template_part( 'parts/site-nav' ); ?>
 
-<?php get_footer(); ?>
+  <main class="policy">
+    <div class="policy-inner">
+      <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+        <header class="policy-head"><h1 class="policy-title"><?php the_title(); ?></h1></header>
+        <div class="policy-body"><?php the_content(); ?></div>
+      <?php endwhile; else : ?>
+        <div class="policy-body"><p>No hay contenido disponible.</p></div>
+      <?php endif; ?>
+    </div>
+  </main>
+
+<?php get_footer();
