@@ -315,6 +315,7 @@ add_action( 'acf/init', function () {
 			array( 'key' => 'field_privacidad', 'label' => 'Política de privacidad · URL', 'name' => 'privacidad_url', 'type' => 'url', 'instructions' => 'Enlace a la política de privacidad. Se usa en el consentimiento del formulario de descargas y en el pie de página. Vacío = el texto aparece sin enlace.', 'default_value' => '' ),
 			array( 'key' => 'field_cookies', 'label' => 'Política de cookies · URL', 'name' => 'cookies_url', 'type' => 'url', 'instructions' => 'Enlace a la política de cookies (pie de página). Vacío = el texto aparece sin enlace.', 'default_value' => '' ),
 			array( 'key' => 'field_donaciones', 'label' => 'Política y condiciones de donación · URL', 'name' => 'donaciones_url', 'type' => 'url', 'instructions' => 'Enlace a la política y condiciones de donación (pie de página). Vacío = el texto aparece sin enlace.', 'default_value' => '' ),
+			array( 'key' => 'field_calidad', 'label' => 'Política de calidad · URL', 'name' => 'calidad_url', 'type' => 'url', 'instructions' => 'Enlace a la política de calidad (pie de página). Vacío = el texto aparece sin enlace.', 'default_value' => '' ),
 		),
 		'location' => array( array( array( 'param' => 'options_page', 'operator' => '==', 'value' => 'fiet-ajustes' ) ) ),
 	) );

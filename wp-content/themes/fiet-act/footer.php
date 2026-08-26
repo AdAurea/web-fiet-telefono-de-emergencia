@@ -10,6 +10,7 @@ $legales = array(
 	'Política de privacidad'             => fiet_option( 'privacidad_url', '' ),
 	'Política de cookies'                => fiet_option( 'cookies_url', '' ),
 	'Política y condiciones de donación' => fiet_option( 'donaciones_url', '' ),
+	'Política de calidad'                => fiet_option( 'calidad_url', '' ),
 );
 ?>
 <footer class="site-footer" role="contentinfo">
