@@ -5,10 +5,14 @@ $telv = fiet_option( 'telefono_display', '900 759 759' );
 ?>
 <a class="site-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="FIET · Inicio"><img src="<?php echo esc_url( $uri . '/logo_fondo_blanco.png' ); ?>" alt="FIET · Teléfono de Ayuda Contra la Trata"></a>
 <nav class="navbar">
-	<a href="<?php echo esc_url( home_url( '/' ) ); ?>">El teléfono</a>
-	<a href="<?php echo esc_url( home_url( '/que-es-la-trata/' ) ); ?>">Qué es la trata</a>
-	<a href="<?php echo esc_url( home_url( '/prevencion/' ) ); ?>">Prevención</a>
-	<a href="<?php echo esc_url( home_url( '/recursos/' ) ); ?>">Recursos</a>
+	<?php wp_nav_menu( array(
+		'theme_location' => 'principal',
+		'container'      => false,
+		'items_wrap'     => '%3$s',
+		'walker'         => new FIET_Nav_Walker(),
+		'fallback_cb'    => 'fiet_nav_fallback',
+		'depth'          => 1,
+	) ); ?>
 	<a class="nav-call" href="tel:<?php echo esc_attr( $tel ); ?>" aria-label="Llamar al <?php echo esc_attr( $telv ); ?>"><span class="live"></span>Llama <?php echo esc_html( $telv ); ?></a>
 </nav>
 <!-- Menú hamburguesa (móvil) -->

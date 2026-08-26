@@ -13,7 +13,56 @@ add_action( 'after_setup_theme', function () {
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'html5', array( 'style', 'script' ) );
+	register_nav_menus( array(
+		'principal' => 'Menú principal (navbar)',
+	) );
 } );
+
+/* -------------------------------------------------------------------------
+ * Menú principal (navbar). Gestionable desde Apariencia > Menús.
+ *
+ * El walker imprime los <a> "pelados" (sin <ul>/<li>) para conservar
+ * exactamente el mismo marcado y aspecto que el navbar original. Si no hay
+ * ningún menú asignado a la ubicación "principal", el fallback pinta los
+ * enlaces por defecto, de modo que el navbar nunca queda vacío.
+ * ---------------------------------------------------------------------- */
+if ( ! class_exists( 'FIET_Nav_Walker' ) ) {
+	class FIET_Nav_Walker extends Walker_Nav_Menu {
+		function start_lvl( &$output, $depth = 0, $args = null ) {}
+		function end_lvl( &$output, $depth = 0, $args = null ) {}
+		function end_el( &$output, $item, $depth = 0, $args = null ) {}
+		function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
+			$url    = ! empty( $item->url ) ? $item->url : '#';
+			$title  = apply_filters( 'the_title', $item->title, $item->ID );
+			$target = ! empty( $item->target ) ? ' target="' . esc_attr( $item->target ) . '" rel="noopener"' : '';
+			// Clases personalizadas que el usuario escriba en el campo "Clases CSS"
+			// del menú (se ignoran las clases automáticas menu-item-*).
+			$extra = array();
+			if ( ! empty( $item->classes ) && is_array( $item->classes ) ) {
+				foreach ( $item->classes as $c ) {
+					$c = trim( $c );
+					if ( $c !== '' && strpos( $c, 'menu-item' ) !== 0 && strpos( $c, 'current' ) !== 0 && strpos( $c, 'page-item' ) !== 0 ) {
+						$extra[] = $c;
+					}
+				}
+			}
+			$class = $extra ? ' class="' . esc_attr( implode( ' ', $extra ) ) . '"' : '';
+			$output .= '<a href="' . esc_url( $url ) . '"' . $class . $target . '>' . esc_html( $title ) . '</a>';
+		}
+	}
+}
+
+function fiet_nav_fallback() {
+	$links = array(
+		home_url( '/' )                 => 'El teléfono',
+		home_url( '/que-es-la-trata/' ) => 'Qué es la trata',
+		home_url( '/prevencion/' )      => 'Prevención',
+		home_url( '/recursos/' )        => 'Recursos',
+	);
+	foreach ( $links as $url => $label ) {
+		echo '<a href="' . esc_url( $url ) . '">' . esc_html( $label ) . '</a>';
+	}
+}
 
 /* -------------------------------------------------------------------------
  * Al activar el tema, crea las páginas que usan las plantillas (page-<slug>.php)
@@ -51,6 +100,37 @@ add_action( 'after_switch_theme', function () {
 		update_option( 'permalink_structure', '/%postname%/' );
 	}
 	flush_rewrite_rules();
+
+	// Menú principal: crearlo con los enlaces por defecto y asignarlo a la
+	// ubicación "principal" si aún no hay ninguno asignado. A partir de ahí es
+	// editable desde Apariencia > Menús.
+	$locations = get_theme_mod( 'nav_menu_locations' );
+	if ( empty( $locations['principal'] ) ) {
+		$menu_name = 'Menú principal';
+		$menu      = wp_get_nav_menu_object( $menu_name );
+		$menu_id   = $menu ? $menu->term_id : wp_create_nav_menu( $menu_name );
+		if ( ! is_wp_error( $menu_id ) ) {
+			// Solo poblarlo si está vacío (no pisar ediciones previas).
+			if ( ! wp_get_nav_menu_items( $menu_id ) ) {
+				$items = array(
+					array( 'El teléfono',    home_url( '/' ) ),
+					array( 'Qué es la trata', home_url( '/que-es-la-trata/' ) ),
+					array( 'Prevención',      home_url( '/prevencion/' ) ),
+					array( 'Recursos',        home_url( '/recursos/' ) ),
+				);
+				foreach ( $items as $it ) {
+					wp_update_nav_menu_item( $menu_id, 0, array(
+						'menu-item-title'  => $it[0],
+						'menu-item-url'    => $it[1],
+						'menu-item-status' => 'publish',
+					) );
+				}
+			}
+			$locations             = (array) $locations;
+			$locations['principal'] = $menu_id;
+			set_theme_mod( 'nav_menu_locations', $locations );
+		}
+	}
 } );
 
 /* -------------------------------------------------------------------------
