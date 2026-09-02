@@ -15,6 +15,12 @@
     .via-card p{ font-family:var(--font-body); font-size:.95rem; line-height:1.55; color:rgba(11,14,18,.7); }
     @media (max-width:860px){ .via-cards{ grid-template-columns:1fr; } }
     .via-card p{ flex:1; }
+    /* Enlaces de descarga de guías (encima del botón "Saber más") */
+    .via-dl{ display:inline-flex; align-items:center; gap:9px; align-self:flex-start; margin-top:16px; padding:0; border:0; background:transparent; cursor:pointer; font-family:var(--font-body); font-size:.9rem; font-weight:600; line-height:1.35; color:#0B0E12; text-align:left; text-decoration:none; }
+    .via-dl + .via-dl{ margin-top:12px; }
+    .via-dl:hover{ color:#B8860B; }
+    .via-dl .via-dl-ico{ display:grid; place-items:center; flex:0 0 auto; width:26px; height:26px; border-radius:8px; background:#FFD400; color:#0B0E12; }
+    .via-dl .via-dl-ico svg{ width:15px; height:15px; }
     .via-card .btn-hero{ align-self:flex-start; margin-top:22px; }
     /* Modal de recomendaciones */
     .rec-backdrop{ position:fixed; inset:0; z-index:96; background:rgba(11,14,18,.42); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); opacity:0; transition:opacity .3s ease; }
@@ -71,6 +77,7 @@
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 7h-4V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM10 5h4v2h-4V5z"/></svg></span>
           <h3><?php ff('prev_card1_titulo','Empleo Seguro'); ?></h3>
           <p><?php ff('prev_card1_desc','Verifica la oferta y a quien contrata, nunca entregues tus documentos y comparte con alguien de confianza dónde y con quién vas a trabajar.'); ?></p>
+          <?php if ( fiet_option( 'rec_url_guia_empleo', '' ) ) : ?><button class="via-dl js-descarga" type="button" data-sector="guia_empleo"><span class="via-dl-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a1 1 0 0 1 1 1v8.59l2.3-2.3a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.42l2.3 2.3V4a1 1 0 0 1 1-1zM5 18a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H6a1 1 0 0 1-1-1z"/></svg></span>Descarga la guía de empleo preventivo</button><?php endif; ?>
           <button class="btn-hero js-rec" data-rec="empleo" type="button"><?php ff('prev_card_boton','Saber más'); ?></button>
         </article>
         <article class="via-card">
@@ -83,6 +90,8 @@
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg></span>
           <h3><?php ff('prev_card3_titulo','Internet Seguro'); ?></h3>
           <p><?php ff('prev_card3_desc','Protege tus datos personales, desconfía de perfiles desconocidos y extrema la precaución si conciertas una cita con alguien conocido por internet.'); ?></p>
+          <?php if ( fiet_option( 'rec_url_guia_digital_menores', '' ) ) : ?><button class="via-dl js-descarga" type="button" data-sector="guia_digital_menores"><span class="via-dl-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a1 1 0 0 1 1 1v8.59l2.3-2.3a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.42l2.3 2.3V4a1 1 0 0 1 1-1zM5 18a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H6a1 1 0 0 1-1-1z"/></svg></span>Descarga la guía de seguridad digital para menores</button><?php endif; ?>
+          <?php if ( fiet_option( 'rec_url_guia_digital_adultos', '' ) ) : ?><button class="via-dl js-descarga" type="button" data-sector="guia_digital_adultos"><span class="via-dl-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a1 1 0 0 1 1 1v8.59l2.3-2.3a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.42l2.3 2.3V4a1 1 0 0 1 1-1zM5 18a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H6a1 1 0 0 1-1-1z"/></svg></span>Descarga la guía de seguridad digital para adultos</button><?php endif; ?>
           <button class="btn-hero js-rec" data-rec="internet" type="button"><?php ff('prev_card_boton','Saber más'); ?></button>
         </article>
       </div>
@@ -96,6 +105,8 @@
   </section>
 
   <?php get_template_part( 'parts/floating' ); ?>
+
+  <?php get_template_part( 'parts/descargas-modal' ); ?>
 
   <!-- Modal de recomendaciones (se abre desde las cards) -->
   <div class="rec-backdrop" id="recBackdrop" hidden></div>

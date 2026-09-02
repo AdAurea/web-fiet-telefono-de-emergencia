@@ -178,8 +178,8 @@ function fiet_act_assets() {
 		'telDisplay' => fiet_option( 'telefono_display', '900 759 759' ),
 	) );
 
-	// Descargas con captación (solo en la página Recursos)
-	if ( is_page( 'recursos' ) ) {
+	// Descargas con captación (Recursos y las guías de Prevención)
+	if ( is_page( array( 'recursos', 'prevencion' ) ) ) {
 		wp_enqueue_script( 'fiet-descargas', $uri . '/descargas.js', array(), filemtime( $dir . '/descargas.js' ), true );
 		wp_localize_script( 'fiet-descargas', 'FIET_DL', array(
 			'ajax'  => admin_url( 'admin-ajax.php' ),
@@ -533,6 +533,9 @@ add_action( 'acf/init', function () {
 			array( 'key' => 'f_reco_emp', 'label' => 'Empleo seguro', 'name' => 'rec_modal_empleo', 'type' => 'wysiwyg', 'tabs' => 'all', 'toolbar' => 'full', 'media_upload' => 0, 'default_value' => $rd['empleo'] ),
 			array( 'key' => 'f_reco_via', 'label' => 'Viaje seguro', 'name' => 'rec_modal_viaje', 'type' => 'wysiwyg', 'tabs' => 'all', 'toolbar' => 'full', 'media_upload' => 0, 'default_value' => $rd['viaje'] ),
 			array( 'key' => 'f_reco_int', 'label' => 'Internet seguro', 'name' => 'rec_modal_internet', 'type' => 'wysiwyg', 'tabs' => 'all', 'toolbar' => 'full', 'media_upload' => 0, 'default_value' => $rd['internet'] ),
+			array( 'key' => 'f_reco_dl_emp', 'label' => 'Guía de empleo preventivo · URL de descarga', 'name' => 'rec_url_guia_empleo', 'type' => 'url', 'instructions' => 'Pega la URL del PDF (súbelo en Medios y copia su enlace). Se enlaza en la card "Empleo Seguro" del popup. Vacío = el enlace no se muestra.' ),
+			array( 'key' => 'f_reco_dl_men', 'label' => 'Guía de seguridad digital para menores · URL de descarga', 'name' => 'rec_url_guia_digital_menores', 'type' => 'url', 'instructions' => 'PDF enlazado en la card "Internet Seguro". Vacío = el enlace no se muestra.' ),
+			array( 'key' => 'f_reco_dl_adu', 'label' => 'Guía de seguridad digital para adultos · URL de descarga', 'name' => 'rec_url_guia_digital_adultos', 'type' => 'url', 'instructions' => 'PDF enlazado en la card "Internet Seguro". Vacío = el enlace no se muestra.' ),
 		),
 		'location' => array( array( array( 'param' => 'options_page', 'operator' => '==', 'value' => 'fiet-ajustes' ) ) ),
 	) );
@@ -547,6 +550,7 @@ add_action( 'acf/init', function () {
 			array( 'key' => 'f_recu_tra', 'label' => 'Sector transporte · URL de descarga', 'name' => 'rec_url_transporte', 'type' => 'url' ),
 			array( 'key' => 'f_recu_con', 'label' => 'Sector consular · URL de descarga',   'name' => 'rec_url_consular',   'type' => 'url' ),
 			array( 'key' => 'f_recu_edu', 'label' => 'Sector educativo · URL de descarga',  'name' => 'rec_url_educativo',  'type' => 'url' ),
+			array( 'key' => 'f_recu_ter', 'label' => 'Tercer Sector · URL de descarga',    'name' => 'rec_url_tercer_sector', 'type' => 'url' ),
 		),
 		'location' => array( array( array( 'param' => 'options_page', 'operator' => '==', 'value' => 'fiet-ajustes' ) ) ),
 	) );
@@ -563,7 +567,7 @@ add_action( 'admin_menu', function () {
 	} );
 } );
 function fiet_render_ajustes() {
-	$tabs = array( 'globales' => 'Ajustes globales', 'cuestionario' => 'Cuestionario', 'recomendaciones' => 'Recomendaciones', 'recursos' => 'Recursos' );
+	$tabs = array( 'globales' => 'Ajustes globales', 'cuestionario' => 'Cuestionario', 'recomendaciones' => 'Prevención', 'recursos' => 'Recursos' );
 	$tab  = ( isset( $_GET['tab'] ) && isset( $tabs[ $_GET['tab'] ] ) ) ? sanitize_key( $_GET['tab'] ) : 'globales';
 
 	echo '<div class="wrap"><h1>FIET</h1>';

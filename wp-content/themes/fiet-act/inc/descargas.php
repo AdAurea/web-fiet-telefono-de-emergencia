@@ -16,6 +16,11 @@ function fiet_descargas_sectores() {
 		'transporte' => 'Sector transporte',
 		'consular'   => 'Sector consular',
 		'educativo'  => 'Sector educativo',
+		'tercer_sector' => 'Tercer Sector',
+		// Guías descargables de la página Prevención (mismo flujo de captación).
+		'guia_empleo'          => 'Guía de empleo preventivo',
+		'guia_digital_menores' => 'Guía de seguridad digital para menores',
+		'guia_digital_adultos' => 'Guía de seguridad digital para adultos',
 	);
 }
 
