@@ -355,7 +355,97 @@ add_action( 'admin_init', function () {
 	if ( $id && get_post( $id ) ) return;
 
 	$email = fiet_option( 'email_contacto', 'informacion@fiet.ong' );
-	$body  = "Nueva comunicación recibida desde el sitio.\n\nDescripción:\n[descripcion]\n\nNombre: [nombre]\nTeléfono: [telefono]\nCorreo: [correo]\n\nAcepta comunicaciones: [comunicaciones]\n";
+
+	// Dominio para el remitente: solo el host, sin esquema ni puerto (el :8080
+	// rompía la sintaxis del email). No incluimos Reply-To porque el campo
+	// "correo" es opcional (anonimato) y quedaría vacío -> mailbox inválido.
+	$host = wp_parse_url( home_url(), PHP_URL_HOST );
+	if ( ! $host ) { $host = 'localhost'; }
+
+	// Cuerpo HTML del correo: cabecera con logo + campos ordenados.
+	$logo = get_template_directory_uri() . '/logo_footer.png';
+	$body = <<<HTML
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0;padding:0;background:#f4f2ec;">
+  <tr><td align="center" style="padding:24px 12px;">
+    <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:100%;background:#ffffff;border:1px solid #e7e4da;border-radius:14px;overflow:hidden;">
+      <tr><td style="background:#212428;padding:22px 28px;text-align:center;">
+        <img src="$logo" alt="FIET · Teléfono ACT" width="120" style="display:inline-block;width:120px;height:auto;border:0;outline:none;">
+      </td></tr>
+      <tr><td style="padding:26px 28px 4px;font-family:Arial,Helvetica,sans-serif;">
+        <p style="margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#b8860b;">Informar una sospecha</p>
+        <h1 style="margin:6px 0 0;font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:1.25;color:#212428;">Nueva comunicación recibida</h1>
+        <p style="margin:8px 0 0;font-size:13px;color:#6b7078;">Recibida el [_date] a las [_time]</p>
+      </td></tr>
+      <tr><td style="padding:14px 28px 20px;font-family:Arial,Helvetica,sans-serif;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:15px;color:#212428;">
+          <tr><td style="padding:12px 0;border-top:1px solid #eeece4;">
+            <span style="display:block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#8a8f98;margin-bottom:4px;">Descripción</span>
+            <span style="display:block;line-height:1.55;">[descripcion]</span>
+          </td></tr>
+          <tr><td style="padding:12px 0;border-top:1px solid #eeece4;">
+            <span style="display:block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#8a8f98;margin-bottom:4px;">Nombre</span>
+            <span style="display:block;">[nombre]</span>
+          </td></tr>
+          <tr><td style="padding:12px 0;border-top:1px solid #eeece4;">
+            <span style="display:block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#8a8f98;margin-bottom:4px;">Teléfono</span>
+            <span style="display:block;">[telefono]</span>
+          </td></tr>
+          <tr><td style="padding:12px 0;border-top:1px solid #eeece4;">
+            <span style="display:block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#8a8f98;margin-bottom:4px;">Correo</span>
+            <span style="display:block;"><a href="mailto:[correo]" style="color:#b8860b;text-decoration:none;">[correo]</a></span>
+          </td></tr>
+          <tr><td style="padding:12px 0;border-top:1px solid #eeece4;border-bottom:1px solid #eeece4;">
+            <span style="display:block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#8a8f98;margin-bottom:4px;">Acepta comunicaciones</span>
+            <span style="display:block;">[comunicaciones]</span>
+          </td></tr>
+        </table>
+      </td></tr>
+      <tr><td style="padding:4px 28px 26px;font-family:Arial,Helvetica,sans-serif;">
+        <p style="margin:0;font-size:12px;color:#9aa0a8;line-height:1.5;">Mensaje enviado desde [_site_title]. Todas las comunicaciones son confidenciales.</p>
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+HTML;
+
+	// Respuesta automática al remitente (Correo 2). Solo se envía si dejó correo.
+	$telv = fiet_option( 'telefono_display', '900 759 759' );
+	$tel  = fiet_option( 'telefono_tel', '900759759' );
+	$reply_body = <<<HTML
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0;padding:0;background:#f4f2ec;">
+  <tr><td align="center" style="padding:24px 12px;">
+    <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:100%;background:#ffffff;border:1px solid #e7e4da;border-radius:14px;overflow:hidden;">
+      <tr><td style="background:#212428;padding:22px 28px;text-align:center;">
+        <img src="$logo" alt="FIET · Teléfono ACT" width="120" style="display:inline-block;width:120px;height:auto;border:0;outline:none;">
+      </td></tr>
+      <tr><td style="padding:26px 28px 4px;font-family:Arial,Helvetica,sans-serif;">
+        <p style="margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#b8860b;">Teléfono de Ayuda Contra la Trata</p>
+        <h1 style="margin:6px 0 0;font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:1.25;color:#212428;">Hemos recibido tu mensaje</h1>
+      </td></tr>
+      <tr><td style="padding:14px 28px 4px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#333338;">
+        <p style="margin:0 0 14px;">Gracias por confiar en nosotros. Hemos recibido tu comunicación y nuestro equipo la revisará con la máxima confidencialidad.</p>
+        <p style="margin:0 0 14px;">Si tu situación es urgente o tu integridad corre peligro, puedes llamarnos ahora mismo. La llamada es <strong>gratuita, confidencial y está disponible las 24 horas</strong>.</p>
+      </td></tr>
+      <tr><td style="padding:6px 28px 8px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+          <tr><td style="background:#FFD400;border-radius:12px;padding:18px 24px;text-align:center;font-family:Arial,Helvetica,sans-serif;">
+            <span style="display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#5a4a00;">Llamada gratuita · 24 horas</span>
+            <a href="tel:$tel" style="display:inline-block;margin-top:4px;font-family:Georgia,'Times New Roman',serif;font-size:30px;font-weight:bold;color:#212428;text-decoration:none;">$telv</a>
+          </td></tr>
+        </table>
+      </td></tr>
+      <tr><td style="padding:14px 28px 4px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#333338;">
+        <p style="margin:0 0 14px;">Toda la información que compartas es confidencial y puedes permanecer en el anonimato. Si nos facilitaste tus datos de contacto y lo consentiste, es posible que un miembro de nuestro equipo se ponga en contacto contigo.</p>
+        <p style="margin:0;">Estamos aquí para ayudarte.</p>
+        <p style="margin:16px 0 0;font-weight:bold;color:#212428;">Equipo del Teléfono de Ayuda Contra la Trata · FIET</p>
+      </td></tr>
+      <tr><td style="padding:18px 28px 26px;font-family:Arial,Helvetica,sans-serif;">
+        <p style="margin:0;font-size:12px;color:#9aa0a8;line-height:1.5;border-top:1px solid #eeece4;padding-top:16px;">Este es un mensaje automático; por favor, no respondas a este correo. Para cualquier consulta, escríbenos a <a href="mailto:$email" style="color:#9aa0a8;">$email</a> o llama al $telv.</p>
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+HTML;
 
 	$cf7 = WPCF7_ContactForm::get_template();
 	$cf7->set_title( 'Informar una sospecha' );
@@ -364,13 +454,24 @@ add_action( 'admin_init', function () {
 		'mail' => array(
 			'active'             => true,
 			'subject'            => 'Nueva comunicación · Teléfono contra la Trata',
-			'sender'             => '[_site_title] <wordpress@' . preg_replace( '#^https?://#', '', home_url() ) . '>',
+			'sender'             => '[_site_title] <wordpress@' . $host . '>',
 			'recipient'          => $email,
 			'body'               => $body,
-			'additional_headers' => 'Reply-To: [correo]',
+			'additional_headers' => '',
 			'attachments'        => '',
-			'use_html'           => 0,
-			'exclude_blank'      => 1,
+			'use_html'           => 1,
+			'exclude_blank'      => 0,
+		),
+		'mail_2' => array(
+			'active'             => true,
+			'subject'            => 'Hemos recibido tu mensaje · Teléfono de Ayuda Contra la Trata',
+			'sender'             => '[_site_title] <wordpress@' . $host . '>',
+			'recipient'          => '[correo]',
+			'body'               => $reply_body,
+			'additional_headers' => 'Reply-To: ' . $email,
+			'attachments'        => '',
+			'use_html'           => 1,
+			'exclude_blank'      => 0,
 		),
 	) );
 	$new = $cf7->save();
