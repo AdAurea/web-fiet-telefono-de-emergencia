@@ -374,3 +374,27 @@
    con espacio superior para no quedar bajo el navbar fijo. */
 .page-fw{ padding-top:84px; }
 @media (max-width:560px){ .page-fw{ padding-top:72px; } }
+
+/* Modal de descarga de material (captación nombre + correo).
+   Compartido por Recursos y Prevención (parts/descargas-modal.php). */
+.dl-backdrop{ position:fixed; inset:0; z-index:98; background:rgba(11,14,18,.42); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); opacity:0; transition:opacity .3s ease; }
+.dl-backdrop.open{ opacity:1; }
+.dl-modal{ position:fixed; z-index:99; left:50%; top:50%; transform:translate(-50%,-46%) scale(.98); opacity:0; pointer-events:none; width:min(460px,92vw); background:rgba(255,255,255,.92); backdrop-filter:blur(26px) saturate(150%); -webkit-backdrop-filter:blur(26px) saturate(150%); border:1px solid rgba(255,255,255,.6); border-radius:24px; box-shadow:0 40px 100px rgba(11,14,18,.28); padding:clamp(28px,4vw,44px); transition:opacity .35s ease, transform .35s cubic-bezier(0.22,1,0.36,1); }
+.dl-modal.open{ opacity:1; pointer-events:auto; transform:translate(-50%,-50%) scale(1); }
+.dl-close{ position:absolute; top:14px; right:16px; width:38px; height:38px; border:0; background:transparent; font-size:1.9rem; line-height:1; color:var(--fg); cursor:pointer; border-radius:10px; }
+.dl-modal h3{ font-family:var(--font-display); font-weight:700; font-size:clamp(1.4rem,2.4vw,1.85rem); letter-spacing:-.02em; color:var(--fg); margin-bottom:8px; }
+.dl-sub{ font-family:var(--font-body); font-size:.95rem; line-height:1.5; color:rgba(11,14,18,.66); margin-bottom:24px; }
+.dl-form label{ display:block; font-family:var(--font-body); font-weight:600; font-size:.82rem; color:var(--fg); margin-bottom:14px; }
+.dl-form input[type=text], .dl-form input[type=email]{ display:block; width:100%; margin-top:7px; padding:13px 15px; font-family:var(--font-body); font-size:1rem; color:var(--fg); background:rgba(255,255,255,.7); border:1px solid rgba(11,14,18,.16); border-radius:12px; outline:none; transition:border-color .2s ease; }
+.dl-form input:focus{ border-color:#0B0E12; }
+.dl-consent{ display:flex; align-items:flex-start; gap:10px; font-weight:400 !important; font-size:.82rem; line-height:1.45; color:rgba(11,14,18,.7); cursor:pointer; }
+.dl-consent input[type=checkbox]{ flex:0 0 auto; width:17px; height:17px; margin-top:1px; accent-color:#0B0E12; cursor:pointer; }
+.dl-consent a{ color:var(--fg); font-weight:600; text-decoration:underline; }
+.dl-form .btn-hero{ width:100%; margin-top:8px; justify-content:center; }
+.dl-msg{ margin-top:14px; font-family:var(--font-body); font-size:.88rem; line-height:1.45; }
+.dl-msg.err{ color:#b32d2e; }
+.dl-done{ text-align:center; }
+.dl-done .dl-icon{ width:56px; height:56px; margin:0 auto 16px; display:grid; place-items:center; border-radius:50%; background:#FFD400; color:#0B0E12; }
+.dl-done .dl-icon svg{ width:30px; height:30px; }
+.dl-done h3{ margin-bottom:8px; }
+.dl-done .btn-hero{ margin-top:20px; }
