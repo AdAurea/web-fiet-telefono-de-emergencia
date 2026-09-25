@@ -53,6 +53,7 @@
   <section class="hero-track" id="recHero" data-static>
     <div class="stage">
       <canvas id="c" aria-hidden="true"></canvas>
+      <img class="hero-cover" src="<?php echo esc_url( get_template_directory_uri() ); ?>/foto_portada_recursos_y_servicios.png" alt="" aria-hidden="true">
       <div class="overlay">
         <div class="copy">
           <span class="eyebrow" id="eyebrow"></span>

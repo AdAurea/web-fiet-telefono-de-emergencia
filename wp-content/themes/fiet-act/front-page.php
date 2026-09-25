@@ -3,6 +3,13 @@
     /* ===== Página El teléfono ===== */
     .tel-track{ position:relative; height:1100vh; background:var(--bg); }   /* recorrido más corto (animación más rápida) + margen tras el último texto antes del footer */
     .tel-stage{ position:sticky; top:0; height:100vh; overflow:hidden; display:grid; place-items:center; }
+    /* Foto de portada de fondo (se desvanece al empezar a hacer scroll, antes de aparecer el móvil) */
+    .tel-cover-bg{ position:absolute; inset:0; z-index:1;
+      background:
+        radial-gradient(ellipse 80% 82% at 47% 50%, rgba(255,255,255,.95) 0%, rgba(255,255,255,.72) 34%, rgba(255,255,255,.32) 55%, rgba(255,255,255,0) 74%) center / cover no-repeat,
+        url("<?php echo esc_url( get_template_directory_uri() ); ?>/foto_portada_telefono.png") center right / cover no-repeat;
+      will-change:opacity; }
+    @media (max-width:820px){ .tel-cover-bg{ background-position:center top; -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 46%,transparent 96%); mask-image:linear-gradient(180deg,#000 0%,#000 46%,transparent 96%); } }
 
     /* Número gigante con la imagen a través de los dígitos */
     .tel-frag{ position:absolute; inset:0; width:100%; height:100%; z-index:2; pointer-events:none; }
@@ -13,23 +20,8 @@
     /* sombra sutil hacia abajo en cada tramo (dimensionalidad); aplicada por tramo para que afecte a TODOS los dígitos */
     .tel-number .tn-a{ padding-right:.06em; background:linear-gradient(180deg,#3a3e46 0%,#212428 55%,#15171b 100%); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 4px 6px rgba(11,14,18,.20)); }   /* 900: negro con degradado (profundidad); padding-right evita recortar el último 0 */
     .tel-number .tn-b{ padding-right:.06em; background:linear-gradient(180deg,#FFE45C 0%,#FFD400 52%,#E3B100 100%); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 4px 6px rgba(11,14,18,.20)); }   /* 759: amarillo corporativo con degradado */
-    .tel-eyebrow{ font-size:.8rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(11,14,18,.55); margin-bottom:clamp(16px,2.6vh,30px); will-change:opacity; }
-    .tel-sub{ width:min(720px,90vw); font-size:clamp(1.15rem,1.8vw,1.3rem); line-height:1.6; color:rgba(11,14,18,.6); margin-top:clamp(18px,3vh,34px); will-change:opacity; }
-    .tel-hint{ position:absolute; z-index:2; bottom:6vh; left:0; right:0; text-align:center;
-      font-size:.78rem; letter-spacing:.18em; text-transform:uppercase; color:var(--mist); display:flex;
-      flex-direction:column; align-items:center; gap:10px; will-change:opacity; }
-    .tel-hint .bar{ width:1px; height:34px; background:linear-gradient(var(--fg),transparent); animation:slide 1.8s ease-in-out infinite; }
-
-    /* Carruseles de idiomas (marquee infinito, direcciones alternas) */
-    .tel-marquees{ position:absolute; z-index:2; left:0; right:0; top:70vh; display:flex; flex-direction:column; gap:4px; background:#F4F2EC; padding:18px 0; will-change:opacity; }
-    .marquee{ overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); }
-    .marquee-track{ display:inline-flex; align-items:center; width:max-content; animation:mLeft 78s linear infinite; }
-    .marquee.rev .marquee-track{ animation-name:mRight; }
-    .marquee-track span{ font-family:var(--font-display); font-weight:600; font-size:clamp(.85rem,1.4vw,1.25rem); color:rgba(51,54,60,.55); white-space:nowrap; display:inline-flex; align-items:center; }
-    .marquee-track span::after{ content:"•"; margin:0 .9em; color:rgba(51,54,60,.25); }
-    @keyframes mLeft{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
-    @keyframes mRight{ from{transform:translateX(-50%)} to{transform:translateX(0)} }
-    @media (prefers-reduced-motion:reduce){ .marquee-track{ animation:none } }
+    .tel-eyebrow{ font-size:clamp(.95rem,1.4vw,1.15rem); letter-spacing:.18em; text-transform:uppercase; color:rgba(11,14,18,.9); margin-bottom:clamp(16px,2.6vh,30px); will-change:opacity; }
+    .tel-sub{ width:min(720px,90vw); font-size:clamp(1.15rem,1.8vw,1.3rem); line-height:1.6; color:rgba(11,14,18,.9); margin-top:clamp(18px,3vh,34px); will-change:opacity; }
 
     /* Barra de pasos (se rellena acompasada con los textos) */
     .tel-steps{ position:absolute; z-index:2; bottom:11vh; left:50%; transform:translateX(-50%); width:min(72vw,1000px); opacity:0; will-change:opacity; }
@@ -67,7 +59,7 @@
     .statusbar .icons svg{ width:15px; height:15px; }
     .call-top{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0 24px; }
     .call-label{ font-size:.82rem; color:#9aa0aa; margin-bottom:24px; letter-spacing:.04em; }
-    .avatar{ width:104px; height:104px; border-radius:50%; background:#fff url(<?php echo esc_url( get_template_directory_uri() ); ?>/logo_fondo_blanco.png) center / cover no-repeat; position:relative; margin-bottom:22px; }
+    .avatar{ width:104px; height:104px; border-radius:50%; background:#fff url(<?php echo esc_url( get_template_directory_uri() ); ?>/logo_fondo_blanco.png) center / 74% no-repeat; position:relative; margin-bottom:22px; }
     .avatar::after{ content:""; position:absolute; inset:-10px; border-radius:50%; border:2px solid rgba(31,174,90,.7); animation:ring 1.7s ease-out infinite; }
     @keyframes ring{ 0%{transform:scale(1);opacity:.75} 100%{transform:scale(1.28);opacity:0} }
     .call-name{ font-size:1.45rem; font-weight:600; line-height:1.2; }
@@ -113,6 +105,7 @@
 
   <section class="tel-track" id="telTrack">
     <div class="tel-stage">
+      <div class="tel-cover-bg" id="telCoverBg" aria-hidden="true"></div>
       <canvas class="tel-frag" id="telFrag" aria-hidden="true"></canvas>
       <div class="tel-cover" id="telCover">
         <span class="tel-eyebrow" id="telEyebrow"><?php ff('tel_eyebrow','Confidencial · Gratuito · Disponible 24/7 · Sin rastro en la factura'); ?></span>
@@ -127,12 +120,6 @@
           }
         ?></div>
         <p class="tel-sub" id="telSub"><?php ff('tel_sub','El Teléfono de Ayuda Contra la Trata funciona 24/7 y está atendido por profesionales especializados que siguen protocolos internacionales para responder con rapidez y seguridad. Financiado y operado por la ONG FIET.'); ?></p>
-      </div>
-
-      <div class="tel-marquees" id="telMarquees">
-        <div class="marquee rev"><div class="marquee-track"></div></div>
-        <div class="marquee"><div class="marquee-track"></div></div>
-        <div class="marquee rev"><div class="marquee-track"></div></div>
       </div>
 
       <div class="tel-phone" id="telPhone">
@@ -185,7 +172,6 @@
           <span class="step"><span class="num">04</span> · <?php ff('tel_step4','Plan de acción'); ?></span>
         </div>
       </div>
-      <div class="tel-hint" id="telHint"><span class="bar"></span><?php ff('tel_hint','Desplázate para llamar'); ?></div>
     </div>
   </section>
 
@@ -196,10 +182,9 @@
       var track=document.getElementById("telTrack");
       var num=document.getElementById("telNum");
       var phone=document.getElementById("telPhone");
-      var hint=document.getElementById("telHint");
       var eyebrow=document.getElementById("telEyebrow");
       var sub=document.getElementById("telSub");
-      var marquees=document.getElementById("telMarquees");
+      var coverBg=document.getElementById("telCoverBg");
       var topic=document.getElementById("telTopic");
       var pill=document.getElementById("telPill");
       var topicLabel=document.getElementById("telTopicLabel");
@@ -213,14 +198,6 @@
       var tchars3=[], tchars4=[];
       buildChars(topicText,tchars); buildChars(topicText2,tchars2); buildChars(topicText3,tchars3); buildChars(topicText4,tchars4);
       var steps=document.getElementById("telSteps"), stepsFill=document.getElementById("stepsFill"), stepEls=document.querySelectorAll(".step");
-      // "Podemos ayudarte" en varios idiomas
-      var LANGS=["We can help you","Podemos ayudarte","Nous pouvons t'aider","我们可以帮助你","يمكننا مساعدتك","Мы можем помочь тебе","Te putem ajuta","Possiamo aiutarti","ਅਸੀਂ ਤੁਹਾਡੀ ਮਦਦ ਕਰ ਸਕਦੇ ਹਾਂ","Noo la mën a dimbali","نقدرو نعاونوك"];
-      var tracks=document.querySelectorAll(".marquee-track");
-      for(var ti=0;ti<tracks.length;ti++){
-        var rot=LANGS.slice(ti*3).concat(LANGS.slice(0,ti*3));   // rota el orden por fila
-        var html=rot.map(function(x){return "<span>"+x+"</span>";}).join("");
-        tracks[ti].innerHTML=html+html;                          // duplicado -> bucle continuo
-      }
       function clamp(v,a,b){return v<a?a:v>b?b:v;}
       function lerp(a,b,t){return a+(b-a)*t;}
       function ease(t){return t<0.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;}
@@ -329,8 +306,7 @@
         }
         eyebrow.style.opacity=(1-clamp(p/0.10,0,1)).toFixed(3);
         sub.style.opacity=(1-clamp(p/0.10,0,1)).toFixed(3);
-        marquees.style.opacity=(1-clamp(p/0.10,0,1)).toFixed(3);
-        hint.style.opacity=(1-clamp(p/0.07,0,1)).toFixed(3);
+        if(coverBg) coverBg.style.opacity=(1-clamp(p/0.10,0,1)).toFixed(3);
         var pp=ease(clamp((p-0.18)/0.12,0,1));
         var shift=ease(clamp((p-0.31)/0.05,0,1));
         var wide=window.innerWidth>820;
