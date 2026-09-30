@@ -407,4 +407,10 @@
 #prevHero #c, #recHero #c{ display:none; }
 .hero-cover{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:right center; z-index:1; -webkit-mask-image:linear-gradient(90deg,transparent 0%,transparent 42%,#000 72%,#000 100%); mask-image:linear-gradient(90deg,transparent 0%,transparent 42%,#000 72%,#000 100%); }
 #prevHero .intro, #recHero .intro, #prevHero .overlay, #recHero .overlay{ z-index:2; }
-@media (max-width:820px){ .hero-cover{ object-position:center top; -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 44%,transparent 96%); mask-image:linear-gradient(180deg,#000 0%,#000 44%,transparent 96%); } }
+@media (max-width:820px){
+  /* Foto como banner superior; el resto se funde a blanco para el texto */
+  .hero-cover{ object-position:center top; -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 30%,transparent 52%); mask-image:linear-gradient(180deg,#000 0%,#000 30%,transparent 52%); }
+  /* El texto del hero nunca debe desbordar el ancho del móvil */
+  #prevHero .intro, #recHero .intro{ left:22px; right:22px; width:auto; max-width:calc(100vw - 44px); box-sizing:border-box; }
+  #prevHero .intro h2, #recHero .intro h2, #prevHero .intro p, #recHero .intro p{ max-width:100%; overflow-wrap:break-word; }
+}

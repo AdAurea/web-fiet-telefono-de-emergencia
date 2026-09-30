@@ -9,7 +9,19 @@
         radial-gradient(ellipse 80% 82% at 47% 50%, rgba(255,255,255,.95) 0%, rgba(255,255,255,.72) 34%, rgba(255,255,255,.32) 55%, rgba(255,255,255,0) 74%) center / cover no-repeat,
         url("<?php echo esc_url( get_template_directory_uri() ); ?>/foto_portada_telefono.png") center right / cover no-repeat;
       will-change:opacity; }
-    @media (max-width:820px){ .tel-cover-bg{ background-position:center top; -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 46%,transparent 96%); mask-image:linear-gradient(180deg,#000 0%,#000 46%,transparent 96%); } }
+    @media (max-width:820px){
+      /* Móvil: foto de fondo a pantalla completa desplazada hacia la mujer (menos blanco a la izquierda),
+         con un halo blanco suave solo tras el texto para que se lea. */
+      .tel-cover-bg{
+        background-image:
+          radial-gradient(ellipse 160% 55% at 50% 42%, rgba(255,255,255,.6) 0%, rgba(255,255,255,.34) 40%, rgba(255,255,255,.12) 66%, rgba(255,255,255,0) 88%),
+          url("<?php echo esc_url( get_template_directory_uri() ); ?>/foto_portada_telefono.png");
+        background-position: center 44%, 80% center;
+        background-size: cover, cover;
+        background-repeat: no-repeat, no-repeat;
+        -webkit-mask-image:none; mask-image:none;
+      }
+    }
 
     /* Número gigante con la imagen a través de los dígitos */
     .tel-frag{ position:absolute; inset:0; width:100%; height:100%; z-index:2; pointer-events:none; }
@@ -20,7 +32,7 @@
     /* sombra sutil hacia abajo en cada tramo (dimensionalidad); aplicada por tramo para que afecte a TODOS los dígitos */
     .tel-number .tn-a{ padding-right:.06em; background:linear-gradient(180deg,#3a3e46 0%,#212428 55%,#15171b 100%); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 4px 6px rgba(11,14,18,.20)); }   /* 900: negro con degradado (profundidad); padding-right evita recortar el último 0 */
     .tel-number .tn-b{ padding-right:.06em; background:linear-gradient(180deg,#FFE45C 0%,#FFD400 52%,#E3B100 100%); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 4px 6px rgba(11,14,18,.20)); }   /* 759: amarillo corporativo con degradado */
-    .tel-eyebrow{ font-size:clamp(.95rem,1.4vw,1.15rem); letter-spacing:.18em; text-transform:uppercase; color:rgba(11,14,18,.9); margin-bottom:clamp(16px,2.6vh,30px); will-change:opacity; }
+    .tel-eyebrow{ max-width:100%; font-size:clamp(.95rem,1.4vw,1.15rem); letter-spacing:.18em; text-transform:uppercase; color:rgba(11,14,18,.9); margin-bottom:clamp(16px,2.6vh,30px); will-change:opacity; }
     .tel-sub{ width:min(720px,90vw); font-size:clamp(1.15rem,1.8vw,1.3rem); line-height:1.6; color:rgba(11,14,18,.9); margin-top:clamp(18px,3vh,34px); will-change:opacity; }
 
     /* Barra de pasos (se rellena acompasada con los textos) */
@@ -79,7 +91,7 @@
 
     @media (max-width:560px){
       .tel-phone{ width:270px; height:560px; }
-      .tel-number{ font-size:clamp(2.3rem,15vw,4.4rem); }
+      .tel-number{ font-size:clamp(2rem,13vw,4.4rem); }
       .tel-number .tn-a, .tel-number .tn-b{ filter:drop-shadow(0 2px 3px rgba(11,14,18,.14)); }   /* sombra más sutil en móvil */
       .navbar a:not(.nav-call){ display:none; }
     }
