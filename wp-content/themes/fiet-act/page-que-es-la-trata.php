@@ -8,32 +8,34 @@
       <div class="overlay">
         <div class="copy">
           <span class="eyebrow" id="eyebrow"><span class="dot"></span><?php ff('qet_eyebrow','¿Qué es la trata?'); ?></span>
-          <p class="para" id="para" style="opacity:0"><?php ff('qet_def','La trata de personas Es un delito que consiste en la captación, traslado y explotación de personas mediante engaño, abuso de vulnerabilidad o violencia, con fines como la explotación sexual, laboral u otras formas de explotación.'); ?></p>
+          <?php $qetDef = fiet_tag('qet_def_tag','p'); ?>
+          <<?php echo $qetDef; ?> class="para" id="para" style="opacity:0"><?php ff('qet_def','La trata de personas Es un delito que consiste en la captación, traslado y explotación de personas mediante engaño, abuso de vulnerabilidad o violencia, con fines como la explotación sexual, laboral u otras formas de explotación.'); ?></<?php echo $qetDef; ?>>
         </div>
         <div class="copy2" id="copy2">
           <span class="eyebrow" id="eyebrow2"><span class="dot"></span><?php ff('qet_esp_eyebrow','La trata en España'); ?></span>
           <?php $qetE = fiet_tag('qet_esp_titulo_tag','h2'); ?>
           <<?php echo $qetE; ?> class="para" id="para2" style="opacity:0"><?php ff('qet_esp_titulo','España es un país de origen, tránsito y destino de la trata de seres humanos.'); ?></<?php echo $qetE; ?>>
           <div class="copy2-body" id="copy2body" style="opacity:0">
-            <p><?php ff('qet_esp_parrafo','Se han detectado casos en todas las comunidades autónomas y, además, el país se sitúa entre los mayores consumidores de prostitución del mundo.'); ?></p>
+            <?php fiet_h('qet_esp_parrafo','qet_esp_parrafo_tag','p','ftext','Se han detectado casos en todas las comunidades autónomas y, además, el país se sitúa entre los mayores consumidores de prostitución del mundo.'); ?>
           </div>
         </div>
         <div class="copy2 copy2-alt" id="copy2b" style="opacity:0">
           <span class="eyebrow show" id="eyebrow4"><span class="dot"></span><?php ff('qet_esp_eyebrow','La trata en España'); ?></span>
-          <p class="para" id="para4"><?php ff('qet_esp_parrafo2','España es además uno de los países europeos con mayor demanda de prostitución, un factor que favorece la explotación sexual. Según el Ministerio del Interior, en 2024 el 56 % de las víctimas detectadas fueron mujeres y el 44 % hombres.'); ?></p>
+          <?php $qetEp2 = fiet_tag('qet_esp_parrafo2_tag','p'); ?>
+          <<?php echo $qetEp2; ?> class="para" id="para4"><?php ff('qet_esp_parrafo2','España es además uno de los países europeos con mayor demanda de prostitución, un factor que favorece la explotación sexual. Según el Ministerio del Interior, en 2024 el 56 % de las víctimas detectadas fueron mujeres y el 44 % hombres.'); ?></<?php echo $qetEp2; ?>>
         </div>
         <div class="intro" id="intro">
           <?php $qet = fiet_tag('qet_intro_eyebrow_tag','span'); $qtt = fiet_tag('qet_intro_titulo_tag','h2'); ?>
           <<?php echo $qet; ?> class="tag"><span class="dot"></span><?php ff('qet_intro_tag','Confidencial · Gratuito · Disponible 24/7'); ?></<?php echo $qet; ?>>
           <<?php echo $qtt; ?> class="intro-title"><?php ff('qet_intro_titulo','No estás sola'); ?></<?php echo $qtt; ?>>
-          <p><?php ff( 'qet_intro_parrafo0', 'El 900 759 759 es el Teléfono de Ayuda Contra la Trata en España. Está disponible 24/7 y es atendido por profesionales especializados que ofrecen una respuesta rápida, segura y confidencial.' ); ?></p>
-          <p><?php ff( 'qet_intro_parrafo', 'Si crees que tú o alguien que conoces puede estar en una situación de trata, contacta. Puedes permanecer en el anonimato.' ); ?></p>
+          <?php fiet_h('qet_intro_parrafo0','qet_intro_parrafo0_tag','p','ftext','El 900 759 759 es el Teléfono de Ayuda Contra la Trata en España. Está disponible 24/7 y es atendido por profesionales especializados que ofrecen una respuesta rápida, segura y confidencial.'); ?>
+          <?php fiet_h('qet_intro_parrafo','qet_intro_parrafo_tag','p','ftext','Si crees que tú o alguien que conoces puede estar en una situación de trata, contacta. Puedes permanecer en el anonimato.'); ?>
           <a href="tel:<?php echo esc_attr( fiet_option('telefono_tel','900759759') ); ?>" class="btn-hero"><?php ff('qet_intro_boton','Línea de asistencia 24h'); ?></a>
         </div>
         <div class="quiz" id="quiz">
           <span class="tag"><span class="dot"></span><?php ff('qet_quiz_tag','Autoevaluación confidencial'); ?></span>
           <?php fiet_h('qet_quiz_titulo','qet_quiz_titulo_tag','h2','quiz-title','¿Podrías estar en una situación de trata?'); ?>
-          <p><?php ff('qet_quiz_parrafo','Responde a estas preguntas para identificar posibles señales de alerta. El resultado es orientativo y no sustituye el asesoramiento profesional.'); ?></p>
+          <?php fiet_h('qet_quiz_parrafo','qet_quiz_parrafo_tag','p','ftext','Responde a estas preguntas para identificar posibles señales de alerta. El resultado es orientativo y no sustituye el asesoramiento profesional.'); ?>
           <a href="#cuestionario" class="btn-hero" id="openQuiz"><?php ff('qet_quiz_boton','Comprueba tu situación'); ?></a>
         </div>
         <div class="orb-cover" id="orbCover"></div>
@@ -42,9 +44,9 @@
           <?php $qetL = fiet_tag('qet_el_titulo_tag','h2'); ?>
           <<?php echo $qetL; ?> class="para el-title" id="eltitle"><?php ff('qet_el_titulo','La existencia de estos tres elementos constituye el delito de trata.'); ?></<?php echo $qetL; ?>>
           <div class="el-cards">
-            <article class="el-card"><?php fiet_h('qet_el1_titulo','qet_el1_titulo_tag','h3','card-title','La acción'); ?><p><?php ff('qet_el1_desc','Captación, transporte, traslado, acogida o recepción de personas.'); ?></p></article>
-            <article class="el-card"><?php fiet_h('qet_el2_titulo','qet_el2_titulo_tag','h3','card-title','Los medios'); ?><p><?php ff('qet_el2_desc','Engaño, abuso de una situación de vulnerabilidad, coacción o violencia.'); ?></p></article>
-            <article class="el-card"><?php fiet_h('qet_el3_titulo','qet_el3_titulo_tag','h3','card-title','El fin'); ?><p><?php ff('qet_el3_desc','La explotación de la persona para obtener un beneficio económico.'); ?></p></article>
+            <article class="el-card"><?php fiet_h('qet_el1_titulo','qet_el1_titulo_tag','h3','card-title','La acción'); ?><?php fiet_h('qet_el1_desc','qet_el1_desc_tag','p','ftext','Captación, transporte, traslado, acogida o recepción de personas.'); ?></article>
+            <article class="el-card"><?php fiet_h('qet_el2_titulo','qet_el2_titulo_tag','h3','card-title','Los medios'); ?><?php fiet_h('qet_el2_desc','qet_el2_desc_tag','p','ftext','Engaño, abuso de una situación de vulnerabilidad, coacción o violencia.'); ?></article>
+            <article class="el-card"><?php fiet_h('qet_el3_titulo','qet_el3_titulo_tag','h3','card-title','El fin'); ?><?php fiet_h('qet_el3_desc','qet_el3_desc_tag','p','ftext','La explotación de la persona para obtener un beneficio económico.'); ?></article>
           </div>
         </div>
         <div class="tipos" id="tipos">
