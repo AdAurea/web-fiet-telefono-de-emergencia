@@ -105,7 +105,7 @@
     .via-card{ display:flex; flex-direction:column; text-align:left; border:1px solid rgba(11,14,18,.14); border-radius:14px; padding:clamp(18px,1.6vw,24px); background:rgba(255,255,255,.35); }
     .via-num{ font-size:.74rem; letter-spacing:.12em; color:rgba(11,14,18,.45); margin-bottom:clamp(12px,2.2vh,20px); }
     .via-card h3, .via-card .card-title{ display:block; font-family:var(--font-display); font-weight:600; font-size:clamp(1.2rem,1.7vw,1.55rem); margin-bottom:10px; color:var(--fg); }
-    .via-card p{ font-family:var(--font-body); font-size:.9rem; line-height:1.5; color:rgba(11,14,18,.7); margin-bottom:18px; flex:1; }
+    .via-card p, .via-card .ftext{ display:block; font-family:var(--font-body); font-size:.9rem; line-height:1.5; color:rgba(11,14,18,.7); margin-bottom:18px; flex:1; }
     .via-btn{ display:inline-flex; align-items:center; justify-content:center; align-self:flex-start; font-family:var(--font-body); font-weight:600; font-size:.95rem; padding:13px 20px; border-radius:10px; text-decoration:none; border:1px solid var(--fg); color:var(--fg); background:transparent; transition:background .2s ease, color .2s ease; }
     .via-btn:hover{ background:var(--fg); color:#fff; }
     .via-btn-primary{ background:#FFD400; border-color:#FFD400; color:#0B0E12; }
@@ -134,7 +134,8 @@
                . '<span class="tn-b">' . esc_html( ltrim( substr( $tel_disp, $tel_sp ) ) ) . '</span>';
           }
         ?></div>
-        <p class="tel-sub" id="telSub"><?php ff('tel_sub','El Teléfono de Ayuda Contra la Trata funciona 24/7 y está atendido por profesionales especializados que siguen protocolos internacionales para responder con rapidez y seguridad. Financiado y operado por la ONG FIET.'); ?></p>
+        <?php $telSubT = fiet_tag('tel_sub_tag','p'); ?>
+        <<?php echo $telSubT; ?> class="tel-sub" id="telSub"><?php ff('tel_sub','El Teléfono de Ayuda Contra la Trata funciona 24/7 y está atendido por profesionales especializados que siguen protocolos internacionales para responder con rapidez y seguridad. Financiado y operado por la ONG FIET.'); ?></<?php echo $telSubT; ?>>
       </div>
 
       <div class="tel-phone" id="telPhone">
@@ -172,10 +173,11 @@
       <div class="tel-topic" id="telTopic">
         <span class="tel-topic-eye"><span class="dot" id="telDot"></span><span class="tel-topic-label" id="telTopicLabel"><?php ff('tel_topic_label','¿Qué pasa cuando llamas?'); ?></span></span>
         <div class="tel-topic-paras">
-          <p class="para" id="telTopicText"><?php ff('tel_topic1','Una víctima o testigo contacta con el 900 759 759 a cualquier hora y en cualquier momento. Puede contactar en su idioma nativo si quiere...'); ?></p>
-          <p class="para" id="telTopicText2"><?php ff('tel_topic2','Fiet incorpora un sistema de traducción automática de la llamada que permite a un profesional especializado entender a la víctima y comunicarse con ella en su idioma en tiempo real.'); ?></p>
-          <p class="para" id="telTopicText3"><?php ff('tel_topic3','Una vez atendida a la víctima, se revisa en la base de datos si hubiese casos conectados.'); ?></p>
-          <p class="para" id="telTopicText4"><?php ff('tel_topic4','Con esta información se procede a dar la respuesta más adecuada y segura.'); ?></p>
+          <?php $tt1=fiet_tag('tel_topic1_tag','p'); $tt2=fiet_tag('tel_topic2_tag','p'); $tt3=fiet_tag('tel_topic3_tag','p'); $tt4=fiet_tag('tel_topic4_tag','p'); ?>
+          <<?php echo $tt1; ?> class="para" id="telTopicText"><?php ff('tel_topic1','Una víctima o testigo contacta con el 900 759 759 a cualquier hora y en cualquier momento. Puede contactar en su idioma nativo si quiere...'); ?></<?php echo $tt1; ?>>
+          <<?php echo $tt2; ?> class="para" id="telTopicText2"><?php ff('tel_topic2','Fiet incorpora un sistema de traducción automática de la llamada que permite a un profesional especializado entender a la víctima y comunicarse con ella en su idioma en tiempo real.'); ?></<?php echo $tt2; ?>>
+          <<?php echo $tt3; ?> class="para" id="telTopicText3"><?php ff('tel_topic3','Una vez atendida a la víctima, se revisa en la base de datos si hubiese casos conectados.'); ?></<?php echo $tt3; ?>>
+          <<?php echo $tt4; ?> class="para" id="telTopicText4"><?php ff('tel_topic4','Con esta información se procede a dar la respuesta más adecuada y segura.'); ?></<?php echo $tt4; ?>>
         </div>
       </div>
       <div class="tel-steps" id="telSteps">
@@ -378,25 +380,25 @@
       <div class="report-left">
         <span class="tag"><?php ff('tel_pop_tag','Cómo contactar'); ?></span>
         <?php fiet_h('tel_pop_titulo','tel_pop_titulo_tag','h2','report-title','Tres vías. Todas confidenciales.'); ?>
-        <p><?php ff('tel_pop_parrafo','Hay una persona al otro lado. No te juzga, no comparte nada sin tu consentimiento (salvo obligación legal) y puedes permanecer en el anonimato. Elige el canal que te resulte más seguro.'); ?></p>
+        <?php fiet_h('tel_pop_parrafo','tel_pop_parrafo_tag','p','ftext','Hay una persona al otro lado. No te juzga, no comparte nada sin tu consentimiento (salvo obligación legal) y puedes permanecer en el anonimato. Elige el canal que te resulte más seguro.'); ?>
       </div>
       <div class="via-cards">
         <article class="via-card">
           <span class="via-num">01 / 03</span>
           <?php fiet_h('tel_c1_titulo','tel_c1_titulo_tag','h3','card-title','Teléfono'); ?>
-          <p><?php ff('tel_c1_desc','Marca el 900 759 759. Gratuito, 24/7. Profesionales que hablan español e inglés, con interpretación en más de 200 idiomas.'); ?></p>
+          <?php fiet_h('tel_c1_desc','tel_c1_desc_tag','p','ftext','Marca el 900 759 759. Gratuito, 24/7. Profesionales que hablan español e inglés, con interpretación en más de 200 idiomas.'); ?>
           <a class="btn-hero" href="tel:<?php echo esc_attr( fiet_option('telefono_tel','900759759') ); ?>"><?php ff('tel_c1_boton','Llamar'); ?></a>
         </article>
         <article class="via-card">
           <span class="via-num">02 / 03</span>
           <?php fiet_h('tel_c2_titulo','tel_c2_titulo_tag','h3','card-title','Formulario'); ?>
-          <p><?php ff('tel_c2_desc','Describe una situación de sospecha a través del formulario de contacto. Puedes hacerlo de forma anónima o dejar un contacto para que te llamen.'); ?></p>
+          <?php fiet_h('tel_c2_desc','tel_c2_desc_tag','p','ftext','Describe una situación de sospecha a través del formulario de contacto. Puedes hacerlo de forma anónima o dejar un contacto para que te llamen.'); ?>
           <button class="btn-hero js-open-form" type="button"><?php ff('tel_c2_boton','Abrir formulario'); ?></button>
         </article>
         <article class="via-card">
           <span class="via-num">03 / 03</span>
           <?php fiet_h('tel_c3_titulo','tel_c3_titulo_tag','h3','card-title','Correo'); ?>
-          <p><?php ff('tel_c3_desc','Escríbenos con los detalles de tu situación o tu consulta. Te responderá el equipo especializado.'); ?></p>
+          <?php fiet_h('tel_c3_desc','tel_c3_desc_tag','p','ftext','Escríbenos con los detalles de tu situación o tu consulta. Te responderá el equipo especializado.'); ?>
           <a class="btn-hero" href="mailto:<?php echo esc_attr( fiet_option('email_contacto','informacion@fiet.ong') ); ?>"><?php ff('tel_c3_boton','Enviar correo'); ?></a>
         </article>
       </div>
