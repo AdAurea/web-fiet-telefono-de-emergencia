@@ -210,6 +210,25 @@ function ff( $name, $default = '' ) {
 	echo esc_html( fiet_field( $name, $default ) );
 }
 
+/**
+ * Devuelve una etiqueta HTML válida desde un campo (para editar la etiqueta de
+ * un texto y optimizar SEO sin tocar código). Whitelist estricta por seguridad.
+ */
+function fiet_tag( $name, $default = 'p' ) {
+	$allowed = array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span' );
+	$t = strtolower( trim( (string) fiet_field( $name, $default ) ) );   // lee del post/página actual
+	return in_array( $t, $allowed, true ) ? $t : $default;
+}
+
+/** Opciones del desplegable de etiqueta (para los campos ACF de tipo select) */
+function fiet_tag_choices() {
+	return array(
+		'h1' => 'H1', 'h2' => 'H2', 'h3' => 'H3',
+		'h4' => 'H4', 'h5' => 'H5', 'h6' => 'H6',
+		'p'  => 'Párrafo (p)', 'span' => 'Texto en línea (span)',
+	);
+}
+
 /** Valores por defecto del cuestionario (usados por ACF y por el localize a quiz.js) */
 function fiet_quiz_defaults() {
 	return array(

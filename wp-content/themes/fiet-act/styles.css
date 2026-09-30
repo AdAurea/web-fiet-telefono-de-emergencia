@@ -20,9 +20,9 @@
   .after a{ display:inline-flex; gap:14px; align-items:center; text-decoration:none; color:var(--bg); background:var(--fg); padding:20px 30px; border-radius:16px; font-weight:600; font-size:1.15rem; }
   @media (prefers-reduced-motion:reduce){ .hint{display:none} .bar{animation:none} }
   .intro{ position:absolute; left:clamp(80px,9vw,240px); top:50%; transform:translateY(-50%); width:min(48ch, calc(100% - 2*clamp(80px,9vw,240px))); }
-  .intro .tag{ display:inline-flex; align-items:center; gap:9px; font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; color:var(--fg); margin-bottom:22px; }
+  .intro .tag{ display:inline-flex; align-items:center; gap:9px; font-size:.78rem; font-weight:400; letter-spacing:.16em; text-transform:uppercase; color:var(--fg); margin-top:0; margin-bottom:22px; }
   .intro .tag .dot{ width:9px; height:9px; border-radius:50%; background:#1Fae5a; }
-  .intro h2{ font-family:var(--font-display); font-weight:500; font-size:clamp(2.9rem,6.9vw,5.3rem); line-height:1.04; letter-spacing:-.02em; margin-bottom:20px; }
+  .intro h2, .intro .intro-title{ display:block; font-family:var(--font-display); font-weight:500; font-size:clamp(2.9rem,6.9vw,5.3rem); line-height:1.04; letter-spacing:-.02em; margin-top:0; margin-bottom:20px; }
   .intro p{ font-family:var(--font-body); font-size:clamp(1.15rem,1.8vw,1.3rem); line-height:1.6; color:rgba(11,14,18,.70); margin-bottom:16px; }
   .intro p strong{ color:var(--fg); font-weight:600; }
   /* Copy del paso intermedio (texto 2, junto al mapa de España) */
@@ -257,7 +257,7 @@
     .copy2 h2.para{ font-size:clamp(1.8rem,8vw,2.6rem); margin-bottom:14px; }
     .copy2-body{ max-width:none; }
     .copy2-body p, .copy2-body li{ font-size:.92rem; }
-    .intro h2{ font-size:clamp(2.3rem,11vw,3.4rem); margin-bottom:16px; }
+    .intro h2, .intro .intro-title{ font-size:clamp(2.3rem,11vw,3.4rem); margin-bottom:16px; }
     .intro p{ font-size:1.02rem; margin-bottom:14px; }
     .intro .btn-hero{ margin-top:6px; }
 
@@ -298,7 +298,7 @@
     .q{ flex-wrap:wrap; }
     .q-opts{ width:100%; justify-content:flex-end; }
     .report-grid{ gap:14px; }
-    .intro h2{ font-size:2.3rem; }
+    .intro h2, .intro .intro-title{ font-size:2.3rem; }
   }
 
   /* ===== Contact Form 7 dentro del panel "Informar una sospecha" ===== */
@@ -411,5 +411,5 @@
   .hero-cover{ object-position:center top; -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 30%,transparent 52%); mask-image:linear-gradient(180deg,#000 0%,#000 30%,transparent 52%); }
   /* El texto del hero nunca debe desbordar el ancho del móvil */
   #prevHero .intro, #recHero .intro{ left:22px; right:22px; width:auto; max-width:calc(100vw - 44px); box-sizing:border-box; }
-  #prevHero .intro h2, #recHero .intro h2, #prevHero .intro p, #recHero .intro p{ max-width:100%; overflow-wrap:break-word; }
+  #prevHero .intro h2, #prevHero .intro .intro-title, #recHero .intro h2, #prevHero .intro p, #recHero .intro p{ max-width:100%; overflow-wrap:break-word; }
 }

@@ -5,11 +5,23 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-/** Atajo para definir un campo de texto/área */
-function fiet_f( $key, $label, $name, $default = '', $type = 'text' ) {
+/** Atajo para definir un campo de texto/área (con ancho opcional para columnas) */
+function fiet_f( $key, $label, $name, $default = '', $type = 'text', $width = '' ) {
 	$f = array( 'key' => $key, 'label' => $label, 'name' => $name, 'type' => $type, 'default_value' => $default );
 	if ( $type === 'textarea' ) { $f['rows'] = 3; $f['new_lines'] = ''; }
+	if ( $width !== '' ) { $f['wrapper'] = array( 'width' => $width ); }
 	return $f;
+}
+
+/** Desplegable de etiqueta HTML (SEO) en columna estrecha, junto a su texto */
+function fiet_tagf( $key, $name, $default = 'p', $width = '30' ) {
+	return array(
+		'key' => $key, 'label' => 'Etiqueta HTML', 'name' => $name, 'type' => 'select',
+		'choices' => function_exists( 'fiet_tag_choices' ) ? fiet_tag_choices() : array(),
+		'default_value' => $default,
+		'instructions' => 'Etiqueta HTML para SEO. No cambia el diseño.',
+		'wrapper' => array( 'width' => $width ),
+	);
 }
 
 add_action( 'acf/init', function () {
@@ -22,8 +34,10 @@ add_action( 'acf/init', function () {
 			'key'    => 'group_fiet_prevencion',
 			'title'  => 'Prevención · Textos',
 			'fields' => array(
-				fiet_f( 'f_prev_eye', 'Portada · Sobretítulo', 'prev_eyebrow', 'Prevención' ),
-				fiet_f( 'f_prev_tit', 'Portada · Título', 'prev_titulo', '¿Cómo mantenerse a salvo?' ),
+				fiet_f( 'f_prev_eye', 'Portada · Sobretítulo', 'prev_eyebrow', 'Prevención', 'text', '70' ),
+				fiet_tagf( 'f_prev_eye_tag', 'prev_eyebrow_tag', 'span' ),
+				fiet_f( 'f_prev_tit', 'Portada · Título', 'prev_titulo', '¿Cómo mantenerse a salvo?', 'text', '70' ),
+				fiet_tagf( 'f_prev_tit_tag', 'prev_titulo_tag', 'h2' ),
 				fiet_f( 'f_prev_par', 'Portada · Párrafo', 'prev_parrafo', 'La trata puede comenzar en situaciones cotidianas como la búsqueda de empleo, un viaje o el uso de internet. Conocer los riesgos y saber identificarlos es clave para protegerte.', 'textarea' ),
 				fiet_f( 'f_prev_btn', 'Portada · Botón', 'prev_boton', 'Ver recomendaciones' ),
 				fiet_f( 'f_prev_peye', 'Popup · Sobretítulo', 'prev_pop_eyebrow', 'Prevención' ),

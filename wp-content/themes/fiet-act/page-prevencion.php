@@ -54,8 +54,9 @@
           <p class="para" id="para" style="opacity:0"></p>
         </div>
         <div class="intro" id="intro">
-          <span class="tag"><span class="dot"></span><?php ff('prev_eyebrow','Prevención'); ?></span>
-          <h2><?php ff('prev_titulo','¿Cómo mantenerse a salvo?'); ?></h2>
+          <?php $et = fiet_tag('prev_eyebrow_tag','span'); $tt = fiet_tag('prev_titulo_tag','h2'); ?>
+          <<?php echo $et; ?> class="tag"><span class="dot"></span><?php ff('prev_eyebrow','Prevención'); ?></<?php echo $et; ?>>
+          <<?php echo $tt; ?> class="intro-title"><?php ff('prev_titulo','¿Cómo mantenerse a salvo?'); ?></<?php echo $tt; ?>>
           <p><?php ff('prev_parrafo','La trata puede comenzar en situaciones cotidianas como la búsqueda de empleo, un viaje o el uso de internet. Conocer los riesgos y saber identificarlos es clave para protegerte.'); ?></p>
           <button class="btn-hero js-open-report" type="button"><?php ff('prev_boton','Ver recomendaciones'); ?></button>
         </div>
