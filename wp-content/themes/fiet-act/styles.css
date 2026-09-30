@@ -27,7 +27,7 @@
   .intro p strong{ color:var(--fg); font-weight:600; }
   /* Copy del paso intermedio (texto 2, junto al mapa de España) */
   .copy2{ position:absolute; left:clamp(80px,9vw,240px); top:50%; transform:translateY(-50%); max-width:44ch; }
-  .copy2 h2.para{ font-weight:500; font-size:clamp(1.7rem,3.2vw,2.7rem); line-height:1.12; letter-spacing:-.015em; margin-bottom:20px; }
+  .copy2 h2.para, .copy2 .para{ font-weight:500; font-size:clamp(1.7rem,3.2vw,2.7rem); line-height:1.12; letter-spacing:-.015em; margin-bottom:20px; }
   .copy2-body{ max-width:42ch; }
   .copy2-body p{ font-family:var(--font-body); font-size:clamp(0.98rem,1.15vw,1.08rem); line-height:1.6; color:rgba(11,14,18,.72); margin-bottom:14px; }
   .copy2-body ul{ list-style:none; margin-top:6px; display:flex; flex-direction:column; gap:9px; }
@@ -52,7 +52,7 @@
   .el-cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(16px,2vw,28px); width:100%; max-width:1080px; }
   .el-card{ background:rgba(255,255,255,.92); border-radius:20px; padding:clamp(22px,2.2vw,34px); text-align:left; opacity:0; transform:translateY(28px); transition:opacity .55s ease, transform .55s ease; }
   .el-card.show{ opacity:1; transform:none; }
-  .el-card h3{ font-family:var(--font-display); font-weight:600; font-size:clamp(1.2rem,1.7vw,1.55rem); margin-bottom:10px; color:#0B0E12; }
+  .el-card h3, .el-card .card-title{ display:block; font-family:var(--font-display); font-weight:600; font-size:clamp(1.2rem,1.7vw,1.55rem); margin-bottom:10px; color:#0B0E12; }
   .el-card p{ font-family:var(--font-body); font-size:clamp(.95rem,1.05vw,1.05rem); line-height:1.5; color:rgba(11,14,18,.72); }
   /* ---- Tipos de trata (misma escena que "los tres elementos") ---- */
   .tipos{ position:absolute; inset:0; z-index:3; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:9vh clamp(24px,6vw,120px); opacity:0; pointer-events:none; }
@@ -66,7 +66,7 @@
   .quiz{ position:absolute; top:50%; right:clamp(56px,11vw,280px); transform:translateY(-50%); width:min(40ch, 42%); opacity:0; pointer-events:none; }
   .quiz .tag{ display:inline-flex; align-items:center; gap:9px; font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; color:var(--fg); margin-bottom:22px; }
   .quiz .tag .dot{ width:9px; height:9px; border-radius:50%; background:#1FAE5A; }
-  .quiz h2{ font-family:var(--font-display); font-weight:500; font-size:clamp(2rem,3.4vw,3.1rem); line-height:1.1; letter-spacing:-.02em; margin-bottom:20px; }
+  .quiz h2, .quiz .quiz-title{ display:block; font-family:var(--font-display); font-weight:500; font-size:clamp(2rem,3.4vw,3.1rem); line-height:1.1; letter-spacing:-.02em; margin-bottom:20px; }
   .quiz p{ font-family:var(--font-body); font-size:clamp(1.05rem,1.5vw,1.2rem); line-height:1.6; color:rgba(11,14,18,.70); margin-bottom:26px; }
 
   /* ===== Panel lateral del cuestionario ===== */
@@ -254,7 +254,7 @@
     .tipo-card h3{ font-size:.86rem; }
     /* Texto 2 (mapa de España) al pie en móvil */
     .copy2{ left:22px; right:22px; width:auto; max-width:none; top:auto; bottom:14vh; transform:none; }
-    .copy2 h2.para{ font-size:clamp(1.8rem,8vw,2.6rem); margin-bottom:14px; }
+    .copy2 h2.para, .copy2 .para{ font-size:clamp(1.8rem,8vw,2.6rem); margin-bottom:14px; }
     .copy2-body{ max-width:none; }
     .copy2-body p, .copy2-body li{ font-size:.92rem; }
     .intro h2, .intro .intro-title{ font-size:clamp(2.3rem,11vw,3.4rem); margin-bottom:16px; }
@@ -263,7 +263,7 @@
 
     /* Quiz copy escena 2: al pie, ancho completo */
     .quiz{ top:auto; bottom:7vh; left:22px; right:22px; width:auto; transform:none; }
-    .quiz h2{ font-size:clamp(1.5rem,6.6vw,2.1rem); }
+    .quiz h2, .quiz .quiz-title{ font-size:clamp(1.5rem,6.6vw,2.1rem); }
     .quiz p{ font-size:1rem; margin-bottom:18px; }
 
     /* Navbar: solo el botón de llamada (los enlaces son anclas provisionales) */

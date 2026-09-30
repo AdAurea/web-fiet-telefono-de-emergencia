@@ -12,7 +12,8 @@
         </div>
         <div class="copy2" id="copy2">
           <span class="eyebrow" id="eyebrow2"><span class="dot"></span><?php ff('qet_esp_eyebrow','La trata en España'); ?></span>
-          <h2 class="para" id="para2" style="opacity:0"><?php ff('qet_esp_titulo','España es un país de origen, tránsito y destino de la trata de seres humanos.'); ?></h2>
+          <?php $qetE = fiet_tag('qet_esp_titulo_tag','h2'); ?>
+          <<?php echo $qetE; ?> class="para" id="para2" style="opacity:0"><?php ff('qet_esp_titulo','España es un país de origen, tránsito y destino de la trata de seres humanos.'); ?></<?php echo $qetE; ?>>
           <div class="copy2-body" id="copy2body" style="opacity:0">
             <p><?php ff('qet_esp_parrafo','Se han detectado casos en todas las comunidades autónomas y, además, el país se sitúa entre los mayores consumidores de prostitución del mundo.'); ?></p>
           </div>
@@ -31,22 +32,24 @@
         </div>
         <div class="quiz" id="quiz">
           <span class="tag"><span class="dot"></span><?php ff('qet_quiz_tag','Autoevaluación confidencial'); ?></span>
-          <h2><?php ff('qet_quiz_titulo','¿Podrías estar en una situación de trata?'); ?></h2>
+          <?php fiet_h('qet_quiz_titulo','qet_quiz_titulo_tag','h2','quiz-title','¿Podrías estar en una situación de trata?'); ?>
           <p><?php ff('qet_quiz_parrafo','Responde a estas preguntas para identificar posibles señales de alerta. El resultado es orientativo y no sustituye el asesoramiento profesional.'); ?></p>
           <a href="#cuestionario" class="btn-hero" id="openQuiz"><?php ff('qet_quiz_boton','Comprueba tu situación'); ?></a>
         </div>
         <div class="orb-cover" id="orbCover"></div>
         <div class="elements" id="elements">
           <span class="eyebrow" id="eyebrow3"><span class="dot"></span><?php ff('qet_el_eyebrow','Los tres elementos del delito'); ?></span>
-          <h2 class="para el-title" id="eltitle"><?php ff('qet_el_titulo','La existencia de estos tres elementos constituye el delito de trata.'); ?></h2>
+          <?php $qetL = fiet_tag('qet_el_titulo_tag','h2'); ?>
+          <<?php echo $qetL; ?> class="para el-title" id="eltitle"><?php ff('qet_el_titulo','La existencia de estos tres elementos constituye el delito de trata.'); ?></<?php echo $qetL; ?>>
           <div class="el-cards">
-            <article class="el-card"><h3><?php ff('qet_el1_titulo','La acción'); ?></h3><p><?php ff('qet_el1_desc','Captación, transporte, traslado, acogida o recepción de personas.'); ?></p></article>
-            <article class="el-card"><h3><?php ff('qet_el2_titulo','Los medios'); ?></h3><p><?php ff('qet_el2_desc','Engaño, abuso de una situación de vulnerabilidad, coacción o violencia.'); ?></p></article>
-            <article class="el-card"><h3><?php ff('qet_el3_titulo','El fin'); ?></h3><p><?php ff('qet_el3_desc','La explotación de la persona para obtener un beneficio económico.'); ?></p></article>
+            <article class="el-card"><?php fiet_h('qet_el1_titulo','qet_el1_titulo_tag','h3','card-title','La acción'); ?><p><?php ff('qet_el1_desc','Captación, transporte, traslado, acogida o recepción de personas.'); ?></p></article>
+            <article class="el-card"><?php fiet_h('qet_el2_titulo','qet_el2_titulo_tag','h3','card-title','Los medios'); ?><p><?php ff('qet_el2_desc','Engaño, abuso de una situación de vulnerabilidad, coacción o violencia.'); ?></p></article>
+            <article class="el-card"><?php fiet_h('qet_el3_titulo','qet_el3_titulo_tag','h3','card-title','El fin'); ?><p><?php ff('qet_el3_desc','La explotación de la persona para obtener un beneficio económico.'); ?></p></article>
           </div>
         </div>
         <div class="tipos" id="tipos">
-          <h2 class="para el-title" id="tipostitle"><?php ff('qet_tipos_titulo','Existen diferentes tipos de trata'); ?></h2>
+          <?php $qetTp = fiet_tag('qet_tipos_titulo_tag','h2'); ?>
+          <<?php echo $qetTp; ?> class="para el-title" id="tipostitle"><?php ff('qet_tipos_titulo','Existen diferentes tipos de trata'); ?></<?php echo $qetTp; ?>>
           <div class="tipo-cards">
             <article class="tipo-card">
               <span class="tipo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg></span>
