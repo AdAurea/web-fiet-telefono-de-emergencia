@@ -5,9 +5,10 @@
     .tel-stage{ position:sticky; top:0; height:100vh; overflow:hidden; display:grid; place-items:center; }
     /* Foto de portada de fondo (se desvanece al empezar a hacer scroll, antes de aparecer el móvil) */
     .tel-cover-bg{ position:absolute; inset:0; z-index:1;
+      --tel-cover: url("<?php echo esc_url( get_template_directory_uri() ); ?>/foto_portada_telefono.png");   /* por defecto; se puede sobrescribir por página */
       background:
         radial-gradient(ellipse 80% 82% at 47% 50%, rgba(255,255,255,.95) 0%, rgba(255,255,255,.72) 34%, rgba(255,255,255,.32) 55%, rgba(255,255,255,0) 74%) center / cover no-repeat,
-        url("<?php echo esc_url( get_template_directory_uri() ); ?>/foto_portada_telefono.png") center right / cover no-repeat;
+        var(--tel-cover) center right / cover no-repeat;
       will-change:opacity; }
     @media (max-width:820px){
       /* Móvil: foto de fondo a pantalla completa desplazada hacia la mujer (menos blanco a la izquierda),
@@ -15,7 +16,7 @@
       .tel-cover-bg{
         background-image:
           radial-gradient(ellipse 160% 55% at 50% 42%, rgba(255,255,255,.6) 0%, rgba(255,255,255,.34) 40%, rgba(255,255,255,.12) 66%, rgba(255,255,255,0) 88%),
-          url("<?php echo esc_url( get_template_directory_uri() ); ?>/foto_portada_telefono.png");
+          var(--tel-cover);
         background-position: center 44%, 80% center;
         background-size: cover, cover;
         background-repeat: no-repeat, no-repeat;
@@ -117,7 +118,8 @@
 
   <section class="tel-track" id="telTrack">
     <div class="tel-stage">
-      <div class="tel-cover-bg" id="telCoverBg" aria-hidden="true"></div>
+      <?php $tel_img = fiet_field('tel_portada_img'); ?>
+      <div class="tel-cover-bg" id="telCoverBg" aria-hidden="true"<?php if ( $tel_img ) echo ' style="--tel-cover:url(\'' . esc_url( $tel_img ) . '\')"'; ?>></div>
       <canvas class="tel-frag" id="telFrag" aria-hidden="true"></canvas>
       <div class="tel-cover" id="telCover">
         <?php $telt = fiet_tag('tel_eyebrow_tag','span'); ?>

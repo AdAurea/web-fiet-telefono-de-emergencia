@@ -47,7 +47,8 @@
   <section class="hero-track" id="prevHero" data-static>
     <div class="stage">
       <canvas id="c" aria-hidden="true"></canvas>
-      <img class="hero-cover" src="<?php echo esc_url( get_template_directory_uri() ); ?>/foto_portada_como_mantenerse_a_salvo.png" alt="" aria-hidden="true">
+      <?php $prev_img = fiet_field('prev_portada_img') ?: get_template_directory_uri().'/foto_portada_como_mantenerse_a_salvo.png'; ?>
+      <img class="hero-cover" src="<?php echo esc_url( $prev_img ); ?>" alt="" aria-hidden="true">
       <div class="overlay">
         <div class="copy">
           <span class="eyebrow" id="eyebrow"></span>

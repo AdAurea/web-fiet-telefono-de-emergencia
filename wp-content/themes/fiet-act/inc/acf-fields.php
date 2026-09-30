@@ -13,6 +13,16 @@ function fiet_f( $key, $label, $name, $default = '', $type = 'text', $width = ''
 	return $f;
 }
 
+/** Campo de imagen (portada): muestra miniatura + editar/quitar. Devuelve URL. */
+function fiet_img_f( $key, $name, $label = 'Imagen de portada', $instr = '' ) {
+	return array(
+		'key' => $key, 'label' => $label, 'name' => $name, 'type' => 'image',
+		'return_format' => 'url', 'preview_size' => 'medium', 'library' => 'all',
+		'mime_types' => 'jpg,jpeg,png,webp',
+		'instructions' => $instr !== '' ? $instr : 'Si la dejas vacía se usa la imagen por defecto del tema.',
+	);
+}
+
 /** Desplegable de etiqueta HTML (SEO) en columna estrecha, junto a su texto */
 function fiet_tagf( $key, $name, $default = 'p', $width = '30' ) {
 	return array(
@@ -34,6 +44,7 @@ add_action( 'acf/init', function () {
 			'key'    => 'group_fiet_prevencion',
 			'title'  => 'Prevención · Textos',
 			'fields' => array(
+				fiet_img_f( 'f_prev_img', 'prev_portada_img', 'Portada · Imagen', 'Imagen de fondo de la portada. Vacío = imagen por defecto del tema.' ),
 				fiet_f( 'f_prev_eye', 'Portada · Sobretítulo', 'prev_eyebrow', 'Prevención', 'text', '70' ),
 				fiet_tagf( 'f_prev_eye_tag', 'prev_eyebrow_tag', 'span' ),
 				fiet_f( 'f_prev_tit', 'Portada · Título', 'prev_titulo', '¿Cómo mantenerse a salvo?', 'text', '70' ),
@@ -66,6 +77,7 @@ add_action( 'acf/init', function () {
 			'key'    => 'group_fiet_recursos',
 			'title'  => 'Recursos · Textos',
 			'fields' => array(
+				fiet_img_f( 'f_rec_img', 'rec_portada_img', 'Portada · Imagen', 'Imagen de fondo de la portada. Vacío = imagen por defecto del tema.' ),
 				fiet_f( 'f_rec_eye', 'Portada · Sobretítulo', 'rec_eyebrow', 'Recursos', 'text', '70' ),
 				fiet_tagf( 'f_rec_eye_tag', 'rec_eyebrow_tag', 'span' ),
 				fiet_f( 'f_rec_tit', 'Portada · Título', 'rec_titulo', 'Recursos y servicios.', 'text', '70' ),
@@ -172,6 +184,7 @@ add_action( 'acf/init', function () {
 		'key'    => 'group_fiet_front',
 		'title'  => 'El teléfono (portada) · Textos',
 		'fields' => array(
+			fiet_img_f( 'f_tel_img', 'tel_portada_img', 'Portada · Imagen', 'Imagen de fondo de la portada. Vacío = imagen por defecto del tema.' ),
 			fiet_f( 'f_tel_eye', 'Sobretítulo', 'tel_eyebrow', 'Confidencial · Gratuito · Disponible 24/7 · Sin rastro en la factura', 'text', '70' ),
 			fiet_tagf( 'f_tel_eye_tag', 'tel_eyebrow_tag', 'span' ),
 			fiet_f( 'f_tel_sub', 'Subtítulo', 'tel_sub', 'El Teléfono de Ayuda Contra la Trata funciona 24/7 y está atendido por profesionales especializados que siguen protocolos internacionales para responder con rapidez y seguridad. Financiado y operado por la ONG FIET.', 'textarea' ),
