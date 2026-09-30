@@ -5,6 +5,61 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/**
+ * Importa una imagen del tema a la Biblioteca de medios (una sola vez) y
+ * devuelve su ID de adjunto. Deduplica por meta _fiet_theme_src.
+ */
+function fiet_import_theme_image( $filename ) {
+	$found = get_posts( array(
+		'post_type' => 'attachment', 'post_status' => 'inherit', 'numberposts' => 1, 'fields' => 'ids',
+		'meta_key' => '_fiet_theme_src', 'meta_value' => $filename,
+	) );
+	if ( $found ) return (int) $found[0];
+
+	$src = trailingslashit( get_template_directory() ) . $filename;
+	if ( ! file_exists( $src ) ) return 0;
+
+	require_once ABSPATH . 'wp-admin/includes/file.php';
+	require_once ABSPATH . 'wp-admin/includes/media.php';
+	require_once ABSPATH . 'wp-admin/includes/image.php';
+
+	$upload = wp_upload_bits( $filename, null, file_get_contents( $src ) );
+	if ( ! empty( $upload['error'] ) ) return 0;
+
+	$type = wp_check_filetype( $upload['file'] );
+	$id   = wp_insert_attachment( array(
+		'post_mime_type' => $type['type'],
+		'post_title'     => sanitize_file_name( pathinfo( $filename, PATHINFO_FILENAME ) ),
+		'post_status'    => 'inherit',
+	), $upload['file'] );
+	if ( is_wp_error( $id ) || ! $id ) return 0;
+
+	wp_update_attachment_metadata( $id, wp_generate_attachment_metadata( $id, $upload['file'] ) );
+	update_post_meta( $id, '_fiet_theme_src', $filename );
+	return (int) $id;
+}
+
+/** Precarga el campo de imagen de portada de una página con la imagen del tema (si está vacío). */
+function fiet_seed_portada( $page_id, $field, $filename ) {
+	if ( ! $page_id || ! function_exists( 'get_field' ) ) return;
+	if ( get_field( $field, $page_id ) ) return;               // ya tiene imagen: respetar
+	$att = fiet_import_theme_image( $filename );
+	if ( $att ) update_field( $field, $att, $page_id );
+}
+
+/** Al entrar al admin (una vez), deja las imágenes de portada por defecto en la biblioteca y precargadas. */
+add_action( 'admin_init', function () {
+	if ( get_option( 'fiet_portadas_seeded' ) ) return;
+	if ( ! function_exists( 'update_field' ) ) return;
+	$front = (int) get_option( 'page_on_front' );
+	$prev  = get_page_by_path( 'prevencion' );
+	$rec   = get_page_by_path( 'recursos' );
+	fiet_seed_portada( $front,               'tel_portada_img',  'foto_portada_telefono.png' );
+	fiet_seed_portada( $prev ? $prev->ID : 0, 'prev_portada_img', 'foto_portada_como_mantenerse_a_salvo.png' );
+	fiet_seed_portada( $rec ? $rec->ID : 0,   'rec_portada_img',  'foto_portada_recursos_y_servicios.png' );
+	update_option( 'fiet_portadas_seeded', 1 );
+} );
+
 /** Atajo para definir un campo de texto/área (con ancho opcional para columnas) */
 function fiet_f( $key, $label, $name, $default = '', $type = 'text', $width = '' ) {
 	$f = array( 'key' => $key, 'label' => $label, 'name' => $name, 'type' => $type, 'default_value' => $default );
