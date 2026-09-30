@@ -32,7 +32,7 @@
     /* sombra sutil hacia abajo en cada tramo (dimensionalidad); aplicada por tramo para que afecte a TODOS los dígitos */
     .tel-number .tn-a{ padding-right:.06em; background:linear-gradient(180deg,#3a3e46 0%,#212428 55%,#15171b 100%); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 4px 6px rgba(11,14,18,.20)); }   /* 900: negro con degradado (profundidad); padding-right evita recortar el último 0 */
     .tel-number .tn-b{ padding-right:.06em; background:linear-gradient(180deg,#FFE45C 0%,#FFD400 52%,#E3B100 100%); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 4px 6px rgba(11,14,18,.20)); }   /* 759: amarillo corporativo con degradado */
-    .tel-eyebrow{ max-width:100%; font-size:clamp(.95rem,1.4vw,1.15rem); letter-spacing:.18em; text-transform:uppercase; color:rgba(11,14,18,.9); margin-bottom:clamp(16px,2.6vh,30px); will-change:opacity; }
+    .tel-eyebrow{ display:block; max-width:100%; font-size:clamp(.95rem,1.4vw,1.15rem); font-weight:400; letter-spacing:.18em; text-transform:uppercase; color:rgba(11,14,18,.9); margin-top:0; margin-bottom:clamp(16px,2.6vh,30px); will-change:opacity; }
     .tel-sub{ width:min(720px,90vw); font-size:clamp(1.15rem,1.8vw,1.3rem); line-height:1.6; color:rgba(11,14,18,.9); margin-top:clamp(18px,3vh,34px); will-change:opacity; }
 
     /* Barra de pasos (se rellena acompasada con los textos) */
@@ -120,7 +120,8 @@
       <div class="tel-cover-bg" id="telCoverBg" aria-hidden="true"></div>
       <canvas class="tel-frag" id="telFrag" aria-hidden="true"></canvas>
       <div class="tel-cover" id="telCover">
-        <span class="tel-eyebrow" id="telEyebrow"><?php ff('tel_eyebrow','Confidencial · Gratuito · Disponible 24/7 · Sin rastro en la factura'); ?></span>
+        <?php $telt = fiet_tag('tel_eyebrow_tag','span'); ?>
+        <<?php echo $telt; ?> class="tel-eyebrow" id="telEyebrow"><?php ff('tel_eyebrow','Confidencial · Gratuito · Disponible 24/7 · Sin rastro en la factura'); ?></<?php echo $telt; ?>>
         <div class="tel-number" id="telNum"><?php
           $tel_disp = fiet_option('telefono_display','900 759 759');
           $tel_sp   = strpos( $tel_disp, ' ' );

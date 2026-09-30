@@ -60,8 +60,9 @@
           <p class="para" id="para" style="opacity:0"></p>
         </div>
         <div class="intro" id="intro">
-          <span class="tag"><span class="dot"></span><?php ff('rec_eyebrow','Recursos'); ?></span>
-          <h2><?php ff('rec_titulo','Recursos y servicios.'); ?></h2>
+          <?php $ret = fiet_tag('rec_eyebrow_tag','span'); $rtt = fiet_tag('rec_titulo_tag','h2'); ?>
+          <<?php echo $ret; ?> class="tag"><span class="dot"></span><?php ff('rec_eyebrow','Recursos'); ?></<?php echo $ret; ?>>
+          <<?php echo $rtt; ?> class="intro-title"><?php ff('rec_titulo','Recursos y servicios.'); ?></<?php echo $rtt; ?>>
           <p><?php ff('rec_parrafo','El Teléfono ACT ofrece formaciones gratuitas a profesionales y sectores con mayor riesgo de detectar situaciones de trata, además de una amplia red de derivación y materiales especializados.'); ?></p>
           <button class="btn-hero js-open-report" type="button"><?php ff('rec_boton','Ver formaciones'); ?></button>
         </div>

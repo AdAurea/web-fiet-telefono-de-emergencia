@@ -22,8 +22,9 @@
           <p class="para" id="para4"><?php ff('qet_esp_parrafo2','España es además uno de los países europeos con mayor demanda de prostitución, un factor que favorece la explotación sexual. Según el Ministerio del Interior, en 2024 el 56 % de las víctimas detectadas fueron mujeres y el 44 % hombres.'); ?></p>
         </div>
         <div class="intro" id="intro">
-          <span class="tag"><span class="dot"></span><?php ff('qet_intro_tag','Confidencial · Gratuito · Disponible 24/7'); ?></span>
-          <h2><?php ff('qet_intro_titulo','No estás sola'); ?></h2>
+          <?php $qet = fiet_tag('qet_intro_eyebrow_tag','span'); $qtt = fiet_tag('qet_intro_titulo_tag','h2'); ?>
+          <<?php echo $qet; ?> class="tag"><span class="dot"></span><?php ff('qet_intro_tag','Confidencial · Gratuito · Disponible 24/7'); ?></<?php echo $qet; ?>>
+          <<?php echo $qtt; ?> class="intro-title"><?php ff('qet_intro_titulo','No estás sola'); ?></<?php echo $qtt; ?>>
           <p><?php ff( 'qet_intro_parrafo0', 'El 900 759 759 es el Teléfono de Ayuda Contra la Trata en España. Está disponible 24/7 y es atendido por profesionales especializados que ofrecen una respuesta rápida, segura y confidencial.' ); ?></p>
           <p><?php ff( 'qet_intro_parrafo', 'Si crees que tú o alguien que conoces puede estar en una situación de trata, contacta. Puedes permanecer en el anonimato.' ); ?></p>
           <a href="tel:<?php echo esc_attr( fiet_option('telefono_tel','900759759') ); ?>" class="btn-hero"><?php ff('qet_intro_boton','Línea de asistencia 24h'); ?></a>

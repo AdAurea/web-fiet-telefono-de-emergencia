@@ -411,5 +411,5 @@
   .hero-cover{ object-position:center top; -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 30%,transparent 52%); mask-image:linear-gradient(180deg,#000 0%,#000 30%,transparent 52%); }
   /* El texto del hero nunca debe desbordar el ancho del móvil */
   #prevHero .intro, #recHero .intro{ left:22px; right:22px; width:auto; max-width:calc(100vw - 44px); box-sizing:border-box; }
-  #prevHero .intro h2, #prevHero .intro .intro-title, #recHero .intro h2, #prevHero .intro p, #recHero .intro p{ max-width:100%; overflow-wrap:break-word; }
+  #prevHero .intro h2, #prevHero .intro .intro-title, #recHero .intro h2, #recHero .intro .intro-title, #prevHero .intro p, #recHero .intro p{ max-width:100%; overflow-wrap:break-word; }
 }
