@@ -103,7 +103,7 @@
     .via-cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
     .via-card{ display:flex; flex-direction:column; text-align:left; border:1px solid rgba(11,14,18,.14); border-radius:14px; padding:clamp(18px,1.6vw,24px); background:rgba(255,255,255,.35); }
     .via-num{ font-size:.74rem; letter-spacing:.12em; color:rgba(11,14,18,.45); margin-bottom:clamp(12px,2.2vh,20px); }
-    .via-card h3{ font-family:var(--font-display); font-weight:600; font-size:clamp(1.2rem,1.7vw,1.55rem); margin-bottom:10px; color:var(--fg); }
+    .via-card h3, .via-card .card-title{ display:block; font-family:var(--font-display); font-weight:600; font-size:clamp(1.2rem,1.7vw,1.55rem); margin-bottom:10px; color:var(--fg); }
     .via-card p{ font-family:var(--font-body); font-size:.9rem; line-height:1.5; color:rgba(11,14,18,.7); margin-bottom:18px; flex:1; }
     .via-btn{ display:inline-flex; align-items:center; justify-content:center; align-self:flex-start; font-family:var(--font-body); font-weight:600; font-size:.95rem; padding:13px 20px; border-radius:10px; text-decoration:none; border:1px solid var(--fg); color:var(--fg); background:transparent; transition:background .2s ease, color .2s ease; }
     .via-btn:hover{ background:var(--fg); color:#fff; }
@@ -375,25 +375,25 @@
     <div class="report-inner report-vias">
       <div class="report-left">
         <span class="tag"><?php ff('tel_pop_tag','Cómo contactar'); ?></span>
-        <h2><?php ff('tel_pop_titulo','Tres vías. Todas confidenciales.'); ?></h2>
+        <?php fiet_h('tel_pop_titulo','tel_pop_titulo_tag','h2','report-title','Tres vías. Todas confidenciales.'); ?>
         <p><?php ff('tel_pop_parrafo','Hay una persona al otro lado. No te juzga, no comparte nada sin tu consentimiento (salvo obligación legal) y puedes permanecer en el anonimato. Elige el canal que te resulte más seguro.'); ?></p>
       </div>
       <div class="via-cards">
         <article class="via-card">
           <span class="via-num">01 / 03</span>
-          <h3><?php ff('tel_c1_titulo','Teléfono'); ?></h3>
+          <?php fiet_h('tel_c1_titulo','tel_c1_titulo_tag','h3','card-title','Teléfono'); ?>
           <p><?php ff('tel_c1_desc','Marca el 900 759 759. Gratuito, 24/7. Profesionales que hablan español e inglés, con interpretación en más de 200 idiomas.'); ?></p>
           <a class="btn-hero" href="tel:<?php echo esc_attr( fiet_option('telefono_tel','900759759') ); ?>"><?php ff('tel_c1_boton','Llamar'); ?></a>
         </article>
         <article class="via-card">
           <span class="via-num">02 / 03</span>
-          <h3><?php ff('tel_c2_titulo','Formulario'); ?></h3>
+          <?php fiet_h('tel_c2_titulo','tel_c2_titulo_tag','h3','card-title','Formulario'); ?>
           <p><?php ff('tel_c2_desc','Describe una situación de sospecha a través del formulario de contacto. Puedes hacerlo de forma anónima o dejar un contacto para que te llamen.'); ?></p>
           <button class="btn-hero js-open-form" type="button"><?php ff('tel_c2_boton','Abrir formulario'); ?></button>
         </article>
         <article class="via-card">
           <span class="via-num">03 / 03</span>
-          <h3><?php ff('tel_c3_titulo','Correo'); ?></h3>
+          <?php fiet_h('tel_c3_titulo','tel_c3_titulo_tag','h3','card-title','Correo'); ?>
           <p><?php ff('tel_c3_desc','Escríbenos con los detalles de tu situación o tu consulta. Te responderá el equipo especializado.'); ?></p>
           <a class="btn-hero" href="mailto:<?php echo esc_attr( fiet_option('email_contacto','informacion@fiet.ong') ); ?>"><?php ff('tel_c3_boton','Enviar correo'); ?></a>
         </article>
