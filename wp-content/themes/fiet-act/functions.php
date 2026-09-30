@@ -220,6 +220,15 @@ function fiet_tag( $name, $default = 'p' ) {
 	return in_array( $t, $allowed, true ) ? $t : $default;
 }
 
+/**
+ * Imprime un título/elemento de texto con su etiqueta HTML editable + una clase
+ * estable (para que cambiar la etiqueta no altere el diseño). Contenido escapado.
+ */
+function fiet_h( $content_key, $tag_key, $default_tag, $class, $default = '' ) {
+	$tag = fiet_tag( $tag_key, $default_tag );
+	printf( '<%1$s class="%2$s">%3$s</%1$s>', $tag, esc_attr( $class ), esc_html( fiet_field( $content_key, $default ) ) );
+}
+
 /** Opciones del desplegable de etiqueta (para los campos ACF de tipo select) */
 function fiet_tag_choices() {
 	return array(
