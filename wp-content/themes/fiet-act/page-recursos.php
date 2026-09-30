@@ -10,7 +10,7 @@
     .serv-card{ background:rgba(255,255,255,.6); border:1px solid rgba(11,14,18,.12); border-radius:16px; padding:clamp(16px,1.4vw,24px); text-align:left; }
     .serv-num{ font-family:var(--font-body); font-size:.75rem; letter-spacing:.1em; color:rgba(11,14,18,.5); margin-bottom:14px; }
     .serv-card h3, .serv-card .card-title{ display:block; font-family:var(--font-display); font-weight:600; font-size:clamp(1rem,1.2vw,1.25rem); line-height:1.2; margin-bottom:10px; color:#0B0E12; }
-    .serv-card p{ font-family:var(--font-body); font-size:.85rem; line-height:1.5; color:rgba(11,14,18,.72); }
+    .serv-card p, .serv-card .ftext{ display:block; font-family:var(--font-body); font-size:.85rem; line-height:1.5; color:rgba(11,14,18,.72); }
     @media (max-width:1000px){ .serv-cards{ grid-template-columns:repeat(2,1fr); max-width:640px; } .rec-services{ justify-content:flex-start; } }
     @media (max-width:560px){
       /* móvil: 6 tarjetas en 2 columnas (3 filas) y todo compacto para que quepan en pantalla */
@@ -20,7 +20,7 @@
       .serv-card{ padding:12px 12px; border-radius:12px; }
       .serv-num{ margin-bottom:6px; font-size:.66rem; }
       .serv-card h3, .serv-card .card-title{ font-size:.95rem; line-height:1.15; margin-bottom:5px; }
-      .serv-card p{ font-size:.74rem; line-height:1.35; }
+      .serv-card p, .serv-card .ftext{ font-size:.74rem; line-height:1.35; }
     }
 
     /* Ventana emergente: formación especializada + cards por sector */
@@ -64,7 +64,7 @@
           <?php $ret = fiet_tag('rec_eyebrow_tag','span'); $rtt = fiet_tag('rec_titulo_tag','h2'); ?>
           <<?php echo $ret; ?> class="tag"><span class="dot"></span><?php ff('rec_eyebrow','Recursos'); ?></<?php echo $ret; ?>>
           <<?php echo $rtt; ?> class="intro-title"><?php ff('rec_titulo','Recursos y servicios.'); ?></<?php echo $rtt; ?>>
-          <p><?php ff('rec_parrafo','El Teléfono ACT ofrece formaciones gratuitas a profesionales y sectores con mayor riesgo de detectar situaciones de trata, además de una amplia red de derivación y materiales especializados.'); ?></p>
+          <?php fiet_h('rec_parrafo','rec_parrafo_tag','p','ftext','El Teléfono ACT ofrece formaciones gratuitas a profesionales y sectores con mayor riesgo de detectar situaciones de trata, además de una amplia red de derivación y materiales especializados.'); ?>
           <button class="btn-hero js-open-report" type="button"><?php ff('rec_boton','Ver formaciones'); ?></button>
         </div>
       </div>
@@ -74,32 +74,32 @@
           <article class="serv-card">
             <span class="serv-num">01 / 06</span>
             <?php fiet_h('rec_serv1_titulo','rec_serv1_titulo_tag','h3','card-title','Derivaciones'); ?>
-            <p><?php ff('rec_serv1_desc','Conectamos a quien llama con servicios especializados: gestión de casos, alojamiento seguro, transporte, asistencia legal y apoyo psicológico y de salud mental.'); ?></p>
+            <?php fiet_h('rec_serv1_desc','rec_serv1_desc_tag','p','ftext','Conectamos a quien llama con servicios especializados: gestión de casos, alojamiento seguro, transporte, asistencia legal y apoyo psicológico y de salud mental.'); ?>
           </article>
           <article class="serv-card">
             <span class="serv-num">02 / 06</span>
             <?php fiet_h('rec_serv2_titulo','rec_serv2_titulo_tag','h3','card-title','Formación a profesionales'); ?>
-            <p><?php ff('rec_serv2_desc','Formación y asistencia técnica a fuerzas de seguridad, profesionales sanitarios, personal aeroportuario y organismos públicos. Fortalecemos protocolos locales y nacionales.'); ?></p>
+            <?php fiet_h('rec_serv2_desc','rec_serv2_desc_tag','p','ftext','Formación y asistencia técnica a fuerzas de seguridad, profesionales sanitarios, personal aeroportuario y organismos públicos. Fortalecemos protocolos locales y nacionales.'); ?>
           </article>
           <article class="serv-card">
             <span class="serv-num">03 / 06</span>
             <?php fiet_h('rec_serv3_titulo','rec_serv3_titulo_tag','h3','card-title','Informar una sospecha'); ?>
-            <p><?php ff('rec_serv3_desc','Recibimos información sobre posibles situaciones de trata. Todas las comunicaciones son confidenciales y la persona puede permanecer en el anonimato.'); ?></p>
+            <?php fiet_h('rec_serv3_desc','rec_serv3_desc_tag','p','ftext','Recibimos información sobre posibles situaciones de trata. Todas las comunicaciones son confidenciales y la persona puede permanecer en el anonimato.'); ?>
           </article>
           <article class="serv-card">
             <span class="serv-num">04 / 06</span>
             <?php fiet_h('rec_serv4_titulo','rec_serv4_titulo_tag','h3','card-title','Asistencia a víctimas'); ?>
-            <p><?php ff('rec_serv4_desc','Apoyo en crisis mediante planes de seguridad, acompañamiento emocional y conexión con servicios de emergencia y entidades especializadas.'); ?></p>
+            <?php fiet_h('rec_serv4_desc','rec_serv4_desc_tag','p','ftext','Apoyo en crisis mediante planes de seguridad, acompañamiento emocional y conexión con servicios de emergencia y entidades especializadas.'); ?>
           </article>
           <article class="serv-card">
             <span class="serv-num">05 / 06</span>
             <?php fiet_h('rec_serv5_titulo','rec_serv5_titulo_tag','h3','card-title','Verificación de empleo'); ?>
-            <p><?php ff('rec_serv5_desc','Servicio gratuito de verificación de ofertas de empleo. Revisamos el registro de la empresa, antecedentes y opiniones, y elaboramos una evaluación de riesgo.'); ?></p>
+            <?php fiet_h('rec_serv5_desc','rec_serv5_desc_tag','p','ftext','Servicio gratuito de verificación de ofertas de empleo. Revisamos el registro de la empresa, antecedentes y opiniones, y elaboramos una evaluación de riesgo.'); ?>
           </article>
           <article class="serv-card">
             <span class="serv-num">06 / 06</span>
             <?php fiet_h('rec_serv6_titulo','rec_serv6_titulo_tag','h3','card-title','Servicio de interpretación'); ?>
-            <p><?php ff('rec_serv6_desc','Atención en más de 200 idiomas para facilitar la comunicación y la intervención de profesionales especializados en trata de personas.'); ?></p>
+            <?php fiet_h('rec_serv6_desc','rec_serv6_desc_tag','p','ftext','Atención en más de 200 idiomas para facilitar la comunicación y la intervención de profesionales especializados en trata de personas.'); ?>
           </article>
         </div>
       </div>
@@ -114,8 +114,8 @@
       <div class="report-left">
         <span class="tag"><?php ff('rec_pop_eyebrow','Recursos'); ?></span>
         <?php fiet_h('rec_pop_titulo','rec_pop_titulo_tag','h2','report-title','Formación especializada.'); ?>
-        <p><?php ff('rec_pop_p1','Proporcionamos conocimientos clave sobre la magnitud y las formas de la trata, los indicadores específicos según cada ámbito profesional y los protocolos de actuación necesarios en situaciones de sospecha o identificación.'); ?></p>
-        <p><?php ff('rec_pop_p2','Contamos con una amplia base de datos de organizaciones que imparten formaciones, campañas y charlas en todo el territorio, además de un catálogo de materiales especializados.'); ?></p>
+        <?php fiet_h('rec_pop_p1','rec_pop_p1_tag','p','ftext','Proporcionamos conocimientos clave sobre la magnitud y las formas de la trata, los indicadores específicos según cada ámbito profesional y los protocolos de actuación necesarios en situaciones de sospecha o identificación.'); ?>
+        <?php fiet_h('rec_pop_p2','rec_pop_p2_tag','p','ftext','Contamos con una amplia base de datos de organizaciones que imparten formaciones, campañas y charlas en todo el territorio, además de un catálogo de materiales especializados.'); ?>
       </div>
       <div class="via-cards">
         <article class="via-card">
@@ -149,7 +149,7 @@
           <?php if ( fiet_option( 'rec_url_tercer_sector', '' ) ) : ?><button class="via-mat js-descarga" type="button" data-sector="tercer_sector"><?php ff('rec_mat_boton','Descarga el material'); ?> <span>&rarr;</span></button><?php endif; ?>
         </article>
       </div>
-      <p class="via-foot"><?php ff('rec_pop_foot','Nuestro equipo de especialistas ofrece orientación para la elaboración e implementación de protocolos de actuación. Contáctanos para más información o asesoramiento específico.'); ?></p>
+      <?php fiet_h('rec_pop_foot','rec_pop_foot_tag','p','via-foot','Nuestro equipo de especialistas ofrece orientación para la elaboración e implementación de protocolos de actuación. Contáctanos para más información o asesoramiento específico.'); ?>
     </div>
   </section>
 
