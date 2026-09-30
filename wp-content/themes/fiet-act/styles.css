@@ -324,8 +324,7 @@
 .footer-brand{ display:flex; flex-direction:column; gap:16px; }
 .footer-logo img{ height:104px; width:auto; display:block; }
 .footer-tag{ font-size:.95rem; line-height:1.5; color:rgba(255,255,255,.6); max-width:26ch; }
-.footer-logo2-link{ display:inline-block; margin-top:4px; }
-.footer-logo2{ display:block; width:112px; height:auto; }
+.footer-logo2{ display:block; width:112px; height:auto; margin-top:4px; }
 .site-footer h3{ font-family:var(--font-display); font-weight:700; font-size:.82rem; letter-spacing:.12em; text-transform:uppercase; color:#FFD400; margin-bottom:18px; }
 .footer-contact, .footer-legal{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:13px; }
 .footer-contact li{ display:flex; align-items:center; gap:11px; }

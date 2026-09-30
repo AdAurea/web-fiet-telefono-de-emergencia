@@ -22,7 +22,7 @@ $legales = array(
 			<p class="footer-tag">Teléfono de Ayuda Contra la Trata</p>
 			<a class="footer-logo2-link" href="https://somosfiet.com/" target="_blank" rel="noopener" aria-label="FIET · somosfiet.com">
 				<img class="footer-logo2" src="<?php echo esc_url( $uri . '/logo_fiet_footer.png' ); ?>" alt="FIET">
-			</a>
+			</a>		
 		</div>
 
 		<div class="footer-col">
