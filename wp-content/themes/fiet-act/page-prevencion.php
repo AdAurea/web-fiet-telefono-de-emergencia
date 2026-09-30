@@ -11,7 +11,7 @@
     .via-card{ display:flex; flex-direction:column; text-align:left; border:1px solid rgba(11,14,18,.14); border-radius:16px; padding:clamp(22px,2vw,30px); background:rgba(255,255,255,.4); }
     .via-icon{ display:grid; place-items:center; width:50px; height:50px; border-radius:13px; background:#FFD400; color:#0B0E12; margin-bottom:clamp(16px,2.4vh,24px); }
     .via-icon svg{ width:27px; height:27px; }
-    .via-card h3{ font-family:var(--font-display); font-weight:600; font-size:clamp(1.25rem,1.8vw,1.6rem); margin-bottom:12px; color:var(--fg); }
+    .via-card h3, .via-card .card-title{ display:block; font-family:var(--font-display); font-weight:600; font-size:clamp(1.25rem,1.8vw,1.6rem); margin-bottom:12px; color:var(--fg); }
     .via-card p{ font-family:var(--font-body); font-size:.95rem; line-height:1.55; color:rgba(11,14,18,.7); }
     @media (max-width:860px){ .via-cards{ grid-template-columns:1fr; } }
     .via-card p{ flex:1; }
@@ -71,26 +71,30 @@
     <div class="report-inner report-vias">
       <div class="report-left">
         <span class="tag"><?php ff('prev_pop_eyebrow','Prevención'); ?></span>
-        <h2><?php ff('prev_pop_titulo','Recomendaciones para mantenerte seguro'); ?></h2>
+        <?php $ppt = fiet_tag('prev_pop_titulo_tag','h2'); ?>
+        <<?php echo $ppt; ?> class="report-title"><?php ff('prev_pop_titulo','Recomendaciones para mantenerte seguro'); ?></<?php echo $ppt; ?>>
         <p><?php ff('prev_pop_parrafo','La trata puede empezar en un empleo, un viaje o en internet. Estas son las claves para reducir riesgos e identificar señales de alerta en cada situación.'); ?></p>
       </div>
       <div class="via-cards">
         <article class="via-card">
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 7h-4V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM10 5h4v2h-4V5z"/></svg></span>
-          <h3><?php ff('prev_card1_titulo','Empleo Seguro'); ?></h3>
+          <?php $c1t = fiet_tag('prev_card1_titulo_tag','h3'); ?>
+          <<?php echo $c1t; ?> class="card-title"><?php ff('prev_card1_titulo','Empleo Seguro'); ?></<?php echo $c1t; ?>>
           <p><?php ff('prev_card1_desc','Verifica la oferta y a quien contrata, nunca entregues tus documentos y comparte con alguien de confianza dónde y con quién vas a trabajar.'); ?></p>
           <?php if ( fiet_option( 'rec_url_guia_empleo', '' ) ) : ?><button class="via-dl js-descarga" type="button" data-sector="guia_empleo"><span class="via-dl-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a1 1 0 0 1 1 1v8.59l2.3-2.3a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.42l2.3 2.3V4a1 1 0 0 1 1-1zM5 18a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H6a1 1 0 0 1-1-1z"/></svg></span>Descarga la guía de empleo preventivo</button><?php endif; ?>
           <button class="btn-hero js-rec" data-rec="empleo" type="button"><?php ff('prev_card_boton','Saber más'); ?></button>
         </article>
         <article class="via-card">
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5L21 16z"/></svg></span>
-          <h3><?php ff('prev_card2_titulo','Viaje Seguro'); ?></h3>
+          <?php $c2t = fiet_tag('prev_card2_titulo_tag','h3'); ?>
+          <<?php echo $c2t; ?> class="card-title"><?php ff('prev_card2_titulo','Viaje Seguro'); ?></<?php echo $c2t; ?>>
           <p><?php ff('prev_card2_desc','Lleva copias de tus documentos, comparte tu itinerario y ten a mano los contactos de tu embajada y de organizaciones de ayuda.'); ?></p>
           <button class="btn-hero js-rec" data-rec="viaje" type="button"><?php ff('prev_card_boton','Saber más'); ?></button>
         </article>
         <article class="via-card">
           <span class="via-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg></span>
-          <h3><?php ff('prev_card3_titulo','Internet Seguro'); ?></h3>
+          <?php $c3t = fiet_tag('prev_card3_titulo_tag','h3'); ?>
+          <<?php echo $c3t; ?> class="card-title"><?php ff('prev_card3_titulo','Internet Seguro'); ?></<?php echo $c3t; ?>>
           <p><?php ff('prev_card3_desc','Protege tus datos personales, desconfía de perfiles desconocidos y extrema la precaución si conciertas una cita con alguien conocido por internet.'); ?></p>
           <?php if ( fiet_option( 'rec_url_guia_digital_menores', '' ) ) : ?><button class="via-dl js-descarga" type="button" data-sector="guia_digital_menores"><span class="via-dl-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a1 1 0 0 1 1 1v8.59l2.3-2.3a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.42l2.3 2.3V4a1 1 0 0 1 1-1zM5 18a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H6a1 1 0 0 1-1-1z"/></svg></span>Descarga la guía de seguridad digital para menores</button><?php endif; ?>
           <?php if ( fiet_option( 'rec_url_guia_digital_adultos', '' ) ) : ?><button class="via-dl js-descarga" type="button" data-sector="guia_digital_adultos"><span class="via-dl-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a1 1 0 0 1 1 1v8.59l2.3-2.3a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.42l2.3 2.3V4a1 1 0 0 1 1-1zM5 18a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H6a1 1 0 0 1-1-1z"/></svg></span>Descarga la guía de seguridad digital para adultos</button><?php endif; ?>
